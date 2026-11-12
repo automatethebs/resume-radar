@@ -226,6 +226,51 @@
       core: ["autocad", "civil 3d", "structural analysis", "site development", "grading", "drainage", "stormwater", "construction management", "project estimation", "surveying", "concrete", "steel design", "permitting", "gis", "earthwork"],
       tools: ["autocad civil 3d", "revit", "sap2000", "etabs", "arcgis", "hec-ras", "microstation", "bluebeam"],
       verbs: ["designed", "modeled", "inspected", "estimated", "coordinated", "permitted", "calculated", "reviewed", "managed", "delivered"]
+    },
+    {
+      slug: "smart-contract-engineer",
+      title: "Smart Contract Engineer",
+      plural: "Smart Contract Engineers",
+      focus: "writing upgrade-safe contracts that survive audits, gas limits, and real users",
+      core: ["solidity", "evm", "smart contracts", "gas optimization", "security audits", "reentrancy", "access control", "upgradeability", "proxy patterns", "defi", "erc-20", "erc-721", "erc-1155", "oracles", "unit testing", "fuzzing", "formal verification", "on-chain governance", "layer 2", "account abstraction", "token standards", "merkle proofs", "foundry", "hardhat"],
+      tools: ["solidity", "foundry", "hardhat", "typescript", "ethers.js", "viem", "openzeppelin", "chainlink", "the graph", "ipfs", "slither", "echidna", "tenderly", "github actions"],
+      verbs: ["audited", "deployed", "optimized", "secured", "tested", "upgraded", "implemented", "reviewed", "reduced", "migrated"]
+    },
+    {
+      slug: "blockchain-developer",
+      title: "Blockchain Developer",
+      plural: "Blockchain Developers",
+      focus: "running reliable nodes, indexing chain data, and shipping infrastructure that does not drop",
+      core: ["distributed systems", "consensus", "cryptography", "p2p networking", "layer 2", "rollups", "evm", "rpc", "indexing", "nodes", "block explorers", "bridges", "wallets", "transaction lifecycle", "gas estimation", "mempool", "finality", "data availability", "protocol engineering", "go", "rust"],
+      tools: ["geth", "reth", "erigon", "docker", "kubernetes", "postgresql", "redis", "grafana", "prometheus", "terraform", "aws", "the graph", "substreams", "typescript", "go", "rust"],
+      verbs: ["operated", "indexed", "deployed", "monitored", "scaled", "migrated", "optimized", "debugged", "automated", "built"]
+    },
+    {
+      slug: "defi-analyst",
+      title: "DeFi Analyst",
+      plural: "DeFi Analysts",
+      focus: "turning on-chain activity into risk, yield, and tokenomics decisions",
+      core: ["on-chain analysis", "tokenomics", "liquidity", "yield farming", "risk assessment", "protocol revenue", "tvl", "defi", "stablecoins", "lending", "amm", "impermanent loss", "governance", "airdrop analysis", "wallet clustering", "mev", "smart contract risk", "financial modeling", "dashboards", "kpis"],
+      tools: ["dune", "nansen", "defillama", "etherscan", "basescan", "sql", "python", "excel", "tableau", "metabase", "notion"],
+      verbs: ["analyzed", "modeled", "tracked", "identified", "quantified", "reported", "monitored", "forecasted", "built", "automated"]
+    },
+    {
+      slug: "web3-product-manager",
+      title: "Web3 Product Manager",
+      plural: "Web3 Product Managers",
+      focus: "shipping wallet-native products without losing users at the signature screen",
+      core: ["product strategy", "roadmap", "wallet ux", "tokenomics", "governance", "user research", "product discovery", "defi", "nfts", "account abstraction", "onboarding", "community", "incentive design", "protocol integrations", "security reviews", "compliance", "growth", "kpis", "a/b testing", "agile"],
+      tools: ["jira", "notion", "figma", "dune", "snapshot", "mirror", "amplitude", "mixpanel", "linear", "github"],
+      verbs: ["launched", "defined", "prioritized", "shipped", "partnered", "validated", "scoped", "grew", "aligned", "measured"]
+    },
+    {
+      slug: "crypto-community-manager",
+      title: "Crypto Community Manager",
+      plural: "Crypto Community Managers",
+      focus: "growing and moderating communities without turning them into a support queue",
+      core: ["community management", "moderation", "discord", "telegram", "content strategy", "social media", "growth", "engagement", "event planning", "ambassador programs", "support", "crisis communication", "token incentives", "governance", "user feedback", "analytics", "copywriting", "partnerships"],
+      tools: ["discord", "telegram", "x", "notion", "typeform", "zealy", "galxe", "buffer", "canva", "google analytics"],
+      verbs: ["grew", "moderated", "launched", "engaged", "coordinated", "managed", "created", "supported", "partnered", "measured"]
     }
   ];
 

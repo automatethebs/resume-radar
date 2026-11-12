@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Pay with USDC on Base — ResumeRadar</title>
+  <meta name="description" content="Step-by-step guide to paying for ResumeRadar Pro with USDC on Base. No account, no card, no KYC. Includes the wallet address, network details, and troubleshooting.">
+  <link rel="canonical" href="https://automatethebs.github.io/resume-radar/pay-with-usdc.html">
+  <meta name="theme-color" content="#191611">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Pay with USDC on Base — ResumeRadar">
+  <meta property="og:description" content="Pay $9 in USDC on Base for the ResumeRadar Pro report. No account, no card, no KYC.">
+  <meta property="og:image" content="https://automatethebs.github.io/resume-radar/assets/og.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/config.js"></script>
+  <script defer src="assets/payments.js"></script>
+  <script defer src="assets/site.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to pay for ResumeRadar Pro with USDC on Base",
+    "description": "Send 9 USDC on the Base network, then verify the transaction hash in the ResumeRadar unlock dialog.",
+    "totalTime": "PT5M",
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "9" },
+    "step": [
+      { "@type": "HowToStep", "name": "Open a wallet that supports Base", "text": "Use Coinbase Wallet, MetaMask, Rainbow, or another EVM wallet. Add the Base network if it is not already available." },
+      { "@type": "HowToStep", "name": "Get USDC on Base", "text": "Buy USDC on an exchange and withdraw it to your wallet on the Base network, or bridge USDC from another chain." },
+      { "@type": "HowToStep", "name": "Send 9 USDC to the ResumeRadar address", "text": "Send exactly 9 USDC on Base to 0xe46471279bF9514C7d1C86Af8DE1bA63845c5C86. Do not use another network or asset." },
+      { "@type": "HowToStep", "name": "Copy the transaction hash", "text": "Copy the transaction hash from your wallet or from BaseScan." },
+      { "@type": "HowToStep", "name": "Verify and unlock Pro", "text": "Paste the hash into the ResumeRadar unlock dialog. The site verifies the transfer against the Base network in your browser and unlocks Pro on that device." }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#usdc-guide">Skip to USDC guide</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="ResumeRadar home">
+        <img src="assets/mark.svg" alt="" width="24" height="24">
+        ResumeRadar
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="index.html">Checker</a>
+        <a href="roles.html">Role guides</a>
+        <a href="keyword-extractor.html">Keywords</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+      <span class="pro-chip">PRO</span>
+      <a class="btn btn-sm btn-primary header-cta" href="index.html#checker">Scan my resume</a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+    </div>
+  </header>
+
+  <main id="usdc-guide">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Payment guide</p>
+        <h1>Pay with USDC on Base.</h1>
+        <p class="lede">Pro is a one-time $9 report. USDC on Base keeps it accountless: no card details, no billing account, and no KYC submission to ResumeRadar. The site verifies the transfer on-chain in your browser.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="extractor-grid">
+          <div class="prose" style="max-width:none">
+            <h2>Five steps, about five minutes.</h2>
+
+            <div class="usdc-step">
+              <span class="usdc-num">01</span>
+              <div>
+                <h3>Open a wallet that supports Base</h3>
+                <p>Coinbase Wallet, MetaMask, Rainbow, or any EVM wallet works. If Base is not already in your network list, add it with chain ID <strong>8453</strong> and the public RPC <span class="mono">https://mainnet.base.org</span>.</p>
+              </div>
+            </div>
+
+            <div class="usdc-step">
+              <span class="usdc-num">02</span>
+              <div>
+                <h3>Get USDC on Base</h3>
+                <p>The simplest route is to buy USDC on an exchange and withdraw it to your wallet on the <strong>Base</strong> network. If your USDC is on another chain, bridge it to Base first. USDC on Base uses 6 decimals.</p>
+              </div>
+            </div>
+
+            <div class="usdc-step">
+              <span class="usdc-num">03</span>
+              <div>
+                <h3>Send exactly 9 USDC</h3>
+                <p>Send <strong>9 USDC</strong> on Base to the address below. Use the “Open in wallet” button on the pricing page if your wallet supports EIP-681 links, or scan the QR code.</p>
+              </div>
+            </div>
+
+            <div class="usdc-step">
+              <span class="usdc-num">04</span>
+              <div>
+                <h3>Copy the transaction hash</h3>
+                <p>After the transfer confirms, copy the transaction hash from your wallet. You can also find it on <a href="https://basescan.org" target="_blank" rel="noopener">BaseScan</a> by searching your wallet address.</p>
+              </div>
+            </div>
+
+            <div class="usdc-step">
+              <span class="usdc-num">05</span>
+              <div>
+                <h3>Verify and unlock Pro</h3>
+                <p>Paste the hash into the unlock dialog on the <a href="pricing.html">pricing page</a> or in the report. The site checks the receipt, the USDC contract, the recipient, and the amount. If everything matches, Pro unlocks on that device.</p>
+                <a class="btn btn-primary" href="pricing.html#unlock">Open the unlock dialog</a>
+              </div>
+            </div>
+
+            <h2>Network details</h2>
+            <table class="score-table">
+              <tbody>
+                <tr><td><strong>Network</strong></td><td>Base (Ethereum L2)</td></tr>
+                <tr><td><strong>Chain ID</strong></td><td class="mono">8453</td></tr>
+                <tr><td><strong>Token</strong></td><td>USD Coin (USDC), 6 decimals</td></tr>
+                <tr><td><strong>USDC contract</strong></td><td class="mono" data-usdc-contract>0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</td></tr>
+                <tr><td><strong>Amount</strong></td><td>9 USDC</td></tr>
+                <tr><td><strong>Recipient</strong></td><td class="mono" data-usdc-address>0xe46471279bF9514C7d1C86Af8DE1bA63845c5C86</td></tr>
+              </tbody>
+            </table>
+
+            <h2>Common problems</h2>
+            <div class="faq">
+              <details>
+                <summary>I sent USDC on another network. What now?</summary>
+                <p>ResumeRadar only verifies USDC on Base. A transfer on Ethereum, Polygon, or another chain will not unlock Pro automatically. Open a support issue with the transaction hash and we will try to help, but cross-chain transfers can be unrecoverable.</p>
+              </details>
+              <details>
+                <summary>The transaction is confirmed but the unlock says “not found”.</summary>
+                <p>Public RPC endpoints can lag for a minute. Wait 60 seconds and try the hash again. Make sure you copied the transaction hash, not the wallet address or a block number.</p>
+              </details>
+              <details>
+                <summary>I sent less than 9 USDC.</summary>
+                <p>The verifier requires at least 9 USDC in a single transfer to the configured address. Send the remainder in a second transaction and contact support with both hashes.</p>
+              </details>
+              <details>
+                <summary>Do I need to create an account?</summary>
+                <p>No. There is no account system. Pro is stored in your browser's local storage on the device where you verify the payment. Clearing site data or using another browser will require restoring access with the same transaction hash.</p>
+              </details>
+            </div>
+          </div>
+
+          <aside class="card extractor-side">
+            <p class="eyebrow">Send 9 USDC</p>
+            <img class="crypto-qr" src="assets/usdc-qr.svg" alt="QR code for the ResumeRadar USDC payment address on Base" width="180" height="180" style="width:100%;max-width:200px;height:auto;margin:0 auto">
+            <span class="crypto-label">Base network · USDC only</span>
+            <span class="crypto-address" data-usdc-address>0xe46471279bF9514C7d1C86Af8DE1bA63845c5C86</span>
+            <button type="button" class="btn btn-ghost btn-sm" data-copy-usdc="true">Copy address</button>
+            <div class="crypto-warn">Send only USDC on Base. Other assets or networks may be lost and cannot be recovered by ResumeRadar.</div>
+            <a class="btn btn-primary btn-block" href="pricing.html">Go to Pro checkout</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><img src="assets/mark.svg" alt="" width="24" height="24">ResumeRadar</a>
+          <p>A private ATS resume checker for people who would rather fix the resume than send another hundred applications into the void.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Product</h3>
+          <a href="index.html">ATS checker</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="roles.html">Role guides</a>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <a href="keyword-extractor.html">Job keyword extractor</a>
+          <a href="web3.html">Crypto &amp; Web3 resumes</a>
+          <a href="pay-with-usdc.html">How to pay with USDC</a>
+          <a href="roles/software-engineer.html">Software engineer keywords</a>
+          <a href="how-it-works.html#ats">ATS basics</a>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <a href="https://github.com/automatethebs/resume-radar/issues" data-support>Support &amp; contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> ResumeRadar. Not affiliated with any ATS vendor.</span>
+        <span>Built to be honest about what a score can and cannot predict.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -41,7 +41,7 @@ test("sitemap lists every page and robots points to it", () => {
   roles.forEach((role) => {
     assert.ok(sitemap.includes(`${siteUrl}/roles/${role.slug}.html`), `sitemap missing ${role.slug}`);
   });
-  ["index.html", "roles.html", "pricing.html", "how-it-works.html", "privacy.html", "terms.html", "keyword-extractor.html"].forEach((page) => {
+  ["index.html", "roles.html", "pricing.html", "how-it-works.html", "privacy.html", "terms.html", "keyword-extractor.html", "web3.html", "pay-with-usdc.html"].forEach((page) => {
     const url = page === "index.html" ? `${siteUrl}/` : `${siteUrl}/${page}`;
     assert.ok(sitemap.includes(url), `sitemap missing ${page}`);
   });
@@ -66,7 +66,7 @@ test("pricing and unlock flows are wired", () => {
 test("support is a real URL, not a placeholder inbox", () => {
   assert.match(supportUrl, /^https:\/\/github\.com\/[\w-]+\/[\w-]+\/issues$/, "supportUrl should be an issue tracker URL");
   assert.ok(!configSrc.includes("hello@resumeradar.example"), "placeholder support email still present");
-  ["index.html", "pricing.html", "how-it-works.html", "privacy.html", "terms.html", "404.html"].forEach((page) => {
+  ["index.html", "pricing.html", "how-it-works.html", "privacy.html", "terms.html", "404.html", "web3.html", "pay-with-usdc.html"].forEach((page) => {
     const html = fs.readFileSync(path.join(site, page), "utf8");
     assert.ok(html.includes(supportUrl), `${page} missing support link`);
   });
@@ -109,6 +109,38 @@ test("keyword extractor is a real, wired page and hands off to the scanner", () 
 
   const indexHtml = fs.readFileSync(path.join(site, "index.html"), "utf8");
   assert.ok(indexHtml.includes("keyword-extractor.html"), "homepage does not link to the extractor");
+});
+
+test("Web3 landing page and USDC guide are wired", () => {
+  const web3 = fs.readFileSync(path.join(site, "web3.html"), "utf8");
+  assert.ok(web3.includes(`${siteUrl}/web3.html`), "web3 missing canonical");
+  assert.ok(web3.includes("FAQPage"), "web3 missing FAQ schema");
+  assert.ok(web3.includes("pay-with-usdc.html"), "web3 missing payment guide link");
+  ["smart-contract-engineer", "blockchain-developer", "defi-analyst", "web3-product-manager", "crypto-community-manager"].forEach((slug) => {
+    assert.ok(web3.includes(`roles/${slug}.html`), `web3 missing ${slug}`);
+    assert.ok(fs.existsSync(path.join(site, "roles", `${slug}.html`)), `missing ${slug} page`);
+  });
+
+  const guide = fs.readFileSync(path.join(site, "pay-with-usdc.html"), "utf8");
+  assert.ok(guide.includes(`${siteUrl}/pay-with-usdc.html`), "guide missing canonical");
+  assert.ok(guide.includes("8453"), "guide missing Base chain id");
+  assert.ok(guide.includes(usdcAddress), "guide missing the configured USDC address");
+  assert.ok(guide.includes("data-usdc-address"), "guide missing dynamic address hook");
+  assert.ok(guide.includes("data-copy-usdc"), "guide missing copy-address hook");
+  assert.ok(guide.includes("assets/usdc-qr.svg"), "guide missing payment QR");
+  const siteJs = fs.readFileSync(path.join(site, "assets/site.js"), "utf8");
+  assert.ok(siteJs.includes("data-usdc-address"), "site.js does not hydrate the USDC address");
+});
+
+test("Pro report includes a cover-letter outline and interview questions", () => {
+  const appJs = fs.readFileSync(path.join(site, "assets/app.js"), "utf8");
+  assert.ok(appJs.includes("proPlaybook"), "proPlaybook helper missing");
+  assert.ok(appJs.includes("renderProPlaybook"), "renderProPlaybook missing");
+  assert.ok(appJs.includes("Cover letter outline"), "cover-letter heading missing");
+  assert.ok(appJs.includes("Interview questions"), "interview heading missing");
+  assert.ok(appJs.includes("PRO PLAYBOOK"), "text export missing the playbook");
+  const css = fs.readFileSync(path.join(site, "assets/styles.css"), "utf8");
+  assert.ok(css.includes(".pro-playbook"), "playbook styles missing");
 });
 
 test("report has a share loop and a wallet handoff", () => {

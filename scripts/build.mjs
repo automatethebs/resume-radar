@@ -83,6 +83,8 @@ function footer(prefix) {
         <div class="footer-col">
           <h3>Resources</h3>
           <a href="${prefix}keyword-extractor.html">Job keyword extractor</a>
+          <a href="${prefix}web3.html">Crypto &amp; Web3 resumes</a>
+          <a href="${prefix}pay-with-usdc.html">How to pay with USDC</a>
           <a href="${prefix}roles/software-engineer.html">Software engineer keywords</a>
           <a href="${prefix}roles/registered-nurse.html">Nursing resume keywords</a>
           <a href="${prefix}roles/data-analyst.html">Data analyst keywords</a>
@@ -289,7 +291,7 @@ function rolePage(role) {
         <div class="role-links">
           ${others.map((r) => `<a href="${r.slug}.html">${esc(r.title)}</a>`).join("")}
         </div>
-        <p class="small" style="margin-top:16px"><a class="link-arrow" href="../roles.html">See all 24 role guides →</a></p>
+        <p class="small" style="margin-top:16px"><a class="link-arrow" href="../roles.html">See all 29 role guides →</a></p>
       </div>
     </section>
   </main>`;
@@ -298,7 +300,7 @@ function rolePage(role) {
 }
 
 function rolesIndexPage() {
-  const title = "ATS Resume Guides for 24 Roles — Free Keyword Lists";
+  const title = "ATS Resume Guides for 29 Roles — Free Keyword Lists";
   const description = "Browse free ATS resume keyword guides for software engineers, nurses, teachers, analysts, designers, accountants, and more. Copy the keywords, then score your resume.";
   const canonical = `${siteUrl}/roles.html`;
   const body = `<main>
@@ -351,6 +353,8 @@ function sitemap() {
     { loc: `${siteUrl}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${siteUrl}/roles.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/web3.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/pay-with-usdc.html`, priority: "0.5", changefreq: "yearly" },
     { loc: `${siteUrl}/pricing.html`, priority: "0.7", changefreq: "monthly" },
     { loc: `${siteUrl}/how-it-works.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/privacy.html`, priority: "0.3", changefreq: "yearly" },

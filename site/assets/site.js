@@ -451,6 +451,9 @@
 
     $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
     $$("[data-price]").forEach(function (el) { el.textContent = priceText; });
+    $$("[data-usdc-address]").forEach(function (el) { if (USDC.address) el.textContent = USDC.address; });
+    $$("[data-usdc-contract]").forEach(function (el) { if (USDC.contract) el.textContent = USDC.contract; });
+    $$("[data-copy-usdc]").forEach(function (el) { if (USDC.address) el.setAttribute("data-copy", USDC.address); });
     $$("[data-payment-note]").forEach(function (el) { el.textContent = paymentNote(); });
 
     var href = supportHref();

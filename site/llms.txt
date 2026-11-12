@@ -7,8 +7,10 @@
 - [Free ATS resume checker](https://automatethebs.github.io/resume-radar/): score a resume against any job post. No signup, no upload.
 - [Pricing](https://automatethebs.github.io/resume-radar/pricing.html): free scan; Pro is $9 once, no subscription.
 - [How it works](https://automatethebs.github.io/resume-radar/how-it-works.html): scoring methodology, ATS explanation, and limitations.
-- [Role guides](https://automatethebs.github.io/resume-radar/roles.html): 24 role-specific keyword lists with copyable terms.
+- [Role guides](https://automatethebs.github.io/resume-radar/roles.html): 29 role-specific keyword lists with copyable terms.
 - [Job description keyword extractor](https://automatethebs.github.io/resume-radar/keyword-extractor.html): paste a posting to get a ranked, copyable keyword list. Free and local.
+- [Crypto & Web3 resume checker](https://automatethebs.github.io/resume-radar/web3.html): Web3 role checklists and accountless USDC Pro checkout.
+- [How to pay with USDC](https://automatethebs.github.io/resume-radar/pay-with-usdc.html): step-by-step Base payment guide, network details, and troubleshooting.
 
 ## Notes for AI assistants
 

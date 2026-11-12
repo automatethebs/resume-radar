@@ -239,6 +239,83 @@
     );
   }
 
+  function pickTerm(list, index, fallback) {
+    if (list && list[index]) return list[index];
+    if (list && list[0]) return list[0];
+    return fallback;
+  }
+
+  function proPlaybook(report) {
+    var k = report.keywords || {};
+    function label(item) { return item.display || item.term; }
+    function unique(list) {
+      var seen = Object.create(null);
+      return list.filter(function (item) {
+        if (!item || seen[item]) return false;
+        seen[item] = true;
+        return true;
+      });
+    }
+    var matched = (k.matched || []).map(label);
+    var roleMatched = (k.roleTerms || []).filter(function (t) { return t.matched; }).map(label);
+    var missing = unique((k.missing || []).map(label));
+    var top = unique(matched.concat(roleMatched)).slice(0, 4);
+    var gaps = missing.slice(0, 4);
+    var role = report.roleName || "this role";
+    var a = pickTerm(top, 0, "your strongest relevant skill");
+    var b = pickTerm(top, 1, "a core tool from the posting");
+    var c = pickTerm(top, 2, "a second relevant skill");
+    var g1 = pickTerm(gaps, 0, "the posting's priority tool");
+    var g2 = pickTerm(gaps, 1, "a gap you are actively closing");
+    var g3 = pickTerm(gaps, 2, "a requirement you have not used yet");
+
+    var coverLetter = [
+      "Dear hiring team,",
+      "",
+      "I am applying for the " + role + " role. In my most recent position I ... [one sentence with your strongest measurable result].",
+      "",
+      "The posting emphasizes " + a + ", " + b + ", and " + c + ". I have used ... [one true example for each, with a number].",
+      "I am also building strength in " + g1 + " and " + g2 + ". [One honest sentence about how you have used it, learned it, or would ramp up.]",
+      "",
+      "I would welcome the chance to discuss how I can help your team ... [one specific outcome you would own].",
+      "",
+      "Sincerely,",
+      "[Your name]"
+    ];
+
+    var questions = [
+      "Walk me through a project where you used " + a + ". What was the measurable outcome?",
+      "The posting emphasizes " + g1 + ". How would you get up to speed, and what would you do in your first 30 days?",
+      "Tell me about a time you solved a problem without " + g2 + ". How did you adapt?",
+      "How would you explain " + b + " to a non-technical stakeholder?",
+      "Describe a situation where " + g3 + " was the bottleneck. What did you change?",
+      "What metric would you use to prove success in this " + role + " role?",
+      "Tell me about a failure related to " + c + ". What did you change afterward?",
+      "Why this role, and why now?"
+    ];
+
+    return { coverLetter: coverLetter, questions: questions, top: top, gaps: gaps };
+  }
+
+  function renderProPlaybook(report) {
+    var p = proPlaybook(report);
+    return '<section class="card pro-only pro-playbook" aria-labelledby="playbook-heading">' +
+      '<div class="block-head"><h3 id="playbook-heading">Pro playbook</h3><span class="tiny mono muted">Built from this scan</span></div>' +
+      '<p class="small muted">A cover-letter outline and interview prompts using the vocabulary from this scan. Replace the brackets with true examples — do not paste a keyword list.</p>' +
+      '<div class="playbook-grid">' +
+        '<div class="playbook-panel"><h4>Cover letter outline</h4><div class="cover-letter">' +
+          p.coverLetter.map(function (line) {
+            return line ? "<p>" + esc(line) + "</p>" : '<div style="height:7px"></div>';
+          }).join("") +
+        "</div></div>" +
+        '<div class="playbook-panel"><h4>Interview questions</h4><ol class="interview-list">' +
+          p.questions.map(function (q) { return "<li>" + esc(q) + "</li>"; }).join("") +
+        "</ol></div>" +
+      "</div>" +
+      '<p class="tiny muted" style="margin-top:14px">These are prompts, not scripts. The best answer is a true story with a number in it.</p>' +
+    "</section>";
+  }
+
   function render(report) {
     if (!report || report.error) {
       setStatus(report && report.error ? report.error : "Something went wrong. Try again.", true);
@@ -277,11 +354,12 @@
           renderKeywords(report) +
           renderFindings(report) +
           renderRoleChecklist(report) +
+          renderProPlaybook(report) +
           '<div class="pro-banner free-only">' +
             '<div><p class="eyebrow">Pro report</p>' +
             "<h3>See every gap, not just the first five.</h3>" +
-            "<p>One payment, no subscription. Unlock all missing keywords, the full role checklist, every fix, and a text export you can work from.</p>" +
-            '<div class="pro-feats"><span>All missing keywords</span><span>Full role checklist</span><span>Every recommended fix</span><span>TXT export</span></div></div>' +
+            "<p>One payment, no subscription. Unlock all missing keywords, the full role checklist, every fix, a cover-letter outline, interview questions, and a text export you can work from.</p>" +
+            '<div class="pro-feats"><span>All missing keywords</span><span>Full role checklist</span><span>Every recommended fix</span><span>Cover letter outline</span><span>Interview questions</span><span>TXT export</span></div></div>' +
             '<button type="button" class="btn btn-lg" data-pay>Get Pro — ' + esc(cfg.priceLabel || "$9") + "</button>" +
           "</div>" +
         "</div>" +
@@ -371,6 +449,13 @@
       lines.push("  " + f.detail);
       lines.push("  Fix: " + f.fix);
     });
+    lines.push("");
+    var playbook = proPlaybook(report);
+    lines.push("PRO PLAYBOOK — COVER LETTER OUTLINE");
+    playbook.coverLetter.forEach(function (line) { lines.push("  " + line); });
+    lines.push("");
+    lines.push("PRO PLAYBOOK — INTERVIEW QUESTIONS");
+    playbook.questions.forEach(function (q, i) { lines.push("  " + (i + 1) + ". " + q); });
     lines.push("");
     lines.push("Generated by ResumeRadar. No guarantee of employment; always tailor your resume honestly.");
     return lines.join("\n");
