@@ -1,0 +1,16 @@
+{
+  "name": "resume-radar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private, client-side ATS resume checker with 24 SEO role pages and a one-time Pro unlock.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/build.mjs && node --test tests/*.test.cjs",
+    "serve": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
+    "deploy": "npx wrangler pages deploy site --project-name resume-radar"
+  },
+  "keywords": ["resume", "ats", "job-search", "static-site", "micro-saas"],
+  "license": "MIT"
+}

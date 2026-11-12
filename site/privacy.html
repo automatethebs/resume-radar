@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy — ResumeRadar</title>
+  <meta name="description" content="ResumeRadar processes your resume entirely in your browser. No uploads, no resume storage, no account. Here is exactly what is and is not stored.">
+  <link rel="canonical" href="https://automatethebs.github.io/resume-radar/privacy.html">
+  <meta name="theme-color" content="#191611">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/config.js"></script>
+  <script defer src="assets/payments.js"></script>
+  <script defer src="assets/site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="ResumeRadar home"><img src="assets/mark.svg" alt="" width="24" height="24">ResumeRadar</a>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="index.html">Checker</a>
+        <a href="roles.html">Role guides</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+      <span class="pro-chip">PRO</span>
+      <a class="btn btn-sm btn-primary header-cta" href="index.html#checker">Scan my resume</a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Privacy</p>
+        <h1>The short version: your resume never leaves your browser.</h1>
+        <p class="lede">Effective November 12, 2026. This page describes exactly what the software does, without legal fog.</p>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="wrap">
+        <div class="legal">
+          <div class="card" style="margin-bottom:32px">
+            <h2 style="margin-top:0;font-size:1.15rem">At a glance</h2>
+            <ul style="margin-top:12px">
+              <li>Resume and job-description text are processed in your browser and are never sent to a server.</li>
+              <li>No account, no email capture, no resume database.</li>
+              <li>One small set of values is saved locally: whether Pro is unlocked, and the payment method/reference used to unlock it.</li>
+              <li>Card payments, if enabled, are handled by a third-party payment processor. USDC payments are verified in your browser against public Base network RPC endpoints. This site never sees your card details or controls your wallet.</li>
+              <li>Analytics are off by default. If the operator enables them, they are cookie-free and never include resume text.</li>
+            </ul>
+          </div>
+
+          <h2>1. What is processed, and where</h2>
+          <p>The ATS checker runs as JavaScript in your browser. Your resume text and the job description you paste are held in the page's memory, analysed locally, and discarded when you close or reload the tab. They are not transmitted to ResumeRadar or any third party by the checker.</p>
+
+          <h2>2. What is stored on your device</h2>
+          <p>The site uses browser <code>localStorage</code> for the Pro state: <code>rr_pro_v1</code> records whether Pro has been unlocked, and <code>rr_pro_method</code> / <code>rr_pro_ref</code> record the method and reference (a license code prefix or a public transaction hash). These contain no resume text, name, email address, or private wallet key. You can delete them at any time by clearing site data in your browser settings; Pro will then need to be restored with your code or transaction hash.</p>
+
+          <h2>3. Payments</h2>
+          <p>If card checkout is enabled, it is hosted by a third-party payment processor (for example, Stripe). When you click a card payment button you leave this site and interact directly with that provider, which receives the information needed to process the payment under its own privacy policy. ResumeRadar receives only the confirmation needed to activate a license code and does not store card data.</p>
+          <p>USDC checkout is different: the site shows a public receiving address, and after you send a payment it asks a public Base network RPC endpoint whether the transaction receipt contains a transfer of the required amount to that address. Your wallet address and the transaction are public on-chain data. ResumeRadar does not connect to your wallet, request a signature, or store a private key.</p>
+
+          <h2>4. Analytics and logs</h2>
+          <p>Analytics are disabled by default in the shipped configuration. If the operator enables the optional integration, it uses a cookie-free, privacy-focused analytics script that records aggregate page views (page URL, referrer, country, device type). It does not receive resume text and does not set advertising cookies.</p>
+          <p>The static host that serves this site may keep standard access logs (IP address, user agent, requested URL) for security and operations. Those logs do not contain the text you paste into the checker.</p>
+
+          <h2>5. Cookies</h2>
+          <p>The core checker sets no cookies. A payment provider may set cookies on its own checkout domain. There are no advertising or cross-site tracking cookies in the shipped code.</p>
+
+          <h2>6. Your choices</h2>
+          <ul>
+            <li>Clear site data in your browser to remove the local Pro flag.</li>
+            <li>Use a private window if you do not want any local storage retained.</li>
+            <li>Open a support issue to ask questions about data handling.</li>
+          </ul>
+
+          <h2>7. Children</h2>
+          <p>The service is intended for job seekers aged 16 and over. It is not directed at children and does not knowingly collect personal information from them.</p>
+
+          <h2>8. Changes</h2>
+          <p>If the data practices change, this page will be updated and the effective date revised. Material changes will be announced on the site.</p>
+
+          <h2>9. Contact</h2>
+          <p>Questions about privacy: <a href="https://github.com/automatethebs/resume-radar/issues" data-support>Support &amp; contact</a>.</p>
+
+          <p class="small muted" style="margin-top:30px">This page is a plain-language template, not legal advice. Operators should review it for their jurisdiction and payment provider before launching commercially.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><img src="assets/mark.svg" alt="" width="24" height="24">ResumeRadar</a>
+          <p>A private ATS resume checker for people who would rather fix the resume than send another hundred applications into the void.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Product</h3>
+          <a href="index.html">ATS checker</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="roles.html">Role guides</a>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <a href="roles/software-engineer.html">Software engineer keywords</a>
+          <a href="roles/registered-nurse.html">Nursing resume keywords</a>
+          <a href="roles/data-analyst.html">Data analyst keywords</a>
+          <a href="how-it-works.html#ats">ATS basics</a>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <a href="https://github.com/automatethebs/resume-radar/issues" data-support>Support &amp; contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> ResumeRadar. Not affiliated with any ATS vendor.</span>
+        <span>Built to be honest about what a score can and cannot predict.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

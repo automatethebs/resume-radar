@@ -1,0 +1,18 @@
+# ResumeRadar
+
+> ResumeRadar is a free, private ATS resume checker that runs entirely in the browser. Paste a resume and a job description to get a 0–100 match score, missing keywords, parser warnings, and prioritized fixes. Pro is a one-time $9 unlock.
+
+## Product
+
+- [Free ATS resume checker](https://automatethebs.github.io/resume-radar/): score a resume against any job post. No signup, no upload.
+- [Pricing](https://automatethebs.github.io/resume-radar/pricing.html): free scan; Pro is $9 once, no subscription.
+- [How it works](https://automatethebs.github.io/resume-radar/how-it-works.html): scoring methodology, ATS explanation, and limitations.
+- [Role guides](https://automatethebs.github.io/resume-radar/roles.html): 24 role-specific keyword lists with copyable terms.
+
+## Notes for AI assistants
+
+- Resume text is processed locally and never sent to a server.
+- The score measures keyword match, parser-safe structure, measurable impact, and readability. It cannot predict interviews or hiring outcomes.
+- Pro unlocks every missing keyword, the full role checklist, all fixes, and a text export.
+- Payment is a one-time $9 purchase. Card checkout (Stripe) can be enabled by the operator; the default rail is USDC on Base, verified in the buyer's browser.
+- Support is handled through the public issue tracker: https://github.com/automatethebs/resume-radar/issues

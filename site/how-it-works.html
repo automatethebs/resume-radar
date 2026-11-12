@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How the ATS Score Works — ResumeRadar</title>
+  <meta name="description" content="What an ATS actually parses, how ResumeRadar weights keyword match, structure, impact, and readability, and what the score cannot predict. No black box.">
+  <link rel="canonical" href="https://automatethebs.github.io/resume-radar/how-it-works.html">
+  <meta name="theme-color" content="#191611">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How the ResumeRadar ATS score works">
+  <meta property="og:description" content="The exact weights, the parsing checks, and the honest limits of an ATS score.">
+  <meta property="og:image" content="https://automatethebs.github.io/resume-radar/assets/og.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/config.js"></script>
+  <script defer src="assets/payments.js"></script>
+  <script defer src="assets/site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="ResumeRadar home">
+        <img src="assets/mark.svg" alt="" width="24" height="24">
+        ResumeRadar
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="index.html">Checker</a>
+        <a href="roles.html">Role guides</a>
+        <a href="how-it-works.html" aria-current="page">How it works</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+      <span class="pro-chip">PRO</span>
+      <a class="btn btn-sm btn-primary header-cta" href="index.html#checker">Scan my resume</a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Methodology</p>
+        <h1>How the score works. And what it can't tell you.</h1>
+        <p class="lede">ResumeRadar is not a mystery box. It applies a fixed set of parsing and language rules, shows every deduction, and never claims to know a specific employer's algorithm.</p>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2 id="ats">What an ATS actually does</h2>
+          <p>An applicant tracking system receives your file, extracts text, guesses which piece is your name, contact details, employers, titles, dates, education, and skills, then stores the result in a database. Recruiters search and filter that database: by keyword, title, location, years of experience, or a custom question.</p>
+          <p>That is the whole trick. Most rejections are not a robot yelling “no” — they are a recruiter searching for “Kubernetes” and never seeing a resume that says “container orchestration”. The score here measures how visible and well-structured your evidence is for a specific posting.</p>
+          <p>Practical consequences:</p>
+          <ul>
+            <li><strong>Text must be selectable.</strong> A scanned image or a designed PDF with outlined fonts gives the parser nothing.</li>
+            <li><strong>Dates matter.</strong> Month-and-year ranges let the system reconstruct your timeline. A year alone is ambiguous.</li>
+            <li><strong>Headings matter.</strong> “Experience”, “Education”, and “Skills” are the anchors parsers look for. Creative labels like “My journey” are a gamble.</li>
+            <li><strong>Keyword context matters.</strong> A term buried in a wall of text is weaker than the same term in a bullet describing what you did with it.</li>
+          </ul>
+
+          <h2 id="scoring">What the score measures</h2>
+          <p>Four weighted categories produce the 0–100 score. The weights are fixed so two runs are comparable:</p>
+          <table class="score-table">
+            <thead>
+              <tr><th>Category</th><th>Weight</th><th>What it checks</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Keyword match</strong></td><td>40%</td><td>Terms extracted from the job post, plus the role checklist. Synonyms and common variants receive partial credit.</td></tr>
+              <tr><td><strong>Structure &amp; parsing</strong></td><td>20%</td><td>Contact details, experience and skills headings, education, dates, length, and bullet count.</td></tr>
+              <tr><td><strong>Impact</strong></td><td>25%</td><td>Share of bullets with a number, percentage, or dollar amount; strong opening verbs; weak phrases; overlong bullets.</td></tr>
+              <tr><td><strong>Readability</strong></td><td>15%</td><td>Average bullet length, first-person pronouns, excessive capitals, passive voice, and unbroken paragraphs.</td></tr>
+            </tbody>
+          </table>
+          <p>Keyword matching is deliberately generous: “JS” matches “JavaScript”, “postgres” matches “PostgreSQL”, and related tools such as Tableau and Power BI receive partial credit. Exact wording still scores highest, because recruiters search literal terms.</p>
+
+          <h2 id="limits">What this tool cannot do</h2>
+          <p>Honesty is part of the product. ResumeRadar does not:</p>
+          <ul>
+            <li><strong>Know any employer's actual algorithm.</strong> Vendors score differently and configure filters per job. A 78 here is a heuristic, not a prediction.</li>
+            <li><strong>Guarantee an interview.</strong> Experience, timing, referrals, and competition matter more than formatting.</li>
+            <li><strong>Read images or scanned PDFs.</strong> If your file is not selectable text, paste the text manually — and fix the export before applying.</li>
+            <li><strong>Judge whether you can do the job.</strong> It checks whether your evidence is visible and specific. It cannot invent experience you do not have.</li>
+            <li><strong>Replace a human review.</strong> Use the report as a checklist, then read the resume as a person would.</li>
+          </ul>
+
+          <h2 id="raise">How to raise your score honestly</h2>
+          <ul>
+            <li><strong>Mirror the posting's top five terms.</strong> Put them in the summary and the most recent role, where they are true.</li>
+            <li><strong>Turn duties into outcomes.</strong> “Responsible for reporting” becomes “Automated weekly reporting, saving six hours per month”.</li>
+            <li><strong>Add dates and a skills block.</strong> Plain text, comma-separated, no rating bars or icons.</li>
+            <li><strong>Cut one page of history.</strong> Keep the last 10–15 years and the roles that support this application.</li>
+            <li><strong>Fix the first four findings, then re-scan.</strong> Chasing a perfect score is less useful than fixing the critical items.</li>
+            <li><strong>Export as a single-column PDF or DOCX.</strong> Open the file, select all, and check that the text copies out in the right order.</li>
+          </ul>
+
+          <h2 id="privacy">Why nothing is uploaded</h2>
+          <p>The scoring engine is a single JavaScript file served with the page. The analysis happens in your browser's memory. There is no API call carrying your resume, no database, and no analytics event containing resume text. Closing the tab discards the text; the only saved value is whether Pro is unlocked on this device.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Is a higher score always better?</summary>
+              <p>No. Above roughly 85, the remaining points are often synonym edge cases. At that stage, a human review and a referral matter more than another keyword. The score is a diagnostic, not a leaderboard.</p>
+            </details>
+            <details>
+              <summary>Why did my score change when I pasted a different job?</summary>
+              <p>The keyword category is scored against the posting you provide. A resume can be an excellent match for one role and a poor match for another. That is the point: tailor per application.</p>
+            </details>
+            <details>
+              <summary>Does the tool store my resume?</summary>
+              <p>No. It is processed in the browser and discarded when the tab closes. See the <a href="privacy.html">privacy page</a> for the exact list of what is stored.</p>
+            </details>
+            <details>
+              <summary>Why is the top score 100 but the grade A starts at 85?</summary>
+              <p>Because a 100 would imply certainty about an algorithm that varies by employer. An A means the resume is in the strong band: most important terms present, structure clean, impact evidenced.</p>
+            </details>
+          </div>
+        </div>
+
+        <aside class="page-nav" aria-label="On this page">
+          <a href="#ats">What an ATS does</a>
+          <a href="#scoring">How scoring works</a>
+          <a href="#limits">What it cannot do</a>
+          <a href="#raise">How to raise your score</a>
+          <a href="#privacy">Privacy</a>
+          <a href="index.html#checker">Run a free scan →</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>See the rules applied to your resume.</h2>
+            <p>No account. No upload. Twenty seconds.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><img src="assets/mark.svg" alt="" width="24" height="24">ResumeRadar</a>
+          <p>A private ATS resume checker for people who would rather fix the resume than send another hundred applications into the void.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Product</h3>
+          <a href="index.html">ATS checker</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="roles.html">Role guides</a>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <a href="roles/software-engineer.html">Software engineer keywords</a>
+          <a href="roles/registered-nurse.html">Nursing resume keywords</a>
+          <a href="roles/data-analyst.html">Data analyst keywords</a>
+          <a href="how-it-works.html#ats">ATS basics</a>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <a href="https://github.com/automatethebs/resume-radar/issues" data-support>Support &amp; contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> ResumeRadar. Not affiliated with any ATS vendor.</span>
+        <span>Built to be honest about what a score can and cannot predict.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
