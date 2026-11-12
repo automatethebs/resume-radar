@@ -30,7 +30,8 @@ const CATEGORIES = [
   { title: "Technology & data", slugs: ["software-engineer", "data-analyst", "devops-engineer", "cybersecurity-analyst"] },
   { title: "Business & finance", slugs: ["product-manager", "project-manager", "business-analyst", "marketing-manager", "sales-representative", "accountant", "financial-analyst", "operations-manager", "human-resources", "supply-chain", "customer-service", "administrative-assistant"] },
   { title: "Healthcare & education", slugs: ["registered-nurse", "pharmacist", "teacher"] },
-  { title: "Engineering & design", slugs: ["mechanical-engineer", "electrical-engineer", "civil-engineer", "graphic-designer", "ux-designer"] }
+  { title: "Engineering & design", slugs: ["mechanical-engineer", "electrical-engineer", "civil-engineer", "graphic-designer", "ux-designer"] },
+  { title: "Crypto & Web3", slugs: ["smart-contract-engineer", "blockchain-developer", "defi-analyst", "web3-product-manager", "crypto-community-manager"] }
 ];
 
 function esc(value) {
@@ -83,12 +84,13 @@ function footer(prefix) {
         <div class="footer-col">
           <h3>Resources</h3>
           <a href="${prefix}keyword-extractor.html">Job keyword extractor</a>
+          <a href="${prefix}ats-resume-format.html">ATS resume format</a>
+          <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
+          <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
+          <a href="${prefix}resume-summary-examples.html">Resume summary examples</a>
+          <a href="${prefix}guides.html">All resume guides</a>
           <a href="${prefix}web3.html">Crypto &amp; Web3 resumes</a>
           <a href="${prefix}pay-with-usdc.html">How to pay with USDC</a>
-          <a href="${prefix}roles/software-engineer.html">Software engineer keywords</a>
-          <a href="${prefix}roles/registered-nurse.html">Nursing resume keywords</a>
-          <a href="${prefix}roles/data-analyst.html">Data analyst keywords</a>
-          <a href="${prefix}how-it-works.html#ats">ATS basics</a>
         </div>
         <div class="footer-col">
           <h3>Company</h3>
@@ -348,11 +350,187 @@ function rolesIndexPage() {
   return shell({ title, description, canonical, prefix: "", body });
 }
 
+function summaryExamplesPage() {
+  const title = "Resume Summary Examples for 29 Roles (2026) — Free Templates";
+  const description = "Role-specific resume summary examples for 29 jobs, plus a three-sentence formula you can adapt. Free, no signup, with links to each ATS keyword guide.";
+  const canonical = `${siteUrl}/resume-summary-examples.html`;
+
+  const faq = [
+    {
+      q: "How long should a resume summary be?",
+      a: "Two to four sentences. One sentence for your role and years of experience, one or two for proof, and one for what you want next. A summary that runs past five lines is usually hiding a cover letter."
+    },
+    {
+      q: "Should I include a summary if I have little experience?",
+      a: "Yes, if you have something concrete to say. For early-career candidates, lead with education, projects, or a measurable result instead of claiming years you do not have. Skip the summary entirely if it would only repeat your headline."
+    },
+    {
+      q: "Do I need a different summary for every job?",
+      a: "Not every word, but the first sentence should change. Mirror the title and the top two or three requirements from the posting. Reusing one summary across every application is one of the cheapest mistakes to fix."
+    }
+  ];
+
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": today,
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+
+  const exampleFor = (role) => `${role.title} with [X]+ years of experience in ${role.core[0]}, ${role.core[1]}, and ${role.core[2]}. Known for work that connects ${role.focus}; [add one measurable result, e.g. “cut cycle time 30%”]. Looking for a role where ${role.core[3] || role.core[0]} and ${role.tools[0]} matter.`;
+
+  const sections = CATEGORIES.map((cat) => {
+    const items = cat.slugs.map((slug) => roles.find((r) => r.slug === slug)).filter(Boolean);
+    return `<h2 id="cat-${cat.slugs[0]}">${esc(cat.title)}</h2>
+      ${items.map((role) => `<h3 id="${role.slug}">${esc(role.title)}</h3>
+      <div class="summary-example"><p>${esc(exampleFor(role))}</p></div>
+      <p class="small muted" style="margin-top:8px"><a href="roles/${role.slug}.html">See the ${esc(role.title)} keyword guide →</a></p>`).join("\n")}`;
+  }).join("\n");
+
+  const body = `<main>
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Summary library</p>
+        <h1>Resume summary examples for 29 roles.</h1>
+        <p class="lede">A summary is not an objective statement. It is the first evidence a recruiter reads. Steal the structure, replace the brackets with true specifics, and keep the measurable result.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Check my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="free-ats-resume-template.html">Get the free template</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>The three-sentence formula</h2>
+          <ol>
+            <li><strong>Who you are.</strong> Title, years of experience, and the three skills the posting cares about most.</li>
+            <li><strong>Proof.</strong> One measurable result with a verb, a scope, and an outcome. A number is better than an adjective.</li>
+            <li><strong>Direction.</strong> The kind of role or problem you want next — specific enough to sound intentional.</li>
+          </ol>
+          <p>Keep it to 40–70 words. Write it last, after the experience bullets, so the proof is already on the page. Never claim a skill you would not want to be interviewed on.</p>
+
+          <h2 id="examples">Examples by role</h2>
+          <p>Every example below is a scaffold, not a script. The bracketed parts are where your evidence goes. Copy the vocabulary that is true for you, then run the scan against the actual posting.</p>
+          ${sections}
+
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+
+          <p style="margin-top:28px"><a class="btn btn-primary" href="index.html#checker">Scan my resume free</a></p>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Summary checklist</h3>
+          <ul class="check-list">
+            <li>Title matches the posting</li>
+            <li>Two to four sentences</li>
+            <li>One measurable result</li>
+            <li>Three relevant skills</li>
+            <li>No “results-driven” filler</li>
+            <li>No first-person pronouns</li>
+          </ul>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Test my summary</a>
+          <p class="small muted" style="margin-top:10px">Free, private, no account.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Does your summary match the job?</h2>
+            <p>Paste your resume and the posting. Get the score, the missing terms, and the fixes.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
+function guidesPage() {
+  const title = "Free Resume Guides — ATS Format, Templates, Verbs & Summaries";
+  const description = "Eight free resume guides: ATS formatting, a copyable template, 200+ action verbs, 29 summary examples, keyword extraction, and role-specific checklists.";
+  const canonical = `${siteUrl}/guides.html`;
+  const cards = [
+    ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
+    ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
+    ["resume-action-verbs.html", "200+ resume action verbs", "Strong verbs by function, plus weak phrases to replace and before/after examples.", "Verb library"],
+    ["resume-summary-examples.html", "Resume summary examples", "29 role-specific summaries built on a three-sentence formula you can adapt.", "Summary library"],
+    ["keyword-extractor.html", "Job keyword extractor", "Paste a posting to get a ranked, copyable keyword list, then send it to the scanner.", "Free tool"],
+    ["roles.html", "Role keyword guides", "29 roles with core skills, tools, and action verbs. Start with the words employers search.", "Role guides"],
+    ["web3.html", "Crypto & Web3 resumes", "Smart contract, blockchain, DeFi, product, and community roles with Web3 vocabulary.", "Web3"],
+    ["how-it-works.html", "How the scoring works", "What the score measures, what it cannot predict, and why the scan stays in your browser.", "Method"]
+  ];
+  const body = `<main>
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Guide library</p>
+        <h1>Everything you need to make a resume readable.</h1>
+        <p class="lede">Free, practical guides to ATS formatting, keywords, summaries, and evidence. No signup, no email gate, no 40-page ebook.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="free-ats-resume-template.html">Get the template</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="guide-grid">
+          ${cards.map(([href, name, desc, tag]) => `<a class="guide-card" href="${href}"><strong>${esc(name)}</strong><span>${esc(desc)}</span><em>${esc(tag)}</em></a>`).join("\n          ")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Reading is free. Fixing is faster with a score.</h2>
+            <p>Paste your resume and a real job post. See the keyword gaps and parser warnings in about 20 seconds.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body });
+}
+
 function sitemap() {
   const urls = [
     { loc: `${siteUrl}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${siteUrl}/roles.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/ats-resume-format.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/free-ats-resume-template.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/resume-action-verbs.html`, priority: "0.7", changefreq: "monthly" },
+    { loc: `${siteUrl}/resume-summary-examples.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/web3.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/pay-with-usdc.html`, priority: "0.5", changefreq: "yearly" },
     { loc: `${siteUrl}/pricing.html`, priority: "0.7", changefreq: "monthly" },
@@ -383,13 +561,15 @@ for (const role of roles) {
   fs.writeFileSync(path.join(rolesDir, `${role.slug}.html`), rolePage(role));
 }
 fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
+fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
+fs.writeFileSync(path.join(siteDir, "guides.html"), guidesPage());
 fs.writeFileSync(path.join(siteDir, "sitemap.xml"), sitemap());
 fs.writeFileSync(
   path.join(siteDir, "robots.txt"),
   `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`
 );
 
-console.log(`Built ${roles.length} role pages + roles.html + sitemap.xml + robots.txt`);
+console.log(`Built ${roles.length} role pages + roles.html + summary examples + guides + sitemap.xml + robots.txt`);
 console.log(`Canonical base: ${siteUrl}`);
 console.log(`Pro price: ${priceLabel}`);
 if (siteUrl.includes("resumeradar.example")) {

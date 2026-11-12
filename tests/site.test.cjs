@@ -154,3 +154,76 @@ test("report has a share loop and a wallet handoff", () => {
   const notFound = fs.readFileSync(path.join(site, "404.html"), "utf8");
   assert.ok(notFound.includes(`<base href="${siteUrl}/">`), "404 page needs a base URL for nested missing paths");
 });
+
+test("the ATS format guide is a complete, crawlable article", () => {
+  const html = fs.readFileSync(path.join(site, "ats-resume-format.html"), "utf8");
+  assert.ok(html.includes(`${siteUrl}/ats-resume-format.html`), "format guide missing canonical");
+  assert.ok(html.includes("FAQPage"), "format guide missing FAQ schema");
+  assert.ok(html.includes("template-block"), "format guide missing the parse-safe skeleton");
+  assert.ok(html.includes("free-ats-resume-template.html"), "format guide missing template CTA");
+  assert.ok(html.includes("index.html#checker"), "format guide missing scanner CTA");
+});
+
+test("the free template page has working copy, download, and print controls", () => {
+  const html = fs.readFileSync(path.join(site, "free-ats-resume-template.html"), "utf8");
+  assert.ok(html.includes(`${siteUrl}/free-ats-resume-template.html`), "template page missing canonical");
+  assert.ok(html.includes("FAQPage"), "template page missing FAQ schema");
+  assert.ok(html.includes('id="resume-template"'), "template text container missing");
+  ["data-copy-template", "data-download-template", "data-print-template"].forEach((hook) => {
+    assert.ok(html.includes(hook), `template page missing ${hook}`);
+  });
+  assert.ok(html.includes("assets/template.js"), "template page missing its script");
+  const js = fs.readFileSync(path.join(site, "assets/template.js"), "utf8");
+  assert.ok(js.includes("navigator.clipboard"), "copy control does not use the clipboard");
+  assert.ok(js.includes("ats-resume-template.txt"), "download control missing a filename");
+  assert.ok(js.includes("window.print"), "print control missing");
+});
+
+test("the action verb library is interactive and crawlable", () => {
+  const html = fs.readFileSync(path.join(site, "resume-action-verbs.html"), "utf8");
+  assert.ok(html.includes(`${siteUrl}/resume-action-verbs.html`), "verb guide missing canonical");
+  assert.ok(html.includes("FAQPage"), "verb guide missing FAQ schema");
+  assert.ok((html.match(/data-copy=/g) || []).length >= 100, "verb guide has too few copyable verbs");
+  assert.ok(html.includes("before-after"), "verb guide missing before/after examples");
+  assert.ok(html.includes("index.html#checker"), "verb guide missing scanner CTA");
+});
+
+test("summary examples are generated for every role", () => {
+  const html = fs.readFileSync(path.join(site, "resume-summary-examples.html"), "utf8");
+  assert.ok(html.includes(`${siteUrl}/resume-summary-examples.html`), "summary page missing canonical");
+  assert.ok(html.includes("FAQPage"), "summary page missing FAQ schema");
+  roles.forEach((role) => {
+    assert.ok(html.includes(`id="${role.slug}"`), `summary page missing ${role.slug} anchor`);
+    assert.ok(html.includes(`roles/${role.slug}.html`), `summary page missing ${role.slug} link`);
+  });
+  assert.ok((html.match(/summary-example/g) || []).length >= roles.length, "summary page is missing example blocks");
+});
+
+test("the guide hub links every free resource and roles include Web3", () => {
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  ["ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "keyword-extractor.html", "roles.html", "web3.html", "how-it-works.html"].forEach((href) => {
+    assert.ok(guides.includes(`href="${href}"`), `guides hub missing ${href}`);
+  });
+  const rolesHtml = fs.readFileSync(path.join(site, "roles.html"), "utf8");
+  ["smart-contract-engineer", "blockchain-developer", "defi-analyst", "web3-product-manager", "crypto-community-manager"].forEach((slug) => {
+    assert.ok(rolesHtml.includes(`roles/${slug}.html`), `roles directory missing ${slug}`);
+  });
+});
+
+test("new guides are styled, in the sitemap, and linked from the footer", () => {
+  const css = fs.readFileSync(path.join(site, "assets/styles.css"), "utf8");
+  [".template-block", ".before-after", ".ba-card", ".check-list", ".summary-example", ".guide-grid"].forEach((sel) => {
+    assert.ok(css.includes(sel), `styles missing ${sel}`);
+  });
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  ["guides.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html"].forEach((page) => {
+    assert.ok(sitemap.includes(`${siteUrl}/${page}`), `sitemap missing ${page}`);
+  });
+  ["index.html", "pricing.html", "how-it-works.html", "web3.html", "pay-with-usdc.html"].forEach((page) => {
+    const html = fs.readFileSync(path.join(site, page), "utf8");
+    ["ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "guides.html"].forEach((href) => {
+      assert.ok(html.includes(`href="${href}"`), `${page} footer missing ${href}`);
+    });
+  });
+});
+

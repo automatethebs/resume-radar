@@ -641,6 +641,37 @@ body.is-pro .lock-card { display: none; }
 .page-hero .lede { max-width: 68ch; }
 .page-body { padding-block: var(--section-y); }
 .page-grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 56px; align-items: start; }
+.check-list { list-style: none; margin: 16px 0 20px; display: grid; gap: 9px; font-size: .85rem; color: #d8d1c5; }
+.check-list li { display: flex; gap: 9px; align-items: flex-start; }
+.check-list li::before { content: "✓"; color: #7fd0a8; font-weight: 700; flex: none; }
+.template-block {
+  margin: 20px 0;
+  padding: 22px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #fbf8f1;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: .78rem;
+  line-height: 1.7;
+  white-space: pre;
+}
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+.ba-card { position: relative; padding: 18px 18px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper-2); }
+.ba-card p { margin-top: 8px; font-size: .88rem; color: var(--ink-soft); }
+.ba-before { opacity: .82; }
+.ba-after { border-color: #c9ddd1; background: var(--green-soft); }
+.ba-label { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.ba-after .ba-label { color: var(--green); }
+.summary-example { margin-top: 14px; padding: 16px 18px; border-left: 3px solid var(--accent); background: #fbf8f1; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: .9rem; color: var(--ink-soft); }
+.summary-example strong { color: var(--ink); }
+.guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.guide-card { display: flex; flex-direction: column; gap: 8px; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); text-decoration: none; transition: border-color .16s ease, transform .16s ease; }
+.guide-card:hover { border-color: var(--accent); transform: translateY(-2px); color: inherit; }
+.guide-card strong { font-size: 1.02rem; letter-spacing: -.015em; }
+.guide-card span { font-size: .84rem; color: var(--muted); line-height: 1.55; }
+.guide-card em { font-style: normal; margin-top: auto; padding-top: 8px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
 .page-nav { position: sticky; top: 90px; border-left: 2px solid var(--line); padding-left: 18px; display: grid; gap: 10px; font-size: .85rem; }
 .page-nav a { color: var(--muted); text-decoration: none; }
 .page-nav a:hover { color: var(--accent); }
@@ -901,6 +932,8 @@ dialog::backdrop { background: rgba(20, 18, 14, .55); backdrop-filter: blur(3px)
   .feature-grid { grid-template-columns: 1fr; }
   .price-grid { grid-template-columns: 1fr; }
   .role-cards { grid-template-columns: 1fr; }
+  .before-after { grid-template-columns: 1fr; }
+  .guide-grid { grid-template-columns: 1fr; }
   .pro-banner { grid-template-columns: 1fr; }
   .pro-banner .btn { width: 100%; }
   .footer-grid { grid-template-columns: 1fr; gap: 26px; }
