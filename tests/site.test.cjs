@@ -89,3 +89,15 @@ test("no placeholder domain or email is shipped", () => {
     assert.ok(!text.includes("hello@resumeradar.example"), `${path.relative(site, file)} still contains the placeholder email`);
   });
 });
+
+test("report has a share loop and a wallet handoff", () => {
+  const appJs = fs.readFileSync(path.join(site, "assets/app.js"), "utf8");
+  assert.ok(appJs.includes("shareReport"), "shareReport missing");
+  assert.ok(appJs.includes("data-share"), "share button missing");
+  assert.ok(appJs.includes("navigator.share"), "native share missing");
+  const siteJs = fs.readFileSync(path.join(site, "assets/site.js"), "utf8");
+  assert.ok(siteJs.includes("ethereum:"), "EIP-681 wallet URI missing");
+  assert.ok(siteJs.includes("Open in wallet"), "wallet link missing");
+  const notFound = fs.readFileSync(path.join(site, "404.html"), "utf8");
+  assert.ok(notFound.includes(`<base href="${siteUrl}/">`), "404 page needs a base URL for nested missing paths");
+});

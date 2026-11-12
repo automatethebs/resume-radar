@@ -229,6 +229,10 @@
     cryptoDialog.setAttribute("aria-labelledby", "crypto-title");
 
     var explorerRoot = String(USDC.explorer || "https://basescan.org").replace(/\/tx\/?$/, "");
+    var units = window.RRPay ? window.RRPay.amountToUnits(USDC.amount || "9", USDC.decimals == null ? 6 : USDC.decimals) : null;
+    var walletUri = units === null ? "" :
+      "ethereum:" + USDC.contract + "@" + (USDC.chainId || 8453) +
+      "/transfer?address=" + USDC.address + "&uint256=" + units.toString();
     cryptoDialog.innerHTML =
       '<div class="dialog-body">' +
         '<button type="button" class="dialog-close" data-close aria-label="Close">×</button>' +
@@ -241,6 +245,7 @@
             '<span class="crypto-label">USDC address · Base</span>' +
             '<code class="crypto-address">' + esc(USDC.address) + "</code>" +
             '<button type="button" class="btn btn-ghost btn-sm" data-copy="' + esc(USDC.address) + '">Copy address</button>' +
+            (walletUri ? '<a class="btn btn-ghost btn-sm" href="' + esc(walletUri) + '">Open in wallet</a>' : "") +
           "</div>" +
         "</div>" +
         '<p class="crypto-warn">Base network only. USDC sent on another network cannot be recovered here. Gas is paid separately.</p>' +

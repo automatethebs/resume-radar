@@ -288,6 +288,7 @@
       "</div>" +
       '<div class="report-actions">' +
         '<button type="button" class="btn btn-ghost btn-sm" data-print>Print / save PDF</button>' +
+        '<button type="button" class="btn btn-ghost btn-sm" data-share>Share my score</button>' +
         '<button type="button" class="btn btn-primary btn-sm pro-only" data-export>Download full report (.txt)</button>' +
         '<button type="button" class="btn btn-primary btn-sm free-only" data-unlock>Unlock full report — ' + esc(cfg.priceLabel || "$9") + "</button>" +
         '<span class="spacer"></span><span class="small">' + esc(report.jobKeywordCount) + " job terms detected</span>" +
@@ -377,6 +378,10 @@
 
   function downloadReport() {
     if (!lastReport) return;
+    if (window.RRPro && !window.RRPro.isPro()) {
+      window.RRPro.open("Unlock Pro to download the full report.");
+      return;
+    }
     var blob = new Blob([buildExport(lastReport)], { type: "text/plain;charset=utf-8" });
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");
@@ -386,6 +391,39 @@
     a.click();
     document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  }
+
+  function shareReport() {
+    if (!lastReport) return;
+    var base = (cfg.siteUrl || window.location.origin + window.location.pathname).replace(/\/+$/, "");
+    var url = base + "/#checker";
+    var text = "I scored " + lastReport.score + "/100 (" + lastReport.grade + ") on ResumeRadar — a free, private ATS resume checker. Target: " + lastReport.roleName + ".";
+    var payload = { title: "My ResumeRadar score", text: text, url: url };
+
+    if (navigator.share) {
+      navigator.share(payload).catch(function () { /* user cancelled */ });
+      return;
+    }
+
+    var copy = text + " See your gaps in 20 seconds: " + url;
+    function done() {
+      if (window.RRPro) window.RRPro.toast("Share text copied");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(copy).then(done).catch(function () {
+        if (window.RRPro) window.RRPro.toast("Select the address bar to copy the link");
+      });
+      return;
+    }
+    var ta = document.createElement("textarea");
+    ta.value = copy;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); done(); } catch (err) { /* no-op */ }
+    document.body.removeChild(ta);
   }
 
   function init() {
@@ -437,6 +475,8 @@
       if (target) { window.print(); return; }
       target = e.target.closest("[data-export]");
       if (target) { downloadReport(); return; }
+      target = e.target.closest("[data-share]");
+      if (target) { shareReport(); return; }
       target = e.target.closest("[data-clear]");
       if (target) { reset(); return; }
     });
