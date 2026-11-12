@@ -54,6 +54,7 @@ function nav(prefix, active) {
       <nav class="nav" id="site-nav" aria-label="Main">
         ${item("index.html", "Checker", "checker")}
         ${item("roles.html", "Role guides", "roles")}
+        ${item("keyword-extractor.html", "Keywords", "keywords")}
         ${item("how-it-works.html", "How it works", "how")}
         ${item("pricing.html", "Pricing", "pricing")}
       </nav>
@@ -81,6 +82,7 @@ function footer(prefix) {
         </div>
         <div class="footer-col">
           <h3>Resources</h3>
+          <a href="${prefix}keyword-extractor.html">Job keyword extractor</a>
           <a href="${prefix}roles/software-engineer.html">Software engineer keywords</a>
           <a href="${prefix}roles/registered-nurse.html">Nursing resume keywords</a>
           <a href="${prefix}roles/data-analyst.html">Data analyst keywords</a>
@@ -348,6 +350,7 @@ function sitemap() {
   const urls = [
     { loc: `${siteUrl}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${siteUrl}/roles.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/pricing.html`, priority: "0.7", changefreq: "monthly" },
     { loc: `${siteUrl}/how-it-works.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/privacy.html`, priority: "0.3", changefreq: "yearly" },

@@ -443,6 +443,21 @@
       setStatus("Role preset: " + library.bySlug[requested].title + ". Paste your resume to begin.");
     }
 
+    // The keyword extractor hands the posting over through sessionStorage so
+    // the text never appears in a URL, referrer, or server log.
+    try {
+      var prefill = sessionStorage.getItem("rr_job_prefill");
+      if (prefill) {
+        sessionStorage.removeItem("rr_job_prefill");
+        var data = JSON.parse(prefill);
+        if (data && typeof data.job === "string" && countWords(data.job) >= 20) {
+          jobEl.value = data.job;
+          if (data.role && library.bySlug[data.role]) roleEl.value = data.role;
+          setStatus("Job post loaded from the keyword extractor. Paste your resume, then analyze.");
+        }
+      }
+    } catch (e) { /* private mode or malformed payload */ }
+
     updateCounts();
     resumeEl.addEventListener("input", updateCounts);
     jobEl.addEventListener("input", updateCounts);

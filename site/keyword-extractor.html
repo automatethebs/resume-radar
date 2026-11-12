@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Description Keyword Extractor — Free, No Signup | ResumeRadar</title>
+  <meta name="description" content="Paste any job description and extract the skills, tools, and phrases the posting actually emphasizes. Free, private, and copyable. Then score your resume against the same post.">
+  <link rel="canonical" href="https://automatethebs.github.io/resume-radar/keyword-extractor.html">
+  <meta name="theme-color" content="#191611">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Job Description Keyword Extractor — Free">
+  <meta property="og:description" content="Turn any job post into a ranked, copyable keyword list. Free, no signup, nothing uploaded.">
+  <meta property="og:url" content="https://automatethebs.github.io/resume-radar/keyword-extractor.html">
+  <meta property="og:image" content="https://automatethebs.github.io/resume-radar/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/roles.js"></script>
+  <script defer src="assets/engine.js"></script>
+  <script defer src="assets/config.js"></script>
+  <script defer src="assets/payments.js"></script>
+  <script defer src="assets/site.js"></script>
+  <script defer src="assets/extractor.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Job Description Keyword Extractor",
+        "url": "https://automatethebs.github.io/resume-radar/keyword-extractor.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Extracts and ranks the skills, tools, and phrases from a job description. Runs entirely in the browser with no signup.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the keyword extractor work?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It splits the posting into words and short phrases, removes generic language, boosts known role skills, and ranks the remaining terms by how often and how prominently they appear. Everything runs locally in your browser." }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I put every keyword on my resume?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Use only the terms that truthfully describe your experience. A keyword list is a vocabulary guide, not a checklist to paste. Recruiters and interviewers will ask about anything you claim." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the keyword extractor free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is free with no account and no upload. The optional Pro report adds a full resume gap analysis, the complete role checklist, and a downloadable report." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#extractor">Skip to keyword extractor</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="ResumeRadar home">
+        <img src="assets/mark.svg" alt="" width="24" height="24">
+        ResumeRadar
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="index.html">Checker</a>
+        <a href="roles.html">Role guides</a>
+        <a href="keyword-extractor.html" aria-current="page">Keywords</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+      <span class="pro-chip">PRO</span>
+      <a class="btn btn-sm btn-primary header-cta" href="index.html#checker">Scan my resume</a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+    </div>
+  </header>
+
+  <main id="extractor">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Free keyword tool</p>
+        <h1>Turn any job post into a keyword list.</h1>
+        <p class="lede">Paste a job description. Get the skills, tools, and phrases the posting actually emphasizes — ranked, copyable, and extracted locally in your browser. No signup, no upload, nothing stored.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="extractor-grid">
+          <div class="card extractor-card">
+            <div class="field-head">
+              <label class="field-label" for="job-text"><span class="num">01</span> Job description</label>
+              <span class="field-meta" id="job-text-count">0 words</span>
+            </div>
+            <form id="extractor-form" novalidate>
+              <textarea id="job-text" spellcheck="false" placeholder="Paste the full job posting here — responsibilities, requirements, and nice-to-haves. The more complete the post, the better the list."></textarea>
+              <div class="extractor-controls">
+                <div class="select-wrap">
+                  <label for="extractor-role">Target role (optional)</label>
+                  <select id="extractor-role">
+                    <option value="">General / auto-detect</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary" type="submit" id="extract-btn">Extract keywords</button>
+              </div>
+              <p id="extract-status" role="status" aria-live="polite" class="small muted" style="margin-top:10px;min-height:20px"></p>
+            </form>
+          </div>
+
+          <aside class="card extractor-side">
+            <p class="eyebrow">How to use the list</p>
+            <ol class="extractor-steps">
+              <li><strong>Pick the truthful terms.</strong> A posting lists requirements; your resume should list evidence.</li>
+              <li><strong>Put them in context.</strong> Add the strongest terms inside experience bullets, not only a skills block.</li>
+              <li><strong>Scan the result.</strong> Compare your resume with the same post to see what is still missing.</li>
+            </ol>
+            <button type="button" class="btn btn-ghost btn-block" id="extractor-sample">Load a sample job post</button>
+            <a class="btn btn-primary btn-block" href="index.html#checker">Scan my resume free</a>
+            <p class="small muted" style="margin-top:12px">Free scan · no account · your text stays in this tab</p>
+          </aside>
+        </div>
+
+        <div id="keyword-results" class="card extractor-results" hidden aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap narrow">
+        <div class="section-head">
+          <p class="eyebrow">Why this matters</p>
+          <h2>Recruiters search for phrases, not vibes.</h2>
+          <p>An applicant tracking system turns your resume into searchable fields. If the posting says “observability” and your resume says “monitoring”, the filter may never surface you. The extractor shows the vocabulary the posting actually uses so you can mirror it honestly.</p>
+        </div>
+        <div class="prose" style="margin-top:28px">
+          <h2>What the extractor does</h2>
+          <p>It tokenizes the posting, removes generic filler, boosts known skills and tools, and groups repeated two- and three-word phrases into a ranked list. The result is not a magic ATS score; it is a vocabulary map. Use it to decide which terms deserve a place in your summary, skills section, and most recent role.</p>
+
+          <h2>How to use keywords without stuffing</h2>
+          <ul>
+            <li><strong>Start with the top five.</strong> If you can truthfully show them in your most recent role, do that first.</li>
+            <li><strong>Write evidence, not a list.</strong> “Built a React dashboard used by 12,000 monthly customers” beats “React, dashboards, customers”.</li>
+            <li><strong>Match the exact phrase where it is honest.</strong> Synonyms help humans; exact terms help filters.</li>
+            <li><strong>Leave out what you cannot defend.</strong> An interview is a terrible place to discover that a keyword was aspirational.</li>
+          </ul>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>How does the keyword extractor work?</summary>
+              <p>It splits the posting into words and short phrases, removes generic language, boosts known role skills, and ranks the remaining terms by frequency and relevance. Everything runs locally in your browser.</p>
+            </details>
+            <details>
+              <summary>Should I put every keyword on my resume?</summary>
+              <p>No. Use only the terms that truthfully describe your experience. A keyword list is a vocabulary guide, not a checklist to paste. Recruiters and interviewers will ask about anything you claim.</p>
+            </details>
+            <details>
+              <summary>Is the keyword extractor free?</summary>
+              <p>Yes. It is free with no account and no upload. The optional Pro report adds a full resume gap analysis, the complete role checklist, and a downloadable report.</p>
+            </details>
+            <details>
+              <summary>Does it work for non-tech jobs?</summary>
+              <p>Yes. Choose a role from the list or leave it on general auto-detect. The extractor uses the posting itself, so it works for nursing, teaching, sales, accounting, operations, design, and engineering roles.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Now see which of those terms are missing from your resume.</h2>
+            <p>Paste your resume and the same job post. Get a score, the gaps, and the fixes in 20 seconds.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><img src="assets/mark.svg" alt="" width="24" height="24">ResumeRadar</a>
+          <p>A private ATS resume checker for people who would rather fix the resume than send another hundred applications into the void.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Product</h3>
+          <a href="index.html">ATS checker</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="roles.html">Role guides</a>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <a href="keyword-extractor.html">Job keyword extractor</a>
+          <a href="roles/software-engineer.html">Software engineer keywords</a>
+          <a href="roles/registered-nurse.html">Nursing resume keywords</a>
+          <a href="roles/data-analyst.html">Data analyst keywords</a>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <a href="https://github.com/automatethebs/resume-radar/issues" data-support>Support &amp; contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> ResumeRadar. Not affiliated with any ATS vendor.</span>
+        <span>Built to be honest about what a score can and cannot predict.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

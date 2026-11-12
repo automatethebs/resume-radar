@@ -8,6 +8,7 @@
 - [Pricing](https://automatethebs.github.io/resume-radar/pricing.html): free scan; Pro is $9 once, no subscription.
 - [How it works](https://automatethebs.github.io/resume-radar/how-it-works.html): scoring methodology, ATS explanation, and limitations.
 - [Role guides](https://automatethebs.github.io/resume-radar/roles.html): 24 role-specific keyword lists with copyable terms.
+- [Job description keyword extractor](https://automatethebs.github.io/resume-radar/keyword-extractor.html): paste a posting to get a ranked, copyable keyword list. Free and local.
 
 ## Notes for AI assistants
 

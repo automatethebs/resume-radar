@@ -270,6 +270,8 @@ body.is-pro .pro-chip { display: inline-flex; }
 }
 .field textarea::placeholder { color: #a49b8c; }
 .field textarea:focus { background: #fffefb; }
+.field-hint { padding: 0 20px 16px; font-size: .75rem; color: var(--muted); }
+.field-hint a { color: var(--accent-dark); font-weight: 600; }
 .scanner-foot {
   display: flex;
   flex-wrap: wrap;
@@ -750,6 +752,77 @@ dialog::backdrop { background: rgba(20, 18, 14, .55); backdrop-filter: blur(3px)
 }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+/* Keyword extractor ------------------------------------------------------- */
+.extractor-grid { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 22px; align-items: start; }
+.extractor-card { padding: 0; overflow: hidden; }
+.extractor-card .field-head { padding: 20px 24px 0; }
+.extractor-card textarea {
+  width: 100%;
+  min-height: 300px;
+  padding: 14px 24px 20px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: .9rem;
+  line-height: 1.65;
+  resize: vertical;
+  outline: none;
+}
+.extractor-card textarea::placeholder { color: #a49b8c; }
+.extractor-card textarea:focus { background: #fffefb; }
+.extractor-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 16px 24px;
+  border-top: 1px solid var(--line);
+  background: #fbf8f1;
+}
+.extractor-controls .select-wrap { flex: 1; min-width: 220px; }
+.extractor-controls select { flex: 1; max-width: 340px; }
+.extractor-controls .btn { margin-left: auto; }
+.extractor-side { position: sticky; top: 86px; display: grid; gap: 12px; }
+.extractor-side .eyebrow { margin-bottom: 0; }
+.extractor-side .btn-block { width: 100%; }
+.extractor-steps { display: grid; gap: 16px; margin: 4px 0 8px; padding-left: 20px; }
+.extractor-steps li { font-size: .86rem; color: var(--muted); padding-left: 4px; }
+.extractor-steps strong { color: var(--ink); }
+.extractor-results { margin-top: 24px; scroll-margin-top: 90px; }
+.extractor-results[hidden] { display: none; }
+.extractor-result-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.extractor-result-head .eyebrow { margin-bottom: 10px; }
+.extractor-result-head h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+.extractor-result-head p { margin-top: 10px; }
+.extractor-group { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+.extractor-group h3 { font-size: 1rem; letter-spacing: -.01em; }
+.extractor-group-note { margin-top: 7px; margin-bottom: 14px; font-size: .82rem; color: var(--muted); }
+.chip-rank {
+  margin-left: 2px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: .8;
+}
+.chip[data-weight="high"] .chip-rank { color: var(--accent); opacity: 1; }
+.extractor-next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+.extractor-next h3 { font-size: 1.05rem; }
+.extractor-next p { margin-top: 5px; max-width: 54ch; }
+
 /* Utilities --------------------------------------------------------------- */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .skip-link { position: absolute; left: 16px; top: -60px; z-index: 300; padding: 10px 16px; background: var(--ink); color: #fff; border-radius: 8px; transition: top .2s; }
@@ -759,6 +832,8 @@ dialog::backdrop { background: rgba(20, 18, 14, .55); backdrop-filter: blur(3px)
 /* Responsive -------------------------------------------------------------- */
 @media (max-width: 980px) {
   .report-grid { grid-template-columns: 1fr; }
+  .extractor-grid { grid-template-columns: 1fr; }
+  .extractor-side { position: static; }
   .score-card { position: static; }
   .role-body { grid-template-columns: 1fr; gap: 36px; }
   .aside-card { position: static; }

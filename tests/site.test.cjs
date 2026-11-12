@@ -41,7 +41,7 @@ test("sitemap lists every page and robots points to it", () => {
   roles.forEach((role) => {
     assert.ok(sitemap.includes(`${siteUrl}/roles/${role.slug}.html`), `sitemap missing ${role.slug}`);
   });
-  ["index.html", "roles.html", "pricing.html", "how-it-works.html", "privacy.html", "terms.html"].forEach((page) => {
+  ["index.html", "roles.html", "pricing.html", "how-it-works.html", "privacy.html", "terms.html", "keyword-extractor.html"].forEach((page) => {
     const url = page === "index.html" ? `${siteUrl}/` : `${siteUrl}/${page}`;
     assert.ok(sitemap.includes(url), `sitemap missing ${page}`);
   });
@@ -88,6 +88,27 @@ test("no placeholder domain or email is shipped", () => {
     assert.ok(!text.includes("resumeradar.example"), `${path.relative(site, file)} still contains the placeholder domain`);
     assert.ok(!text.includes("hello@resumeradar.example"), `${path.relative(site, file)} still contains the placeholder email`);
   });
+});
+
+test("keyword extractor is a real, wired page and hands off to the scanner", () => {
+  const html = fs.readFileSync(path.join(site, "keyword-extractor.html"), "utf8");
+  ["id=\"job-text\"", "id=\"extractor-role\"", "id=\"keyword-results\"", "id=\"extractor-form\"", "assets/extractor.js", "assets/engine.js"].forEach((needle) => {
+    assert.ok(html.includes(needle), `keyword-extractor.html missing ${needle}`);
+  });
+  assert.ok(html.includes(`${siteUrl}/keyword-extractor.html`), "keyword extractor missing canonical");
+  assert.ok(html.includes("FAQPage"), "keyword extractor missing FAQ schema");
+  assert.ok(html.includes("index.html#checker"), "keyword extractor missing scanner CTA");
+
+  const extractorJs = fs.readFileSync(path.join(site, "assets/extractor.js"), "utf8");
+  assert.ok(extractorJs.includes("extractJdKeywords"), "extractor does not call the engine");
+  assert.ok(extractorJs.includes("rr_job_prefill"), "extractor does not hand off the posting");
+  assert.ok(extractorJs.includes("data-copy"), "extractor keywords are not copyable");
+
+  const appJs = fs.readFileSync(path.join(site, "assets/app.js"), "utf8");
+  assert.ok(appJs.includes("rr_job_prefill"), "scanner does not read the extractor handoff");
+
+  const indexHtml = fs.readFileSync(path.join(site, "index.html"), "utf8");
+  assert.ok(indexHtml.includes("keyword-extractor.html"), "homepage does not link to the extractor");
 });
 
 test("report has a share loop and a wallet handoff", () => {
