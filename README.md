@@ -6,6 +6,8 @@ A private, client-side ATS resume checker with a one-time Pro unlock. No server,
 **Price:** $9 one-time  
 **Payments:** USDC on Base out of the box, verified in the buyer's browser. Card checkout via Stripe can be enabled in one config file.
 
+![ResumeRadar landing page](docs/screenshot.png)
+
 ---
 
 ## Why this can make money
@@ -40,7 +42,7 @@ All analysis is deterministic. The same input produces the same output, which ma
 
 ```bash
 cd resume-radar
-npm test          # builds the SEO layer and runs 34 tests
+npm test          # builds the SEO layer and runs 38 tests
 npm run serve     # http://127.0.0.1:4173
 ```
 
