@@ -283,6 +283,25 @@ test("the Jobscan comparison is fair, structured, and linked", () => {
   assert.ok(sitemap.includes(`${siteUrl}/jobscan-alternative.html`), "sitemap missing the comparison");
 });
 
+test("the ATS score guide explains the bands honestly and is linked", () => {
+  const file = path.join(site, "what-is-a-good-ats-score.html");
+  assert.ok(fs.existsSync(file), "missing what-is-a-good-ats-score.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/what-is-a-good-ats-score.html`), "score guide missing canonical");
+  assert.ok(html.includes("Article"), "score guide missing Article schema");
+  assert.ok(html.includes("FAQPage"), "score guide missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "score guide missing breadcrumb schema");
+  assert.ok(html.includes("75 or higher"), "score guide missing the good-score target");
+  assert.ok(html.includes("not a hiring prediction"), "score guide missing the honesty caveat");
+  assert.ok(html.includes("index.html#checker"), "score guide missing scanner CTA");
+  assert.ok(html.includes("sample-report.html"), "score guide missing sample report link");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("what-is-a-good-ats-score.html"), "guide hub does not link the score guide");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/what-is-a-good-ats-score.html`), "sitemap missing the score guide");
+});
+
 test("the free checker landing page and sample report are complete and linked", () => {
   const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
   assert.ok(checker.includes(`${siteUrl}/free-ats-resume-checker.html`), "free checker missing canonical");

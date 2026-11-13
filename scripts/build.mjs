@@ -633,6 +633,152 @@ function jobscanAlternativePage() {
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
 }
 
+function atsScoreGuidePage() {
+  const title = "What Is a Good ATS Score? (2026 Guide) | ResumeRadar";
+  const description = "A good ATS score is usually 75 or higher, not 100. Learn what the 0–100 score measures, which bands matter, and how to raise yours without keyword stuffing.";
+  const canonical = `${siteUrl}/what-is-a-good-ats-score.html`;
+  const faq = [
+    {
+      q: "What is a good ATS score?",
+      a: "For a specific job posting, 75 or higher is a good working target. Scores of 85 or more are strong. A score between 65 and 74 usually means the resume is relevant but has fixable keyword, structure, or evidence gaps. Below 65 needs structural work before you apply."
+    },
+    {
+      q: "Is 100 a good ATS score?",
+      a: "Not automatically. A perfect score can mean the resume is saturated with the posting's language, which reads as keyword stuffing to a human. Aim for 80–90 with truthful terms, clear structure, and evidence of outcomes. The number is a diagnostic, not a trophy."
+    },
+    {
+      q: "Does a high ATS score guarantee an interview?",
+      a: "No. The score measures keyword coverage, parser-safe structure, measurable impact, and readability against one posting. It cannot predict recruiter judgment, timing, competition, or whether the employer's ATS is configured differently. Use it to decide what to edit, not as a hiring prediction."
+    },
+    {
+      q: "How do I raise my ATS score quickly?",
+      a: "Add the posting's most important missing terms inside experience bullets where they are true, use standard section headings and month-year dates, quantify a few bullets, and cut walls of text. Re-scan after each edit so you can see which change actually moved the score."
+    },
+    {
+      q: "Why do different ATS checkers give different scores?",
+      a: "Each tool uses different keyword lists, weighting, parsing rules, and role checklists. Two tools can disagree by 10 points or more on the same resume. Compare the reasons and the recommended fixes, not just the number."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "What is a good ATS score?", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": today,
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>What is a good ATS score?
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Score guide</p>
+        <h1>What is a good ATS score?</h1>
+        <p class="lede">Short answer: for a specific job posting, <strong>75 or higher is a good target</strong>. Scores of 85+ are strong. But 100 is not the goal — a perfect score can mean keyword stuffing. The number is a diagnostic, not a hiring prediction.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Check my score free</a>
+          <a class="btn btn-ghost btn-lg" href="sample-report.html">See a sample report</a>
+        </div>
+        <p class="role-note">Free · no signup · your resume stays in this browser tab</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>The score bands</h2>
+          <table class="score-table">
+            <thead><tr><th>Score</th><th>Grade</th><th>What it usually means</th></tr></thead>
+            <tbody>
+              <tr><td><strong>85–100</strong></td><td>A</td><td>Strong match. The posting's language, structure, and evidence are all in good shape. Fix small gaps, then apply.</td></tr>
+              <tr><td><strong>75–84</strong></td><td>B</td><td>Good match. A few targeted edits — usually missing terms or one weak section — could move it into the top band.</td></tr>
+              <tr><td><strong>65–74</strong></td><td>C</td><td>Relevant but uneven. The resume may parse cleanly but miss important keywords, metrics, or role-specific vocabulary.</td></tr>
+              <tr><td><strong>Below 65</strong></td><td>D/F</td><td>Needs structural work. Check contact details, headings, dates, length, and whether the resume addresses the posting at all.</td></tr>
+            </tbody>
+          </table>
+          <p class="small muted">These bands are a reading aid, not an industry standard. Different tools weight different signals.</p>
+
+          <h2>What the score measures</h2>
+          <p>ResumeRadar uses four checks with fixed weights, so the same text always produces the same result:</p>
+          <ul>
+            <li><strong>Keyword match — 40%.</strong> How much of the posting's important language and the role checklist appears in the resume, including synonyms and short forms.</li>
+            <li><strong>Impact and achievements — 25%.</strong> Whether bullets show outcomes, scope, numbers, percentages, or money instead of listing duties.</li>
+            <li><strong>Structure and parsing — 20%.</strong> Contact details, standard headings, readable dates, skills sections, and length — the fields an ATS reconstructs first.</li>
+            <li><strong>Readability — 15%.</strong> Whether a human can skim the resume: bullet length, walls of text, and vague phrasing.</li>
+          </ul>
+
+          <h2>Why 100 is not the goal</h2>
+          <p>A 100 means every weighted term and structural check passed. That can be useful, but it can also reward repeating the posting's language until the resume sounds like a copy of the job ad. Recruiters notice. The better target is the highest score you can reach with terms that are true, evidence you can defend in an interview, and a document that still reads like a person wrote it.</p>
+          <p>Most strong applications land in the 80s. If you are stuck in the 60s, the fix is usually not more keywords — it is a missing section, a weak contact line, or bullets that describe duties instead of results.</p>
+
+          <h2>How to raise your score</h2>
+          <ol>
+            <li><strong>Scan against the actual posting.</strong> A generic role checklist is useful, but the posting's language is what the employer's filter sees.</li>
+            <li><strong>Fix the highest-weight gaps first.</strong> Add the most important missing terms inside experience bullets where they are true. Do not create a hidden keyword list.</li>
+            <li><strong>Repair the structure.</strong> Put your name, email, phone, city, and LinkedIn in plain text at the top. Use standard headings and month-year dates.</li>
+            <li><strong>Quantify a few bullets.</strong> Scope, time saved, revenue, percentage, or user count. Two or three strong metrics beat ten vague claims.</li>
+            <li><strong>Re-scan after each edit.</strong> Watch which category moves. Stop when the remaining gaps are things you cannot honestly claim.</li>
+          </ol>
+
+          <h2>What a score cannot tell you</h2>
+          <p>It cannot reproduce every employer's ATS configuration, predict whether a recruiter will advance you, or measure whether you are a good fit for the team. It also cannot fix a resume that is aimed at the wrong role. Use the score to prioritize edits, then make the final call yourself.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Check your score</h3>
+          <p class="small muted">Paste your resume and a real posting. Get the score, the gaps, and the fixes in about 20 seconds.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Scan my resume</a>
+          <a class="btn btn-ghost btn-block" href="how-it-works.html" style="margin-top:8px">How the scoring works</a>
+          <p class="small muted" style="margin-top:10px">No account. Nothing uploaded.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Stop guessing what the filter sees.</h2>
+            <p>20 seconds. Free. Private. Then fix the first four gaps.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function sampleReportPage() {
   const title = "Sample ATS Resume Report — Score, Keywords, and Fixes";
   const description = "See a complete example ResumeRadar report: a 74/100 score, category breakdown, matched and missing keywords, parser warnings, and prioritized fixes.";
@@ -1016,6 +1162,7 @@ function guidesPage() {
   const cards = [
     ["free-ats-resume-checker.html", "Free ATS resume checker", "The full scanner: score, keyword gaps, parser warnings, and fixes. No signup, no upload.", "Free tool"],
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
+    ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
     ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
     ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
@@ -1069,6 +1216,7 @@ function sitemap() {
     { loc: `${siteUrl}/roles.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/free-ats-resume-checker.html`, priority: "0.9", changefreq: "monthly" },
     { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/what-is-a-good-ats-score.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/sample-report.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
@@ -1109,6 +1257,7 @@ for (const role of roles) {
 fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
 fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsCheckerPage());
 fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
+fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
 fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-generator.html"), summaryGeneratorPage());
