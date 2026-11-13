@@ -803,6 +803,9 @@ dialog::backdrop { background: rgba(20, 18, 14, .55); backdrop-filter: blur(3px)
 .crypto-label { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .crypto-address { display: block; max-width: 100%; overflow-wrap: anywhere; font-family: var(--mono); font-size: .7rem; line-height: 1.45; color: var(--ink); }
 .crypto-warn { margin-top: 12px; padding: 9px 11px; border-radius: 7px; background: #f8ebd5; color: #83540c; font-size: .73rem; line-height: 1.5; }
+.pro-access { border-color: #c9d8c3; background: #f5faf1; }
+.restore-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 6px; }
+.restore-row code { flex: 1 1 240px; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fffdf8; font-family: var(--mono); font-size: .68rem; line-height: 1.45; overflow-wrap: anywhere; }
 
 .toast {
   position: fixed;

@@ -63,6 +63,20 @@ test("pricing and unlock flows are wired", () => {
   assert.ok(configSrc.includes(usdcAddress), "USDC address is not configured");
 });
 
+test("USDC buyers can restore Pro from a transaction link", () => {
+  const siteJs = fs.readFileSync(path.join(site, "assets/site.js"), "utf8");
+  assert.ok(siteJs.includes("function restoreUrl"), "restoreUrl helper missing");
+  assert.ok(siteJs.includes("?tx="), "restore link does not include the transaction hash");
+  assert.ok(siteJs.includes("Restoring Pro from your payment"), "restore link does not auto-verify");
+  assert.ok(siteJs.includes("restoreUrl: restoreUrl"), "restoreUrl is not exposed to the report");
+  const appJs = fs.readFileSync(path.join(site, "assets/app.js"), "utf8");
+  assert.ok(appJs.includes("Keep your Pro access"), "report missing the Pro access card");
+  assert.ok(appJs.includes("pro-access-slot"), "report missing the restore card slot");
+  assert.ok(appJs.includes("mountProAccess"), "restore card is not mounted after unlock");
+  const css = fs.readFileSync(path.join(site, "assets/styles.css"), "utf8");
+  assert.ok(css.includes(".restore-row"), "restore link styles missing");
+});
+
 test("pricing page exposes product and FAQ structured data", () => {
   const pricing = fs.readFileSync(path.join(site, "pricing.html"), "utf8");
   assert.ok(pricing.includes('"@type": "Product"'), "pricing missing Product schema");

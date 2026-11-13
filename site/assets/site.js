@@ -475,10 +475,25 @@
     }
 
     if (tx && usdcActive) {
-      openCrypto();
+      var hash = window.RRPay ? window.RRPay.parseTxHash(tx) : "";
+      if (!hash) {
+        openCrypto("That restore link does not contain a valid Base transaction hash.");
+        return;
+      }
+      if (isPro()) {
+        cleanParams(["tx"]);
+        toast("Pro is already unlocked on this device");
+        return;
+      }
+      openCrypto("Restoring Pro from your payment…");
       var input = $("#crypto-tx", cryptoDialog);
-      if (input) input.value = window.RRPay ? window.RRPay.parseTxHash(tx) || tx : tx;
-      cleanParams(["tx"]);
+      if (input) input.value = hash;
+      var msg = $("#crypto-msg", cryptoDialog);
+      checkUsdc(hash, msg, null, "", function () {
+        closeDialog(cryptoDialog);
+        cleanParams(["tx"]);
+        toast("Payment verified — Pro restored");
+      });
     }
   }
 
@@ -596,11 +611,23 @@
     analytics();
   }
 
+  function restoreUrl() {
+    try {
+      if (localStorage.getItem(STORAGE_METHOD) !== "usdc") return "";
+      var ref = localStorage.getItem(STORAGE_REF);
+      if (!ref || !/^0x[0-9a-fA-F]{64}$/.test(ref)) return "";
+      return window.location.origin + window.location.pathname + "?tx=" + ref;
+    } catch (e) {
+      return "";
+    }
+  }
+
   window.RRPro = {
     isPro: isPro,
     unlock: unlock,
     open: openUnlock,
     openCrypto: openCrypto,
+    restoreUrl: restoreUrl,
     toast: toast
   };
 

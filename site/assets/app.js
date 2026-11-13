@@ -239,6 +239,25 @@
     );
   }
 
+  function proAccessHtml() {
+    if (!window.RRPro || !window.RRPro.restoreUrl) return "";
+    var url = window.RRPro.restoreUrl();
+    if (!url) return "";
+    return '<section class="card pro-access" aria-labelledby="pro-access-heading">' +
+      '<h3 id="pro-access-heading">Keep your Pro access</h3>' +
+      '<p class="small muted">This device is unlocked. Save this private restore link to re-verify the payment on another device or after clearing browser data.</p>' +
+      '<div class="restore-row"><code>' + esc(url) + '</code>' +
+      '<button type="button" class="btn btn-ghost btn-sm" data-copy="' + esc(url) + '">Copy link</button></div>' +
+      '<p class="tiny muted">The link verifies the same on-chain payment. It does not contain or expose your resume.</p>' +
+      '</section>';
+  }
+
+  function mountProAccess() {
+    var slot = document.getElementById("pro-access-slot");
+    if (!slot) return;
+    slot.innerHTML = proAccessHtml();
+  }
+
   function pickTerm(list, index, fallback) {
     if (list && list[index]) return list[index];
     if (list && list[0]) return list[0];
@@ -356,6 +375,7 @@
           '<span class="grade-key">A 85+ · B 75+ · C 65+</span></div>' +
         "</aside>" +
         '<div class="report-main">' +
+          '<div id="pro-access-slot"></div>' +
           renderKeywords(report) +
           renderFindings(report) +
           renderRoleChecklist(report) +
@@ -379,6 +399,7 @@
         '<button type="button" class="btn btn-ghost btn-sm" data-clear>Scan another version</button>' +
       "</div>";
 
+    mountProAccess();
     setStatus("Report ready — score " + report.score + " out of 100.");
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     reportEl.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
@@ -575,6 +596,8 @@
         setTimeout(loadSample, 320);
       });
     }
+
+    document.addEventListener("rr:pro", mountProAccess);
 
     document.addEventListener("click", function (e) {
       var target = e.target.closest("[data-print]");
