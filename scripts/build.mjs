@@ -779,6 +779,166 @@ function atsScoreGuidePage() {
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
 }
 
+function tailorGuidePage() {
+  const title = "How to Tailor a Resume to a Job Description (2026) | ResumeRadar";
+  const description = "A five-step process for tailoring a resume to a real job posting: extract the requirements, map truthful evidence, rewrite bullets, fix structure, and re-scan before applying.";
+  const canonical = `${siteUrl}/how-to-tailor-a-resume.html`;
+  const faq = [
+    {
+      q: "How long should tailoring a resume take?",
+      a: "With a reusable master resume, 10 to 20 minutes per posting is realistic. The first tailored version takes longer because you are building the master and deciding which evidence to lead with. After that, most of the work is choosing and reordering, not rewriting from scratch."
+    },
+    {
+      q: "Do I need a different resume for every job?",
+      a: "For the roles you actually want, yes — at least a tailored summary, a reordered skills section, and three to five rewritten bullets. You do not need a completely different document. Keep one master resume with all of your evidence, then cut and reframe it for each posting."
+    },
+    {
+      q: "Should I copy the job description's exact words?",
+      a: "Mirror the exact terms where they are true, especially for tools, platforms, and certifications. Do not paste sentences, add skills you cannot discuss, or hide keywords in white text. The goal is to match the employer's vocabulary, not to impersonate the posting."
+    },
+    {
+      q: "What should I change first?",
+      a: "The top third of the resume: the summary, the skills section, and the first two bullets of your most relevant role. That is what a recruiter skims first and where the posting's most important terms should appear. Structure fixes come next."
+    },
+    {
+      q: "How do I know the tailoring worked?",
+      a: "Re-scan against the same posting. The keyword and structure categories should move, and the remaining gaps should be things you honestly cannot claim. Then read it as a human: if it sounds like a keyword list, rewrite the bullets in plain language."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "How to tailor a resume", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": today,
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>How to tailor a resume
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Tailoring guide</p>
+        <h1>How to tailor a resume to a job description.</h1>
+        <p class="lede">Tailoring is not rewriting your whole resume for every application. It is choosing the right evidence, using the employer's vocabulary where it is true, and fixing the structure before you hit submit. Here is a five-step process you can repeat in about 15 minutes.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Tailor with a free scan</a>
+          <a class="btn btn-ghost btn-lg" href="free-ats-resume-template.html">Get the free template</a>
+        </div>
+        <p class="role-note">No signup · no upload · your resume stays in this browser tab</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>Why tailoring beats volume</h2>
+          <p>A generic resume asks the reader to translate your experience into their role. A tailored resume does that translation for them. You are not inventing a new career; you are surfacing the parts of your real experience that match this posting, in the order the employer cares about.</p>
+          <p>The practical target is to change 20–30% of the document: the summary, the order of the skills section, three to five bullets, and sometimes one project. Everything else can stay.</p>
+
+          <h2>Step 1: Extract the posting's real requirements</h2>
+          <p>Read the posting twice. The first time, highlight the tools, platforms, and skills named explicitly. The second time, separate the must-haves from the boilerplate. A line like “fast-paced environment” is not a keyword; a line like “experience with Kubernetes and Terraform” is.</p>
+          <p>List the top 8–12 terms. Put the ones that appear in the responsibilities or requirements above the ones that appear only in a company description. If the posting names a specific tool you use, that term should appear in your resume exactly as written.</p>
+
+          <h2>Step 2: Map your evidence</h2>
+          <p>For each requirement, write down one true example from your experience. If you do not have an example, mark it as a gap and leave it out. Do not add a skill you cannot defend in an interview.</p>
+          <table class="score-table">
+            <thead><tr><th>Posting requirement</th><th>Your evidence</th><th>Where it will appear</th></tr></thead>
+            <tbody>
+              <tr><td>Kubernetes</td><td>Migrated 18 services to a managed Kubernetes cluster</td><td>Most recent role, bullet 2</td></tr>
+              <tr><td>Incident response</td><td>Ran the on-call rotation and postmortems for a 12-service platform</td><td>Most recent role, bullet 4</td></tr>
+              <tr><td>Terraform</td><td>No production example</td><td>Leave out, or mention only if true</td></tr>
+            </tbody>
+          </table>
+          <p>This worksheet is the whole trick. It stops you from keyword-stuffing and shows you which parts of the posting your resume genuinely answers.</p>
+
+          <h2>Step 3: Rewrite the top bullets</h2>
+          <p>Start with the first two bullets of your most relevant role. Each bullet should connect an action to an outcome, using the posting's vocabulary where it is accurate. Compare:</p>
+          <div class="compare-grid">
+            <div class="compare-card compare-before">
+              <h3>Before</h3>
+              <p>Responsible for maintaining backend services and helping with deployments.</p>
+            </div>
+            <div class="compare-card compare-after">
+              <h3>After</h3>
+              <p>Migrated 18 Node.js services to Kubernetes on AWS, cutting deploy time from 25 minutes to 6 and reducing failed releases by 40%.</p>
+            </div>
+          </div>
+          <p>The second version names the tools, the scope, and the result. It is also true to the work. That is the standard: specific, relevant, and defensible.</p>
+
+          <h2>Step 4: Fix the structure</h2>
+          <p>Before you add another keyword, make sure the document parses. Put your name, email, phone, city, and LinkedIn in plain text at the top. Use standard headings — Summary, Skills, Experience, Education. Write dates as month and year. Keep the layout single-column. A great keyword match inside a table or text box may never reach the recruiter.</p>
+          <p>If you are reusing a template, check that the PDF still has selectable text. A screenshot of a resume is not a resume to an ATS.</p>
+
+          <h2>Step 5: Re-scan and stop</h2>
+          <p>Paste the tailored resume and the same posting into the scanner. Look at the category that moved and the gaps that remain. If the remaining gaps are things you cannot honestly claim, stop. A resume that reaches the high 80s with true evidence is stronger than a 100 that reads like a copied job ad.</p>
+          <p>Then read it once as a human. If a bullet sounds like it was assembled from a keyword list, rewrite it in plain language. The recruiter is the second filter.</p>
+
+          <h2>Common tailoring mistakes</h2>
+          <ul>
+            <li><strong>Rewriting everything.</strong> You do not need a new resume for each posting; you need a new top third and a reordered evidence set.</li>
+            <li><strong>Adding skills you cannot defend.</strong> A keyword that fails an interview is worse than a gap.</li>
+            <li><strong>Ignoring the structure.</strong> A parser-safe document with slightly fewer keywords beats a beautiful layout that extracts as gibberish.</li>
+            <li><strong>Chasing 100.</strong> Past a certain point you are optimizing for the checker, not the hiring manager.</li>
+            <li><strong>Tailoring after you apply.</strong> The scan takes 20 seconds; do it before you submit.</li>
+          </ul>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Tailor with a scan</h3>
+          <p class="small muted">Paste your resume and the posting. See the missing terms and the fixes before you apply.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Scan my resume</a>
+          <a class="btn btn-ghost btn-block" href="what-is-a-good-ats-score.html" style="margin-top:8px">What is a good score?</a>
+          <p class="small muted" style="margin-top:10px">Free · no account · nothing uploaded.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>One posting. One scan. Then apply.</h2>
+            <p>See the keyword gaps and the structure issues in about 20 seconds.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function sampleReportPage() {
   const title = "Sample ATS Resume Report — Score, Keywords, and Fixes";
   const description = "See a complete example ResumeRadar report: a 74/100 score, category breakdown, matched and missing keywords, parser warnings, and prioritized fixes.";
@@ -1163,6 +1323,7 @@ function guidesPage() {
     ["free-ats-resume-checker.html", "Free ATS resume checker", "The full scanner: score, keyword gaps, parser warnings, and fixes. No signup, no upload.", "Free tool"],
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
     ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
+    ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
     ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
     ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
@@ -1217,6 +1378,7 @@ function sitemap() {
     { loc: `${siteUrl}/free-ats-resume-checker.html`, priority: "0.9", changefreq: "monthly" },
     { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/what-is-a-good-ats-score.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/how-to-tailor-a-resume.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/sample-report.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
@@ -1258,6 +1420,7 @@ fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
 fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsCheckerPage());
 fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
+fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
 fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-generator.html"), summaryGeneratorPage());

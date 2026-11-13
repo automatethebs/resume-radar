@@ -614,6 +614,13 @@ body.is-pro .lock-card { display: none; }
 .prose h2:first-child { margin-top: 0; }
 .prose p { margin-top: 14px; color: var(--ink-soft); font-size: .95rem; }
 .prose ul { margin-top: 14px; padding-left: 20px; color: var(--ink-soft); font-size: .93rem; display: grid; gap: 7px; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+.compare-card { border: 1px solid var(--line); border-radius: 10px; padding: 16px; background: var(--paper-2); }
+.compare-card h3 { margin: 0 0 8px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.compare-card p { margin: 0; font-size: .9rem; color: var(--ink-soft); }
+.compare-before { background: #faf6ef; }
+.compare-after { background: #eef4e4; border-color: #cddbb8; }
+@media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
 .aside-card { position: sticky; top: 88px; background: var(--ink); color: var(--paper-2); border-radius: var(--radius); padding: 26px; }
 .aside-card h3 { color: #fff; font-size: 1.1rem; }
 .aside-card p { margin-top: 8px; font-size: .82rem; color: #c9c2b6; }
