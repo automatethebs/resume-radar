@@ -85,6 +85,7 @@ function footer(prefix) {
           <h3>Resources</h3>
           <a href="${prefix}keyword-extractor.html">Job keyword extractor</a>
           <a href="${prefix}free-ats-resume-checker.html">Free ATS resume checker</a>
+          <a href="${prefix}private-ats-resume-checker.html">Private, no-upload checker</a>
           <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
           <a href="${prefix}why-am-i-not-getting-interviews.html">Why no interviews?</a>
           <a href="${prefix}ats-resume-format.html">ATS resume format</a>
@@ -1316,6 +1317,177 @@ function summaryExamplesPage() {
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
 }
 
+function privateCheckerPage() {
+  const title = "Private ATS Resume Checker — No Upload, No Signup (2026) | ResumeRadar";
+  const description = "A private ATS resume checker that runs entirely in your browser. No upload, no account, no resume storage. See what local scanning can and cannot do, and how to verify it.";
+  const canonical = `${siteUrl}/private-ats-resume-checker.html`;
+  const faq = [
+    {
+      q: "Is this ATS resume checker really free?",
+      a: "The score, category breakdown, top missing keywords, and top fixes are free. The full Pro report — every missing keyword, the complete role checklist, every fix, a cover-letter outline, interview prompts, and a text export — is a one-time $9 unlock. There is no subscription."
+    },
+    {
+      q: "Do I need an account or an email address?",
+      a: "No. There is no signup, no email capture, and no login. Paste the resume and the posting, run the scan, and close the tab when you are done. Pro access is stored on the device, and a USDC payment can be restored with its transaction link."
+    },
+    {
+      q: "Does the site store my resume?",
+      a: "No. The resume and job description stay in the page's memory and are discarded when you close or reload the tab. The only saved values are the Pro unlock state and the payment method or public transaction hash. There is no resume database and no upload endpoint."
+    },
+    {
+      q: "Can I use it offline?",
+      a: "Once the page and its JavaScript have loaded, the scan itself makes no network request. You can open the browser's Network tab and confirm that running a scan sends nothing. Loading the page in the first place still requires a connection unless your browser has cached it."
+    },
+    {
+      q: "Does it use AI to score my resume?",
+      a: "No. The score comes from deterministic rules: keyword coverage, parser-safe structure, measurable impact, and readability. The same resume and posting always produce the same result, and you can inspect the engine. It does not send your text to an AI API."
+    },
+    {
+      q: "Can it read a PDF file directly?",
+      a: "No. Paste the plain text of your resume. That is deliberate: copying text out of a PDF is also a useful parser test. If the pasted text loses headings, dates, or bullets, an ATS may struggle with the same file."
+    },
+    {
+      q: "Is a local score as accurate as an upload-based checker?",
+      a: "It measures different things. This tool checks whether the document is readable and whether it covers the posting's vocabulary. It cannot predict hiring outcomes, and neither can an upload-based checker. Treat any ATS score as an editing list, not a guarantee."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Private ATS resume checker", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": today,
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Private ATS resume checker
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Privacy-first checker</p>
+        <h1>A private ATS resume checker that never uploads your resume.</h1>
+        <p class="lede">Most resume checkers ask you to upload a file, create an account, or send your work history to a server. ResumeRadar runs the entire scan in your browser. Here is what that means in practice, how to verify it, and where the trade-offs are.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan without uploading</a>
+          <a class="btn btn-ghost btn-lg" href="how-it-works.html">How the score works</a>
+        </div>
+        <p class="role-note">No upload endpoint · no account · no resume storage</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>What “no upload” actually means</h2>
+          <p>It means the resume text you paste is read by JavaScript that is already running in the page. The scoring engine receives the text as a local variable. There is no <code>fetch</code> call carrying the resume, no form post, no file storage, and no server-side queue. When you close the tab, the text is gone from the page's memory.</p>
+          <p>This is different from a tool that uploads a PDF, extracts the text on a server, sends it to a model, and stores the result in an account. That architecture can be convenient, but it also creates a copy of your work history somewhere you do not control.</p>
+
+          <h2>Why resume uploads deserve scrutiny</h2>
+          <p>A resume contains your name, contact details, employers, dates, education, and sometimes a home city. It is enough to build a profile of where you have worked and when. Upload-based tools need a retention policy, an access policy, and a security program. Many have them; some do not. You usually cannot tell from the outside.</p>
+          <p>Local scanning removes that entire category of risk for the scan itself. It does not make the site anonymous — the static host still sees a request for the page — but it means the document is not part of the request.</p>
+
+          <h2>How to verify this page is not uploading your resume</h2>
+          <ol>
+            <li>Open the browser's developer tools and switch to the Network tab.</li>
+            <li>Paste a resume and a job description, then run the scan.</li>
+            <li>Watch the requests. The page assets load once; the scan itself makes no request with the resume text.</li>
+            <li>Optional: disconnect from the network after the page loads and run the scan again. The score still appears.</li>
+            <li>Search the page source for the scoring engine. It is a readable JavaScript file, not a remote API call.</li>
+          </ol>
+          <p>You do not have to trust a privacy claim. You can watch the network tab.</p>
+
+          <h2>What local scanning can do</h2>
+          <ul>
+            <li><strong>Check keyword coverage</strong> against a real posting, with synonyms and short forms.</li>
+            <li><strong>Flag parser risks</strong> such as missing contact details, non-standard headings, ambiguous dates, and dense bullets.</li>
+            <li><strong>Measure impact language</strong> — quantified bullets, action verbs, weak phrases, and outcome density.</li>
+            <li><strong>Check readability</strong> — sentence length, bullet length, passive voice, and filler.</li>
+            <li><strong>Give a repeatable score</strong> so you can compare two versions of the same resume.</li>
+          </ul>
+
+          <h2>What it cannot do</h2>
+          <ul>
+            <li><strong>It cannot predict whether you will get an interview.</strong> Hiring depends on the market, the applicant pool, timing, referrals, and human judgment.</li>
+            <li><strong>It cannot read a PDF for you.</strong> Paste the text. Copying it out is also a useful parser test.</li>
+            <li><strong>It cannot review your portfolio, references, or interview answers.</strong> It only looks at the document and the posting.</li>
+            <li><strong>It cannot invent true experience.</strong> A keyword you cannot defend is worse than a gap.</li>
+          </ul>
+
+          <div class="compare-grid">
+            <div class="compare-card compare-before">
+              <h3>Upload-based checker</h3>
+              <p>File leaves your device · account often required · retention policy varies · may use a third-party AI model · convenience of PDF parsing.</p>
+            </div>
+            <div class="compare-card compare-after">
+              <h3>ResumeRadar</h3>
+              <p>Text stays in the tab · no account · no resume database · deterministic rules · you paste text and can verify the network traffic.</p>
+            </div>
+          </div>
+
+          <h2>Who this is for</h2>
+          <p>It is a good fit if you are applying for a confidential role, if your resume contains client names or security details, if you do not want another account, or if you simply want to see how the score is calculated. It is also useful for career changers who want a fast gap check before rewriting a whole document.</p>
+          <p>If you need a human review, a PDF redesign, or a recruiter database, a local checker is not a substitute. Use it for the first pass, then invest your time in the parts a script cannot judge.</p>
+
+          <h2>How the scan handles your data</h2>
+          <p>The resume and posting are held in memory. The site stores only the Pro state in <code>localStorage</code>: whether Pro is unlocked and the payment method or public transaction hash used. It does not store the resume, your name, your email address, or your wallet's private key. The <a href="privacy.html">privacy page</a> lists every stored value.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Scan without uploading</h3>
+          <p class="small muted">Paste the resume and a real posting. The score, keyword gaps, and parser warnings are generated in this tab.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Open the checker</a>
+          <a class="btn btn-ghost btn-block" href="privacy.html" style="margin-top:8px">Read the privacy page</a>
+          <a class="btn btn-ghost btn-block" href="how-it-works.html" style="margin-top:8px">See the scoring method</a>
+          <p class="small muted" style="margin-top:10px">No account · no upload · no resume storage.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Your resume is nobody else's data.</h2>
+            <p>Run the first scan locally. Watch the network tab if you want proof.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function notGettingInterviewsPage() {
   const title = "Why Am I Not Getting Interviews? 12 Resume Fixes (2026) | ResumeRadar";
   const description = "Applying but not hearing back? Work through 12 resume checks in order: parser failures, keyword gaps, generic summaries, duty-based bullets, format problems, and targeting mistakes.";
@@ -1504,6 +1676,7 @@ function guidesPage() {
   const canonical = `${siteUrl}/guides.html`;
   const cards = [
     ["free-ats-resume-checker.html", "Free ATS resume checker", "The full scanner: score, keyword gaps, parser warnings, and fixes. No signup, no upload.", "Free tool"],
+    ["private-ats-resume-checker.html", "Private, no-upload checker", "How the local scan works, how to verify it sends nothing, and where the trade-offs are.", "Privacy"],
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
     ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
     ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
@@ -1560,6 +1733,7 @@ function sitemap() {
     { loc: `${siteUrl}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${siteUrl}/roles.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/free-ats-resume-checker.html`, priority: "0.9", changefreq: "monthly" },
+    { loc: `${siteUrl}/private-ats-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/what-is-a-good-ats-score.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/how-to-tailor-a-resume.html`, priority: "0.8", changefreq: "monthly" },
@@ -1603,6 +1777,7 @@ for (const role of roles) {
 }
 fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
 fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsCheckerPage());
+fs.writeFileSync(path.join(siteDir, "private-ats-resume-checker.html"), privateCheckerPage());
 fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());

@@ -5,6 +5,7 @@
 ## Product
 
 - [Free ATS resume checker](https://automatethebs.github.io/resume-radar/free-ats-resume-checker.html): score a resume against any job post. No signup, no upload.
+- [Private, no-upload ATS checker](https://automatethebs.github.io/resume-radar/private-ats-resume-checker.html): how the local scan works, how to verify it sends nothing, and where the trade-offs are.
 - [ResumeRadar vs Jobscan](https://automatethebs.github.io/resume-radar/jobscan-alternative.html): an honest comparison of the private, $9 one-time checker and Jobscan's account-based platform.
 - [What is a good ATS score?](https://automatethebs.github.io/resume-radar/what-is-a-good-ats-score.html): score bands, the four weighted checks, and why 100 is not the goal.
 - [How to tailor a resume](https://automatethebs.github.io/resume-radar/how-to-tailor-a-resume.html): a five-step process for matching a resume to a real posting without keyword stuffing.

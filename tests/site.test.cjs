@@ -354,6 +354,25 @@ test("the no-interviews diagnostic guide is complete and linked", () => {
   assert.ok(sitemap.includes(`${siteUrl}/why-am-i-not-getting-interviews.html`), "sitemap missing the diagnostic guide");
 });
 
+test("the private no-upload checker page is complete and linked", () => {
+  const file = path.join(site, "private-ats-resume-checker.html");
+  assert.ok(fs.existsSync(file), "missing private-ats-resume-checker.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/private-ats-resume-checker.html`), "private checker missing canonical");
+  assert.ok(html.includes("Article"), "private checker missing Article schema");
+  assert.ok(html.includes("FAQPage"), "private checker missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "private checker missing breadcrumb schema");
+  assert.ok(html.includes("Network tab"), "private checker missing the verification steps");
+  assert.ok(html.includes("no upload endpoint") || html.includes("No upload endpoint"), "private checker missing the no-upload claim");
+  assert.ok(html.includes("index.html#checker"), "private checker missing scanner CTA");
+  assert.ok(html.includes("privacy.html"), "private checker missing the privacy link");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("private-ats-resume-checker.html"), "guide hub does not link the private checker");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/private-ats-resume-checker.html`), "sitemap missing the private checker");
+});
+
 test("the free checker landing page and sample report are complete and linked", () => {
   const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
   assert.ok(checker.includes(`${siteUrl}/free-ats-resume-checker.html`), "free checker missing canonical");
