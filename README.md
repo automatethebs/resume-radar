@@ -13,7 +13,7 @@ A private, client-side ATS resume checker with a one-time Pro unlock. No server,
 - **Real willingness to pay.** Job seekers already pay $50–$300 for resume reviews and $20–$50/month for resume builders. A $9 one-time gap report is an easy yes compared with another month of applications that go nowhere.
 - **Zero marginal cost.** Scoring runs as deterministic JavaScript in the browser. There is no inference bill, no server, and no per-scan cost. Every sale is almost pure margin.
 - **Privacy is the differentiator.** The resume never leaves the device. That is a credible claim because there is no upload endpoint at all.
-- **Built-in distribution surface.** The build generates 29 role-specific landing pages, a sitemap, FAQ schema, canonical URLs, and copyable keyword lists. Those pages target long-tail searches such as "ATS resume checker for nurses" and "software engineer resume keywords".
+- **Built-in distribution surface.** The build generates 29 role-specific landing pages, a guide hub, a sitemap, FAQ schema, canonical URLs, and copyable keyword lists. Those pages target long-tail searches such as "ATS resume checker for nurses" and "software engineer resume keywords".
 - **No payment account required to start.** The default USDC checkout is self-custody and verified on-chain. A Stripe Payment Link can be added later for card buyers.
 
 Revenue still requires traffic. The code removes the infrastructure and payment-setup excuses; it cannot remove the need to distribute the product. See [PLAYBOOK.md](PLAYBOOK.md) for the launch plan and realistic math.
@@ -40,7 +40,7 @@ All analysis is deterministic. The same input produces the same output, which ma
 
 ```bash
 cd resume-radar
-npm test          # builds the SEO layer and runs 21 tests
+npm test          # builds the SEO layer and runs 32 tests
 npm run serve     # http://127.0.0.1:4173
 ```
 
@@ -71,10 +71,20 @@ The site is served from `site/`. Everything else is source, tests, and documenta
 resume-radar/
 ├── site/
 │   ├── index.html                 landing page + live scanner
+│   ├── free-ats-resume-checker.html  high-intent landing page
+│   ├── sample-report.html         illustrative score/report example
 │   ├── pricing.html               Free vs Pro, payment FAQ
 │   ├── how-it-works.html          methodology and ATS explainer
 │   ├── roles.html                 generated role directory
-│   ├── roles/*.html               24 generated role landing pages
+│   ├── roles/*.html               29 generated role landing pages
+│   ├── guides.html                generated guide hub
+│   ├── ats-resume-format.html     formatting guide
+│   ├── free-ats-resume-template.html  copy/download/print template
+│   ├── resume-action-verbs.html   200+ verb library
+│   ├── resume-summary-examples.html  generated summaries for 29 roles
+│   ├── keyword-extractor.html     free job-posting keyword tool
+│   ├── web3.html                  crypto/Web3 landing page
+│   ├── pay-with-usdc.html         payment guide
 │   ├── privacy.html               privacy policy
 │   ├── terms.html                 terms and refund policy
 │   ├── 404.html
@@ -83,6 +93,7 @@ resume-radar/
 │   │   ├── roles.js               29 role keyword libraries
 │   │   ├── app.js                 scanner UI and report rendering
 │   │   ├── site.js                nav, Pro unlock, payment dialogs
+│   │   ├── template.js            copy/download/print controls
 │   │   ├── payments.js            client-side USDC receipt verification
 │   │   ├── config.js              the only file you edit to run the business
 │   │   ├── styles.css             complete responsive/print design system
@@ -92,6 +103,7 @@ resume-radar/
 │   └── robots.txt                 generated
 ├── scripts/
 │   ├── build.mjs                  static SEO generation
+│   ├── indexnow.mjs               submit all sitemap URLs
 │   └── serve.mjs                  zero-dependency preview server
 ├── tests/
 │   ├── engine.test.cjs            scoring behavior
@@ -189,15 +201,16 @@ Set `SITE_URL` in `site/assets/config.js` to the final domain and rebuild before
 The build generates:
 
 - 29 role pages with unique titles, descriptions, H1s, canonicals, breadcrumb schema, and FAQ schema;
-- `roles.html` with category grouping and internal links;
-- `sitemap.xml` and `robots.txt` using the configured `siteUrl`;
+- a guide hub plus format, template, action-verb, summary, free-checker, and sample-report pages;
+- `roles.html` with category grouping (including a Web3 category) and internal links;
+- `sitemap.xml` and `robots.txt` using the configured `siteUrl` (45 URLs at launch);
 - Open Graph and Twitter card metadata;
 - copy-to-clipboard keyword chips on every role page.
 
 After deployment:
 
 1. Submit the sitemap in Google Search Console and Bing Webmaster Tools (both need a free account).
-2. Submit the URL list through IndexNow (the repo includes a host key file). See PLAYBOOK.md.
+2. Submit the URL list through IndexNow: `npm run indexnow` (the repo includes a host key file). The launch submission returned HTTP 200 for all 45 URLs.
 3. Add 1–2 new role pages or guides per week. Long-tail pages compound; a single page rarely ranks quickly.
 4. Answer real questions in job-search communities with the free checker as a tool, not as a drive-by link.
 

@@ -17,6 +17,52 @@
   <script defer src="assets/config.js"></script>
   <script defer src="assets/payments.js"></script>
   <script defer src="assets/site.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "name": "ResumeRadar Pro report",
+        "description": "A one-time ATS resume report with every missing keyword, the full role checklist, all recommended fixes, a cover-letter outline, interview questions, and a text export.",
+        "brand": { "@type": "Brand", "name": "ResumeRadar" },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://automatethebs.github.io/resume-radar/pricing.html",
+          "price": "9.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": "2027-12-31"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this a subscription?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. It is a single payment. You get the Pro report on the device where you enter the code, and you can reuse it as often as you like. There is nothing to cancel." }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens after I pay?",
+            "acceptedAnswer": { "@type": "Answer", "text": "With a card, you are redirected back with an unlock code and Pro turns on automatically. With USDC on Base, paste the transaction hash into the unlock dialog; it is verified against the Base network in your browser and saved on that device." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use the code on another device?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes — enter the same code on any device. Treat it like a license key: do not post it publicly." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is your refund policy?",
+            "acceptedAnswer": { "@type": "Answer", "text": "If the report does not work for you, open a support issue within 14 days and you will get a refund. USDC refunds are returned to the sending address. The free scan is there precisely so you can judge the quality before paying." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#pricing">Skip to pricing</a>

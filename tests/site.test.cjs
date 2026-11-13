@@ -63,6 +63,15 @@ test("pricing and unlock flows are wired", () => {
   assert.ok(configSrc.includes(usdcAddress), "USDC address is not configured");
 });
 
+test("pricing page exposes product and FAQ structured data", () => {
+  const pricing = fs.readFileSync(path.join(site, "pricing.html"), "utf8");
+  assert.ok(pricing.includes('"@type": "Product"'), "pricing missing Product schema");
+  assert.ok(pricing.includes('"price": "9.00"'), "pricing schema missing the $9 offer");
+  assert.ok(pricing.includes('"@type": "FAQPage"'), "pricing missing FAQ schema");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok((sitemap.match(/<url>/g) || []).length >= 45, "sitemap should include all 45 launch URLs");
+});
+
 test("support is a real URL, not a placeholder inbox", () => {
   assert.match(supportUrl, /^https:\/\/github\.com\/[\w-]+\/[\w-]+\/issues$/, "supportUrl should be an issue tracker URL");
   assert.ok(!configSrc.includes("hello@resumeradar.example"), "placeholder support email still present");
