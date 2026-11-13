@@ -201,7 +201,7 @@ test("summary examples are generated for every role", () => {
 
 test("the guide hub links every free resource and roles include Web3", () => {
   const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
-  ["ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "keyword-extractor.html", "roles.html", "web3.html", "how-it-works.html"].forEach((href) => {
+  ["free-ats-resume-checker.html", "sample-report.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "keyword-extractor.html", "roles.html", "web3.html", "how-it-works.html"].forEach((href) => {
     assert.ok(guides.includes(`href="${href}"`), `guides hub missing ${href}`);
   });
   const rolesHtml = fs.readFileSync(path.join(site, "roles.html"), "utf8");
@@ -216,14 +216,36 @@ test("new guides are styled, in the sitemap, and linked from the footer", () => 
     assert.ok(css.includes(sel), `styles missing ${sel}`);
   });
   const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
-  ["guides.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html"].forEach((page) => {
+  ["guides.html", "free-ats-resume-checker.html", "sample-report.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html"].forEach((page) => {
     assert.ok(sitemap.includes(`${siteUrl}/${page}`), `sitemap missing ${page}`);
   });
   ["index.html", "pricing.html", "how-it-works.html", "web3.html", "pay-with-usdc.html"].forEach((page) => {
     const html = fs.readFileSync(path.join(site, page), "utf8");
-    ["ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "guides.html"].forEach((href) => {
+    ["free-ats-resume-checker.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "guides.html", "sample-report.html"].forEach((href) => {
       assert.ok(html.includes(`href="${href}"`), `${page} footer missing ${href}`);
     });
   });
+});
+
+test("the free checker landing page and sample report are complete and linked", () => {
+  const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
+  assert.ok(checker.includes(`${siteUrl}/free-ats-resume-checker.html`), "free checker missing canonical");
+  assert.ok(checker.includes("WebApplication"), "free checker missing app schema");
+  assert.ok(checker.includes("FAQPage"), "free checker missing FAQ schema");
+  assert.ok(checker.includes("index.html#checker"), "free checker missing scanner CTA");
+  assert.ok(checker.includes("sample-report.html"), "free checker missing sample report link");
+  assert.ok(checker.includes("no account"), "free checker missing the no-account claim");
+
+  const sample = fs.readFileSync(path.join(site, "sample-report.html"), "utf8");
+  assert.ok(sample.includes(`${siteUrl}/sample-report.html`), "sample report missing canonical");
+  assert.ok(sample.includes("band-c"), "sample report missing the score band");
+  assert.ok(sample.includes(">74<"), "sample report missing the example score");
+  assert.ok(sample.includes("pricing.html"), "sample report missing the Pro link");
+  assert.ok(sample.includes("fictional"), "sample report does not label the example as fictional");
+  assert.ok(sample.includes("sev-critical"), "sample report missing a prioritized finding");
+
+  const home = fs.readFileSync(path.join(site, "index.html"), "utf8");
+  assert.ok(home.includes("free-ats-resume-checker.html"), "homepage does not link the free checker page");
+  assert.ok(home.includes("guides.html"), "homepage does not link the guide hub");
 });
 

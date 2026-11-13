@@ -84,11 +84,13 @@ function footer(prefix) {
         <div class="footer-col">
           <h3>Resources</h3>
           <a href="${prefix}keyword-extractor.html">Job keyword extractor</a>
+          <a href="${prefix}free-ats-resume-checker.html">Free ATS resume checker</a>
           <a href="${prefix}ats-resume-format.html">ATS resume format</a>
           <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
           <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
           <a href="${prefix}resume-summary-examples.html">Resume summary examples</a>
           <a href="${prefix}guides.html">All resume guides</a>
+          <a href="${prefix}sample-report.html">Sample ATS report</a>
           <a href="${prefix}web3.html">Crypto &amp; Web3 resumes</a>
           <a href="${prefix}pay-with-usdc.html">How to pay with USDC</a>
         </div>
@@ -350,6 +352,267 @@ function rolesIndexPage() {
   return shell({ title, description, canonical, prefix: "", body });
 }
 
+function freeAtsCheckerPage() {
+  const title = "Free ATS Resume Checker — No Signup, No Upload | ResumeRadar";
+  const description = "Check your resume against any job description in 20 seconds. Free ATS score, missing keywords, parser warnings, and prioritized fixes. No account and no upload.";
+  const canonical = `${siteUrl}/free-ats-resume-checker.html`;
+  const faq = [
+    {
+      q: "Is this ATS resume checker really free?",
+      a: "Yes. The score, category breakdown, top five missing keywords, and top four fixes are free with no account. Pro is an optional one-time upgrade that reveals every missing term, the complete role checklist, all fixes, and a text export."
+    },
+    {
+      q: "Do I have to upload my resume?",
+      a: "No. Paste the plain text and the scan runs in your browser. There is no upload endpoint, no account, and no resume storage. The only thing saved locally is your Pro unlock state if you buy it."
+    },
+    {
+      q: "How accurate is an ATS resume checker?",
+      a: "It can measure keyword coverage, parser-safe structure, measurable impact, and readability against a specific posting. It cannot reproduce every employer's ATS configuration or predict whether a recruiter will advance you. Treat the score as a prioritized editing list, not a hiring prediction."
+    },
+    {
+      q: "Does it work without a job description?",
+      a: "Yes. You can scan against one of 29 built-in role checklists. Adding a real posting makes the result more specific because the keyword match is built from the employer's language."
+    },
+    {
+      q: "What is the difference between the free scan and Pro?",
+      a: "The free scan shows the top five missing keywords and top four fixes. Pro shows every missing keyword ranked by importance, the full role checklist, every recommended fix, a cover-letter outline, interview questions, and a downloadable text report."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "ResumeRadar Free ATS Resume Checker",
+        "url": canonical,
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": description
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Free ATS checker · No signup</p>
+        <h1>Free ATS resume checker. No signup. No upload.</h1>
+        <p class="lede">Paste your resume and a real job post. In about 20 seconds you get a 0–100 match score, the keywords a recruiter will search for, the parser issues that hide your experience, and the fixes that matter first.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="sample-report.html">See a sample report</a>
+        </div>
+        <p class="role-note">Free forever · no account · your resume stays in this browser tab</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">What you get</p>
+          <h2>Four checks that change what you edit.</h2>
+          <p>No black-box “AI score”. Every point is attached to a visible reason and a specific fix.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature"><span class="glyph">01 / KEYWORDS</span><h3>Missing keyword map</h3><p>Extracts the terms the posting emphasises, credits synonyms and short forms, and ranks the gaps by importance.</p></article>
+          <article class="feature"><span class="glyph">02 / PARSING</span><h3>Parser-safe structure</h3><p>Checks contact details, headings, dates, skills blocks, and length — the fields an ATS reconstructs first.</p></article>
+          <article class="feature"><span class="glyph">03 / IMPACT</span><h3>Evidence of results</h3><p>Counts bullets with numbers, percentages, and money, and flags weak phrasing such as “responsible for”.</p></article>
+          <article class="feature"><span class="glyph">04 / READABILITY</span><h3>Human skim check</h3><p>Flags walls of text, bloated bullets, and vague language that survives the parser but loses the recruiter.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>How the free scan works</h2>
+          <ol>
+            <li><strong>Paste your resume as plain text.</strong> Include the contact line, section headings, dates, and bullets. No file upload is needed.</li>
+            <li><strong>Paste the job description.</strong> Optional, but this is what turns a generic checklist into a match score for the actual role.</li>
+            <li><strong>Read the ranked fixes.</strong> Add only what is true. Re-scan after each edit and watch the score move.</li>
+          </ol>
+
+          <h2>Why there is no signup</h2>
+          <p>Most resume scanners want an account so they can store your document, email you, and sell a subscription. ResumeRadar does not need any of that. The scoring engine is a local JavaScript file; the site has no server-side resume endpoint. There is no account to create and no resume to delete.</p>
+          <p>The trade-off is honest: the free scan shows the first five missing keywords and four fixes. If you want the complete list, Pro is a one-time $9 unlock. You are paying for the rules and the report, not for infrastructure.</p>
+
+          <h2>ResumeRadar vs a typical paid scanner</h2>
+          <table class="score-table">
+            <thead><tr><th>Check</th><th>Typical paid scanner</th><th>ResumeRadar</th></tr></thead>
+            <tbody>
+              <tr><td>Free score</td><td>Sometimes, often gated</td><td>Yes, full category breakdown</td></tr>
+              <tr><td>Account required</td><td>Usually</td><td>No</td></tr>
+              <tr><td>Resume upload</td><td>Usually</td><td>No — local text only</td></tr>
+              <tr><td>Keyword gaps</td><td>Paid plan</td><td>Top five free, all in Pro</td></tr>
+              <tr><td>Parser warnings</td><td>Varies</td><td>Free</td></tr>
+              <tr><td>Price</td><td>Monthly subscription</td><td>$0 scan; $9 once for Pro</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Who it is for</h2>
+          <p>Anyone applying through a company portal: software engineers, nurses, teachers, analysts, designers, accountants, operations managers, and the 29 role guides on this site. It is also useful for career changers who need to see which language from the new field is missing from an old resume.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Before you scan</h3>
+          <ul class="check-list">
+            <li>Plain text, not an image</li>
+            <li>Contact details in the body</li>
+            <li>Standard section headings</li>
+            <li>Month + year dates</li>
+            <li>At least 25 words</li>
+          </ul>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Check my resume</a>
+          <a class="btn btn-ghost btn-block" href="free-ats-resume-template.html" style="margin-top:8px">Get the free template</a>
+          <p class="small muted" style="margin-top:10px">No account. Nothing uploaded.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>See your resume the way the filter sees it.</h2>
+            <p>20 seconds. Free. Private. Then fix the first four gaps.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
+function sampleReportPage() {
+  const title = "Sample ATS Resume Report — Score, Keywords, and Fixes";
+  const description = "See a complete example ResumeRadar report: a 74/100 score, category breakdown, matched and missing keywords, parser warnings, and prioritized fixes.";
+  const canonical = `${siteUrl}/sample-report.html`;
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "author": { "@type": "Organization", "name": "ResumeRadar" },
+    "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+    "dateModified": today,
+    "mainEntityOfPage": canonical
+  });
+  const body = `<main>
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Sample report</p>
+        <h1>What a real scan looks like.</h1>
+        <p class="lede">This is an illustrative report for a fictional software engineer applying to a platform role. The score is not a hiring prediction; it is a prioritized editing list. Your own report is generated from your text in the browser.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="pricing.html">See Pro</a>
+        </div>
+        <p class="role-note">Illustrative example · names, numbers, and the job post are fictional</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="report-grid">
+          <aside class="card score-card band-c">
+            <div class="score-top">
+              <div class="score-ring" style="--pct:74" role="img" aria-label="Example ATS readiness score 74 out of 100">
+                <div style="text-align:center"><div class="score-num">74</div><div class="score-den">/ 100</div></div>
+              </div>
+              <div class="score-meta">
+                <div class="grade-badge" aria-label="Grade C">C</div>
+                <h2>Promising, with fixable gaps</h2>
+                <p>Target: Software Engineer · example scan</p>
+              </div>
+            </div>
+            <p class="score-summary">The experience is relevant, but the posting's infrastructure vocabulary is under-represented and two bullets describe duties instead of outcomes. The structure parses cleanly.</p>
+            <div class="category-list">
+              <div class="category"><div class="category-top"><span class="cat-label">Keyword match</span><span class="cat-score">62</span></div><div class="bar"><i style="width:62%"></i></div><span class="cat-note">Several required tools appear only in the skills list.</span></div>
+              <div class="category"><div class="category-top"><span class="cat-label">Parser-safe structure</span><span class="cat-score">88</span></div><div class="bar"><i style="width:88%"></i></div><span class="cat-note">Single column, standard headings, readable dates.</span></div>
+              <div class="category"><div class="category-top"><span class="cat-label">Measurable impact</span><span class="cat-score">71</span></div><div class="bar"><i style="width:71%"></i></div><span class="cat-note">Six of nine bullets include a number or scope.</span></div>
+              <div class="category"><div class="category-top"><span class="cat-label">Readability</span><span class="cat-score">82</span></div><div class="bar"><i style="width:82%"></i></div><span class="cat-note">Bullets are short enough to skim.</span></div>
+            </div>
+            <div class="score-foot"><span>612 words · 18 bullets</span><span class="grade-key">A 85+ · B 75+ · C 65+</span></div>
+          </aside>
+
+          <div class="report-main">
+            <section class="card">
+              <div class="block-head"><h3>Keyword match</h3><span class="tiny mono muted">40% of score</span></div>
+              <div class="kw-summary"><span class="kw-stat"><strong>62%</strong> job keyword match</span><span class="kw-stat"><strong>71%</strong> role checklist</span><span class="kw-stat"><strong>17</strong> of 27 terms found</span></div>
+              <div class="block-head" style="margin-top:8px"><h3 style="font-size:.92rem">Found in the example resume</h3></div>
+              <div class="chips">
+                <span class="chip matched"><span class="dot"></span>javascript <span class="tick">✓</span></span>
+                <span class="chip matched"><span class="dot"></span>typescript <span class="tick">✓</span></span>
+                <span class="chip matched"><span class="dot"></span>react <span class="tick">✓</span></span>
+                <span class="chip matched"><span class="dot"></span>node.js <span class="tick">✓</span></span>
+                <span class="chip matched"><span class="dot"></span>postgresql <span class="tick">✓</span></span>
+                <span class="chip matched"><span class="dot"></span>rest apis <span class="tick">✓</span></span>
+                <span class="chip matched"><span class="dot"></span>docker <span class="tick">✓</span></span>
+                <span class="chip matched"><span class="dot"></span>aws <span class="tick">✓</span></span>
+              </div>
+              <div class="block-head" style="margin-top:20px"><h3 style="font-size:.92rem">Missing or weak terms</h3><span class="tiny muted">Ranked by importance</span></div>
+              <div class="chips">
+                <span class="chip" data-weight="high"><span class="dot"></span>kubernetes</span>
+                <span class="chip" data-weight="high"><span class="dot"></span>terraform</span>
+                <span class="chip" data-weight="high"><span class="dot"></span>observability</span>
+                <span class="chip" data-weight="medium"><span class="dot"></span>incident response</span>
+                <span class="chip" data-weight="medium"><span class="dot"></span>ci/cd</span>
+              </div>
+              <div class="lock-card" style="margin-top:14px">
+                <div class="lock-icon" aria-hidden="true">🔒</div>
+                <div class="lock-copy"><strong>5 more terms are in the full report</strong><span>Pro shows every gap, ranked by importance, plus the complete role checklist.</span></div>
+                <a class="btn btn-sm btn-primary" href="pricing.html">Unlock $9</a>
+              </div>
+              <p class="kw-hint">ATS filters look for the posting's language. Add terms only where they are true — never stuff a hidden keyword list.</p>
+            </section>
+
+            <section class="card">
+              <div class="block-head"><h3>What to fix first</h3><span class="tiny mono muted">3 issues</span></div>
+              <div class="findings">
+                <article class="finding sev-critical"><span class="finding-icon" aria-hidden="true">!</span><div><h4>Kubernetes is required but only implied</h4><p>The posting names Kubernetes in the responsibilities; the resume mentions “container orchestration” without the exact term.</p><p class="fix"><b>Fix:</b> If true, add “Kubernetes” to the platform migration bullet and the skills line.</p></div></article>
+                <article class="finding sev-warning"><span class="finding-icon" aria-hidden="true">△</span><div><h4>Two bullets describe duties, not results</h4><p>“Responsible for maintaining the API” and “Worked on CI/CD” describe the job description, not your contribution.</p><p class="fix"><b>Fix:</b> Replace each with a verb, a scope, and a measurable outcome.</p></div></article>
+                <article class="finding sev-good"><span class="finding-icon" aria-hidden="true">✓</span><div><h4>Contact details and dates parse cleanly</h4><p>Name, email, phone, city, and month-year ranges are in the body of the resume.</p><p class="fix"><b>Fix:</b> No change needed. Keep the same structure when you tailor.</p></div></article>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="block-head"><h3>Pro playbook</h3><span class="tiny mono muted">Included with Pro</span></div>
+              <div class="playbook-grid">
+                <div class="playbook-panel"><h4>Cover letter outline</h4><div class="cover-letter"><p><strong>Paragraph 1.</strong> Name the role and the strongest matching result.</p><p><strong>Paragraph 2.</strong> Connect one example to the posting's top requirement.</p><p><strong>Paragraph 3.</strong> Close with a specific reason for this company.</p></div></div>
+                <div class="playbook-panel"><h4>Interview questions</h4><ul class="interview-list"><li>Walk me through the Kubernetes migration.</li><li>How did you measure the 34% load-time improvement?</li><li>Describe an incident you diagnosed end to end.</li></ul></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div><h2>Run the same report on your resume.</h2><p>Free scan, no account, no upload. The first fixes are visible immediately.</p></div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function summaryExamplesPage() {
   const title = "Resume Summary Examples for 29 Roles (2026) — Free Templates";
   const description = "Role-specific resume summary examples for 29 jobs, plus a three-sentence formula you can adapt. Free, no signup, with links to each ATS keyword guide.";
@@ -476,6 +739,8 @@ function guidesPage() {
   const description = "Eight free resume guides: ATS formatting, a copyable template, 200+ action verbs, 29 summary examples, keyword extraction, and role-specific checklists.";
   const canonical = `${siteUrl}/guides.html`;
   const cards = [
+    ["free-ats-resume-checker.html", "Free ATS resume checker", "The full scanner: score, keyword gaps, parser warnings, and fixes. No signup, no upload.", "Free tool"],
+    ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
     ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
     ["resume-action-verbs.html", "200+ resume action verbs", "Strong verbs by function, plus weak phrases to replace and before/after examples.", "Verb library"],
@@ -525,6 +790,8 @@ function sitemap() {
   const urls = [
     { loc: `${siteUrl}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${siteUrl}/roles.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/free-ats-resume-checker.html`, priority: "0.9", changefreq: "monthly" },
+    { loc: `${siteUrl}/sample-report.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/ats-resume-format.html`, priority: "0.8", changefreq: "monthly" },
@@ -561,6 +828,8 @@ for (const role of roles) {
   fs.writeFileSync(path.join(rolesDir, `${role.slug}.html`), rolePage(role));
 }
 fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
+fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsCheckerPage());
+fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
 fs.writeFileSync(path.join(siteDir, "guides.html"), guidesPage());
 fs.writeFileSync(path.join(siteDir, "sitemap.xml"), sitemap());
