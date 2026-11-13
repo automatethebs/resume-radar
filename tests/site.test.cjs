@@ -163,6 +163,13 @@ test("report has a share loop and a wallet handoff", () => {
   const siteJs = fs.readFileSync(path.join(site, "assets/site.js"), "utf8");
   assert.ok(siteJs.includes("ethereum:"), "EIP-681 wallet URI missing");
   assert.ok(siteJs.includes("Open in wallet"), "wallet link missing");
+  assert.ok(siteJs.includes("data-wallet-pay"), "wallet pay button missing");
+  assert.ok(siteJs.includes("payFromWallet"), "wallet payment flow missing");
+  assert.ok(siteJs.includes("wallet_switchEthereumChain"), "Base chain switch missing");
+  const payJs = fs.readFileSync(path.join(site, "assets/payments.js"), "utf8");
+  assert.ok(payJs.includes("encodeErc20Transfer"), "ERC-20 transfer encoder missing");
+  const css = fs.readFileSync(path.join(site, "assets/styles.css"), "utf8");
+  assert.ok(css.includes(".wallet-pay"), "wallet payment styles missing");
   const notFound = fs.readFileSync(path.join(site, "404.html"), "utf8");
   assert.ok(notFound.includes(`<base href="${siteUrl}/">`), "404 page needs a base URL for nested missing paths");
 });

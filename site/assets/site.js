@@ -233,12 +233,17 @@
     var walletUri = units === null ? "" :
       "ethereum:" + USDC.contract + "@" + (USDC.chainId || 8453) +
       "/transfer?address=" + USDC.address + "&uint256=" + units.toString();
+    var walletButton = (window.ethereum && typeof window.ethereum.request === "function" && window.RRPay && window.RRPay.encodeErc20Transfer)
+      ? '<button type="button" class="btn btn-primary btn-block wallet-pay" data-wallet-pay>Pay ' + esc(priceText) + " from wallet</button>" +
+        '<p class="wallet-note">Uses MetaMask, Coinbase Wallet, or another browser wallet. No account or email.</p>'
+      : "";
     cryptoDialog.innerHTML =
       '<div class="dialog-body">' +
         '<button type="button" class="dialog-close" data-close aria-label="Close">×</button>' +
         '<p class="eyebrow">USDC on Base</p>' +
         '<h2 id="crypto-title">Pay ' + esc(priceText) + " in USDC</h2>" +
-        '<p>Send <strong>' + esc(USDC.amount || "9") + " USDC</strong> on the <strong>Base</strong> network to the address below. Then paste the transaction hash to unlock Pro on this device.</p>" +
+        '<p>Pay <strong>' + esc(USDC.amount || "9") + " USDC</strong> on the <strong>Base</strong> network from a browser wallet, or send manually to the address below. Verification happens on this device.</p>" +
+        walletButton +
         '<div class="crypto-box">' +
           '<img class="crypto-qr" src="' + esc(QR_URL) + '" alt="QR code for the ResumeRadar USDC payment address" width="132" height="132">' +
           '<div class="crypto-detail">' +
@@ -261,6 +266,13 @@
     document.body.appendChild(cryptoDialog);
     bindDialog(cryptoDialog);
 
+    var walletBtn = $("[data-wallet-pay]", cryptoDialog);
+    if (walletBtn) {
+      walletBtn.addEventListener("click", function () {
+        payFromWallet($("#crypto-msg", cryptoDialog), walletBtn);
+      });
+    }
+
     var form = $("#crypto-form", cryptoDialog);
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -279,6 +291,103 @@
     });
 
     return cryptoDialog;
+  }
+
+  function walletError(err) {
+    if (err && (err.code === 4001 || err.code === "ACTION_REJECTED")) return "Payment cancelled in your wallet.";
+    if (err && err.code === -32002) return "Your wallet already has a pending request. Open it and finish that request first.";
+    return "Wallet payment could not be completed. Send USDC manually using the address below.";
+  }
+
+  async function payFromWallet(msgEl, button) {
+    if (!window.RRPay || !window.RRPay.encodeErc20Transfer) {
+      msgEl.textContent = "Wallet payment is unavailable. Send USDC manually using the address below.";
+      return;
+    }
+    if (!window.ethereum || typeof window.ethereum.request !== "function") {
+      msgEl.textContent = "No browser wallet detected. Send USDC manually using the address below, or open this page in a wallet browser.";
+      return;
+    }
+    if (!USDC.rpcUrls || !USDC.rpcUrls.length) {
+      msgEl.textContent = "Payment verification is not configured. Use a license code or contact support.";
+      return;
+    }
+
+    var amount = USDC.amount || "9";
+    var decimals = USDC.decimals == null ? 6 : USDC.decimals;
+    var units = window.RRPay.amountToUnits(amount, decimals);
+    var data = window.RRPay.encodeErc20Transfer(USDC.address, amount, decimals);
+    if (units === null || !data) {
+      msgEl.textContent = "The payment details are misconfigured. Use a license code or contact support.";
+      return;
+    }
+
+    var idle = button.textContent;
+    button.disabled = true;
+    msgEl.textContent = "Confirm the payment in your wallet…";
+    try {
+      var accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      var from = accounts && accounts[0];
+      if (!from) throw new Error("no-account");
+
+      var chainHex = "0x" + Number(USDC.chainId || 8453).toString(16);
+      var current = "";
+      try { current = await window.ethereum.request({ method: "eth_chainId" }); } catch (e) { /* switch below */ }
+      if (String(current || "").toLowerCase() !== chainHex.toLowerCase()) {
+        try {
+          await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: chainHex }] });
+        } catch (switchErr) {
+          if (switchErr && switchErr.code === 4902) {
+            await window.ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [{
+                chainId: chainHex,
+                chainName: "Base",
+                nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+                rpcUrls: ["https://mainnet.base.org"],
+                blockExplorerUrls: [String(USDC.explorer || "https://basescan.org").replace(/\/tx\/?$/, "")]
+              }]
+            });
+            await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: chainHex }] });
+          } else {
+            throw switchErr;
+          }
+        }
+      }
+
+      var hash = await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [{ from: from, to: USDC.contract, data: data, value: "0x0" }]
+      });
+      if (!hash) throw new Error("no-hash");
+
+      msgEl.textContent = "Transaction sent. Waiting for confirmation…";
+      button.textContent = "Waiting for confirmation…";
+
+      for (var attempt = 0; attempt < 20; attempt++) {
+        var result = await window.RRPay.verifyUsdcTx(hash, USDC);
+        if (result.ok) {
+          grantPro("usdc", result.txHash);
+          closeDialog(cryptoDialog);
+          toast("Payment verified — Pro unlocked");
+          return;
+        }
+        if (result.reason === "failed") {
+          msgEl.textContent = usdcMessage("failed");
+          return;
+        }
+        await new Promise(function (resolve) { setTimeout(resolve, 3000); });
+      }
+
+      var input = $("#crypto-tx", cryptoDialog);
+      if (input) input.value = hash;
+      msgEl.textContent = "The transaction is taking longer than expected. Its hash is filled in below; verify again once it confirms.";
+    } catch (err) {
+      msgEl.textContent = walletError(err);
+    } finally {
+      button.disabled = false;
+      button.textContent = idle;
+    }
   }
 
   async function checkUsdc(hash, msgEl, button, idleLabel, onSuccess) {

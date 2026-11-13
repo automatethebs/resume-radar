@@ -78,6 +78,16 @@
     return null;
   }
 
+  function encodeErc20Transfer(to, amount, decimals) {
+    var recipient = String(to || "").trim();
+    if (!/^0x[0-9a-fA-F]{40}$/.test(recipient)) return "";
+    var units = amountToUnits(amount, decimals == null ? 6 : decimals);
+    if (units === null || units <= BigInt(0)) return "";
+    var addressWord = recipient.toLowerCase().replace(/^0x/, "").padStart(64, "0");
+    var amountWord = units.toString(16).padStart(64, "0");
+    return "0xa9059cbb" + addressWord + amountWord;
+  }
+
   function verifyUsdcReceipt(receipt, opts) {
     if (!receipt) return { ok: false, reason: "not-found" };
     var status = receipt.status;
@@ -140,6 +150,7 @@
     TRANSFER_TOPIC: TRANSFER_TOPIC,
     parseTxHash: parseTxHash,
     amountToUnits: amountToUnits,
+    encodeErc20Transfer: encodeErc20Transfer,
     verifyUsdcReceipt: verifyUsdcReceipt,
     verifyUsdcTx: verifyUsdcTx
   };

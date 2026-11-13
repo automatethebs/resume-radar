@@ -54,6 +54,17 @@ test("converts USDC amounts to 6-decimal units without floating point", () => {
   assert.equal(pay.amountToUnits("nope", 6), null);
 });
 
+test("encodes an ERC-20 transfer for the browser-wallet flow", () => {
+  const data = pay.encodeErc20Transfer(CONFIG.contract, "9", 6);
+  assert.equal(data.slice(0, 10), "0xa9059cbb");
+  assert.equal(data.length, 10 + 64 + 64);
+  assert.equal(data.slice(10, 74), "0".repeat(24) + CONFIG.contract.toLowerCase().replace(/^0x/, ""));
+  assert.equal(data.slice(74), "0".repeat(58) + "895440");
+  assert.equal(pay.encodeErc20Transfer("not-an-address", "9", 6), "");
+  assert.equal(pay.encodeErc20Transfer(CONFIG.contract, "0", 6), "");
+  assert.equal(pay.encodeErc20Transfer(CONFIG.contract, "nope", 6), "");
+});
+
 test("accepts a confirmed USDC transfer for at least the price", () => {
   const result = pay.verifyUsdcReceipt(transferReceipt(), CONFIG);
   assert.equal(result.ok, true);
