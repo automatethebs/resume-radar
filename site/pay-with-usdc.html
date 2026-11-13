@@ -22,15 +22,15 @@
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "How to pay for ResumeRadar Pro with USDC on Base",
-    "description": "Send 9 USDC on the Base network, then verify the transaction hash in the ResumeRadar unlock dialog.",
+    "description": "Pay 9 USDC on the Base network with a browser wallet or a manual transfer, then verify the transaction in the ResumeRadar unlock dialog.",
     "totalTime": "PT5M",
     "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "9" },
     "step": [
       { "@type": "HowToStep", "name": "Open a wallet that supports Base", "text": "Use Coinbase Wallet, MetaMask, Rainbow, or another EVM wallet. Add the Base network if it is not already available." },
       { "@type": "HowToStep", "name": "Get USDC on Base", "text": "Buy USDC on an exchange and withdraw it to your wallet on the Base network, or bridge USDC from another chain." },
-      { "@type": "HowToStep", "name": "Send 9 USDC to the ResumeRadar address", "text": "Send exactly 9 USDC on Base to 0xe46471279bF9514C7d1C86Af8DE1bA63845c5C86. Do not use another network or asset." },
-      { "@type": "HowToStep", "name": "Copy the transaction hash", "text": "Copy the transaction hash from your wallet or from BaseScan." },
-      { "@type": "HowToStep", "name": "Verify and unlock Pro", "text": "Paste the hash into the ResumeRadar unlock dialog. The site verifies the transfer against the Base network in your browser and unlocks Pro on that device." }
+      { "@type": "HowToStep", "name": "Pay 9 USDC", "text": "Use the Pay from wallet button in the ResumeRadar checkout to send 9 USDC on Base, or send exactly 9 USDC manually to 0xe46471279bF9514C7d1C86Af8DE1bA63845c5C86. Do not use another network or asset." },
+      { "@type": "HowToStep", "name": "Confirm the transaction", "text": "Approve the transaction in your wallet. The one-click flow waits for the receipt and verifies it automatically. If you paid manually, copy the transaction hash from your wallet or BaseScan." },
+      { "@type": "HowToStep", "name": "Verify and unlock Pro", "text": "The site checks the receipt, the USDC contract, the recipient, and the amount. If everything matches, Pro unlocks on that device." }
     ]
   }
   </script>
@@ -91,16 +91,16 @@
             <div class="usdc-step">
               <span class="usdc-num">03</span>
               <div>
-                <h3>Send exactly 9 USDC</h3>
-                <p>Send <strong>9 USDC</strong> on Base to the address below. Use the “Open in wallet” button on the pricing page if your wallet supports EIP-681 links, or scan the QR code.</p>
+                <h3>Pay exactly 9 USDC</h3>
+                <p>Open the checkout from the <a href="pricing.html">pricing page</a> or a report and click <strong>Pay $9 from wallet</strong>. The site asks your wallet to switch to Base, sends the USDC transfer, and verifies the receipt automatically. You can also send <strong>9 USDC</strong> on Base to the address below, or use the “Open in wallet” link or QR code.</p>
               </div>
             </div>
 
             <div class="usdc-step">
               <span class="usdc-num">04</span>
               <div>
-                <h3>Copy the transaction hash</h3>
-                <p>After the transfer confirms, copy the transaction hash from your wallet. You can also find it on <a href="https://basescan.org" target="_blank" rel="noopener">BaseScan</a> by searching your wallet address.</p>
+                <h3>Confirm the transaction</h3>
+                <p>The one-click flow waits for the Base receipt and verifies it for you. If you paid manually, copy the transaction hash from your wallet or find it on <a href="https://basescan.org" target="_blank" rel="noopener">BaseScan</a> by searching your wallet address.</p>
               </div>
             </div>
 
