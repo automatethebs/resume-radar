@@ -78,6 +78,7 @@ resume-radar/
 │   ├── roles.html                 generated role directory
 │   ├── roles/*.html               29 generated role landing pages
 │   ├── guides.html                generated guide hub
+│   ├── jobscan-alternative.html   honest ResumeRadar vs Jobscan comparison
 │   ├── ats-resume-format.html     formatting guide
 │   ├── free-ats-resume-template.html  copy/download/print template
 │   ├── resume-action-verbs.html   200+ verb library
@@ -203,9 +204,9 @@ Set `SITE_URL` in `site/assets/config.js` to the final domain and rebuild before
 The build generates:
 
 - 29 role pages with unique titles, descriptions, H1s, canonicals, breadcrumb schema, and FAQ schema;
-- a guide hub plus format, template, action-verb, summary, free-checker, and sample-report pages;
+- a guide hub plus format, template, action-verb, summary, free-checker, sample-report, and Jobscan-comparison pages;
 - `roles.html` with category grouping (including a Web3 category) and internal links;
-- `sitemap.xml` and `robots.txt` using the configured `siteUrl` (45 URLs at launch);
+- `sitemap.xml` and `robots.txt` using the configured `siteUrl` (47 URLs at launch);
 - Open Graph and Twitter card metadata;
 - copy-to-clipboard keyword chips on every role page.
 

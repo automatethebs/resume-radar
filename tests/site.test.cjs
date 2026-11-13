@@ -254,6 +254,28 @@ test("the summary generator is a local, working tool", () => {
   assert.ok(!js.includes("fetch("), "summary generator should not make network requests");
 });
 
+test("the Jobscan comparison is fair, structured, and linked", () => {
+  const file = path.join(site, "jobscan-alternative.html");
+  assert.ok(fs.existsSync(file), "missing jobscan-alternative.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/jobscan-alternative.html`), "comparison missing canonical");
+  assert.ok(html.includes("Jobscan"), "comparison does not name Jobscan");
+  assert.ok(html.includes("not affiliated"), "comparison missing the affiliation disclaimer");
+  assert.ok(html.includes("trademark"), "comparison missing the trademark note");
+  assert.ok(html.includes("FAQPage"), "comparison missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "comparison missing breadcrumb schema");
+  assert.ok(html.includes("index.html#checker"), "comparison missing scanner CTA");
+  assert.ok(html.includes("pricing.html"), "comparison missing Pro link");
+  assert.ok(html.includes("LinkedIn"), "comparison missing the honest feature gap");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("jobscan-alternative.html"), "guide hub does not link the comparison");
+  const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
+  assert.ok(checker.includes("jobscan-alternative.html"), "free checker does not link the comparison");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/jobscan-alternative.html`), "sitemap missing the comparison");
+});
+
 test("the free checker landing page and sample report are complete and linked", () => {
   const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
   assert.ok(checker.includes(`${siteUrl}/free-ats-resume-checker.html`), "free checker missing canonical");

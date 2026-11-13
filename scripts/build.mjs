@@ -85,6 +85,7 @@ function footer(prefix) {
           <h3>Resources</h3>
           <a href="${prefix}keyword-extractor.html">Job keyword extractor</a>
           <a href="${prefix}free-ats-resume-checker.html">Free ATS resume checker</a>
+          <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
           <a href="${prefix}ats-resume-format.html">ATS resume format</a>
           <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
           <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
@@ -461,6 +462,7 @@ function freeAtsCheckerPage() {
               <tr><td>Price</td><td>Monthly subscription</td><td>$0 scan; $9 once for Pro</td></tr>
             </tbody>
           </table>
+          <p><a href="jobscan-alternative.html">See the detailed ResumeRadar vs Jobscan comparison</a> for a fair look at when a broader, account-based platform is the better fit.</p>
 
           <h2>Who it is for</h2>
           <p>Anyone applying through a company portal: software engineers, nurses, teachers, analysts, designers, accountants, operations managers, and the 29 role guides on this site. It is also useful for career changers who need to see which language from the new field is missing from an old resume.</p>
@@ -492,6 +494,135 @@ function freeAtsCheckerPage() {
         <div class="cta-band">
           <div>
             <h2>See your resume the way the filter sees it.</h2>
+            <p>20 seconds. Free. Private. Then fix the first four gaps.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
+function jobscanAlternativePage() {
+  const title = "Free Jobscan Alternative — No Signup, $9 One-Time Pro | ResumeRadar";
+  const description = "An honest comparison of ResumeRadar and Jobscan: a private, no-signup ATS scan with a $9 one-time Pro report versus an account-based job-search platform. See which fits your task.";
+  const canonical = `${siteUrl}/jobscan-alternative.html`;
+  const faq = [
+    {
+      q: "Is ResumeRadar really a Jobscan alternative?",
+      a: "For one task, yes: checking a resume against a specific job posting. ResumeRadar gives you a score, missing keywords, parser warnings, and fixes without an account or resume upload. Jobscan is the better fit if you want a broader job-search platform with LinkedIn optimization, job tracking, and a browser extension."
+    },
+    {
+      q: "What does ResumeRadar cost?",
+      a: "The scan is free. Pro is a one-time $9 unlock, not a subscription. It reveals every missing keyword, the full role checklist, all recommended fixes, a cover-letter outline, interview questions, and a text export."
+    },
+    {
+      q: "Does ResumeRadar upload my resume?",
+      a: "No. The scoring engine is local JavaScript. Paste plain text and the scan runs in your browser; there is no resume upload endpoint and no server-side storage. Only your Pro unlock state is kept in local storage if you buy it."
+    },
+    {
+      q: "Does Jobscan require an account?",
+      a: "Jobscan is an account-based service with limited free scanning and paid subscription plans. Check Jobscan's site for its current free limits, features, and prices, since those change."
+    },
+    {
+      q: "Which one should I use?",
+      a: "Use ResumeRadar if you want a fast, private, low-cost check for one posting, especially in a technical or Web3 role. Use Jobscan if you want an established platform that also optimizes LinkedIn, tracks applications, and bundles several job-search tools."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Jobscan alternative", "item": canonical }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Jobscan alternative
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Honest comparison</p>
+        <h1>A lighter Jobscan alternative for one ATS check.</h1>
+        <p class="lede">Jobscan is a mature job-search platform. ResumeRadar does one job: it scores your resume against a specific posting, shows the keyword gaps, and explains the fixes — without an account, an upload, or a subscription.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="sample-report.html">See a sample report</a>
+        </div>
+        <p class="role-note">Free scan · $9 once for Pro · no account · resume stays in the browser</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>The short version</h2>
+          <p>If you want the broadest job-search toolkit, Jobscan is the more complete product. It offers resume scanning, LinkedIn optimization, job tracking, and a browser extension on account-based plans. If you want a private, inexpensive check for the posting in front of you, ResumeRadar is deliberately smaller and faster.</p>
+
+          <table class="score-table">
+            <thead><tr><th>What matters</th><th>ResumeRadar</th><th>Jobscan</th></tr></thead>
+            <tbody>
+              <tr><td>Free ATS scan</td><td>Yes, with the full category breakdown</td><td>Limited free scans; account required</td></tr>
+              <tr><td>Account required</td><td>No</td><td>Yes</td></tr>
+              <tr><td>Resume handling</td><td>Stays in your browser; no upload endpoint</td><td>Uploaded for cloud processing</td></tr>
+              <tr><td>Price model</td><td>$0 scan; $9 one-time Pro</td><td>Subscription plans; check current pricing</td></tr>
+              <tr><td>LinkedIn optimization</td><td>Not offered</td><td>Yes</td></tr>
+              <tr><td>Job tracking &amp; extension</td><td>Not offered</td><td>Yes</td></tr>
+              <tr><td>Role-specific keyword lists</td><td>29 free role guides, including 5 Web3 roles</td><td>Broader general job-search content</td></tr>
+              <tr><td>Best for</td><td>One private, low-cost ATS check</td><td>A full, account-based job-search workflow</td></tr>
+            </tbody>
+          </table>
+
+          <h2>When Jobscan is the better choice</h2>
+          <p>Choose Jobscan if you are running a full job search and want one dashboard for resume scans, LinkedIn optimization, application tracking, and a browser extension. It is also the safer choice if you want an established brand with a broad feature set and do not mind a subscription.</p>
+
+          <h2>When ResumeRadar is the better choice</h2>
+          <p>Choose ResumeRadar if you have one posting to tailor for, you do not want to create another account, or you would rather not upload your resume to a third-party service. It is also a practical fit for technical and Web3 roles, where the keyword lists are specific and the $9 one-time price is easy to justify.</p>
+
+          <h2>What the free scan actually shows</h2>
+          <p>The free report gives you a 0–100 score, four category scores, the top five missing keywords, parser warnings, and the first four fixes. Pro adds every missing keyword ranked by importance, the complete role checklist, every fix, a cover-letter outline, eight interview questions, and a downloadable text report. There is no subscription and no recurring charge.</p>
+
+          <h2>How the comparison was made</h2>
+          <p>This page compares the products on the tasks ResumeRadar is built for. Jobscan's features and prices are set by Jobscan and can change; verify them on Jobscan's site before buying. ResumeRadar is not affiliated with, endorsed by, or sponsored by Jobscan. Jobscan is a trademark of its owner.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Try the free scan</h3>
+          <p class="small muted">Paste your resume and a real posting. No account. Nothing uploaded.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Check my resume</a>
+          <a class="btn btn-ghost btn-block" href="pricing.html" style="margin-top:8px">See the $9 Pro report</a>
+          <p class="small muted" style="margin-top:10px">One-time payment. No subscription.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Check the posting in front of you.</h2>
             <p>20 seconds. Free. Private. Then fix the first four gaps.</p>
           </div>
           <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
@@ -880,10 +1011,11 @@ function summaryExamplesPage() {
 
 function guidesPage() {
   const title = "Free Resume Guides — ATS Format, Templates, Verbs & Summaries";
-  const description = "Eight free resume guides: ATS formatting, a copyable template, 200+ action verbs, 29 summary examples, keyword extraction, and role-specific checklists.";
+  const description = "Free resume guides: ATS formatting, a copyable template, 200+ action verbs, 29 summary examples, keyword extraction, and role-specific checklists.";
   const canonical = `${siteUrl}/guides.html`;
   const cards = [
     ["free-ats-resume-checker.html", "Free ATS resume checker", "The full scanner: score, keyword gaps, parser warnings, and fixes. No signup, no upload.", "Free tool"],
+    ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
     ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
     ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
@@ -936,6 +1068,7 @@ function sitemap() {
     { loc: `${siteUrl}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${siteUrl}/roles.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/free-ats-resume-checker.html`, priority: "0.9", changefreq: "monthly" },
+    { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/sample-report.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
@@ -975,6 +1108,7 @@ for (const role of roles) {
 }
 fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
 fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsCheckerPage());
+fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
 fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-generator.html"), summaryGeneratorPage());
