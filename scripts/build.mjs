@@ -89,6 +89,7 @@ function footer(prefix) {
           <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
           <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
           <a href="${prefix}resume-summary-examples.html">Resume summary examples</a>
+          <a href="${prefix}resume-summary-generator.html">Summary generator</a>
           <a href="${prefix}guides.html">All resume guides</a>
           <a href="${prefix}sample-report.html">Sample ATS report</a>
           <a href="${prefix}web3.html">Crypto &amp; Web3 resumes</a>
@@ -613,6 +614,145 @@ function sampleReportPage() {
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
 }
 
+function summaryGeneratorPage() {
+  const title = "Free Resume Summary Generator — 3 Variants in Seconds";
+  const description = "Generate three resume summary variants from your role, years of experience, skills, and one measurable result. Free, private, and no signup.";
+  const canonical = `${siteUrl}/resume-summary-generator.html`;
+  const faq = [
+    {
+      q: "Is the summary generator free?",
+      a: "Yes. It runs in your browser with no account and no email gate. The optional Pro report is a separate $9 upgrade; the generator and the summaries it produces are free."
+    },
+    {
+      q: "Does the generator use AI?",
+      a: "No. It uses deterministic templates built from the role vocabulary in the 29 role guides. That means the output is predictable and private, but you still need to add your own true evidence. It will not invent experience for you."
+    },
+    {
+      q: "How do I make the summary sound less generic?",
+      a: "Replace the bracketed result with a real number and scope, then cut any skill you would not want to be interviewed on. The strongest summary is one specific sentence about a result, not a list of adjectives."
+    },
+    {
+      q: "Should I use one summary for every application?",
+      a: "Change at least the first sentence. Mirror the job title and the top two or three requirements from the posting. The rest of the summary can stay stable if it is accurate."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "ResumeRadar Resume Summary Generator",
+        "url": canonical,
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": description
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+
+  const body = `<main>
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Free summary generator</p>
+        <h1>Three resume summaries. One true result.</h1>
+        <p class="lede">Pick a role, add your years, skills, and one measurable outcome. The generator writes three editable variants using the same vocabulary as the role guides. No account, no AI API, nothing uploaded.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="resume-summary-examples.html">See 29 examples</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="wrap">
+        <div class="generator-grid">
+          <div class="generator-card">
+            <h2 style="font-size:1.15rem">Build your summary</h2>
+            <p class="small muted" style="margin:8px 0 18px">The output is a scaffold. Replace every bracket with something true.</p>
+            <form class="generator-form" id="summary-form">
+              <div>
+                <label for="summary-role">Target role</label>
+                <select id="summary-role" name="role"></select>
+              </div>
+              <div>
+                <label for="summary-years">Years of experience</label>
+                <input id="summary-years" name="years" type="number" min="0" max="40" step="1" value="5" inputmode="numeric">
+              </div>
+              <div>
+                <label for="summary-skills">Three relevant skills</label>
+                <input id="summary-skills" name="skills" type="text" placeholder="TypeScript, React, Node.js" autocomplete="off">
+                <p class="field-hint">Comma-separated. Use the terms from the posting where they are true.</p>
+              </div>
+              <div>
+                <label for="summary-result">One measurable result</label>
+                <input id="summary-result" name="result" type="text" placeholder="cut deploy time from 45 to 8 minutes" autocomplete="off">
+                <p class="field-hint">A number, a scope, or a before/after is enough.</p>
+              </div>
+              <button class="btn btn-primary" type="submit">Generate 3 summaries</button>
+              <button class="btn btn-ghost" type="button" data-summary-sample>Try a sample</button>
+              <p class="tiny muted">Runs locally. Your text is not sent anywhere.</p>
+            </form>
+          </div>
+
+          <div class="generator-card">
+            <p class="eyebrow">The formula</p>
+            <h2 style="font-size:1.15rem">Who you are. What changed. What is next.</h2>
+            <ul class="check-list" style="color:var(--muted)">
+              <li><strong style="color:var(--ink)">Who:</strong> role, years, and three relevant skills.</li>
+              <li><strong style="color:var(--ink)">Proof:</strong> one result with a number or clear scope.</li>
+              <li><strong style="color:var(--ink)">Direction:</strong> the problem you want to work on next.</li>
+            </ul>
+            <p class="small muted" style="margin-top:16px">Keep it to 40–70 words. Write it after your experience bullets, so the proof is already on the page. Never claim a skill you cannot defend in an interview.</p>
+            <a class="btn btn-ghost btn-block" href="ats-resume-format.html" style="margin-top:16px">Read the format guide</a>
+          </div>
+        </div>
+
+        <div class="generator-output" id="summary-output" hidden aria-live="polite">
+          <div class="section-head" style="margin-bottom:0">
+            <p class="eyebrow">Your drafts</p>
+            <h2 style="font-size:1.5rem">Copy the one that sounds like you.</h2>
+            <p class="small muted">Then replace the bracketed result and cut anything you cannot defend.</p>
+          </div>
+        </div>
+
+        <div class="prose" style="margin-top:44px">
+          <h2>Why a summary is not an objective statement</h2>
+          <p>“Seeking a challenging role where I can grow” describes what you want from an employer. A summary should describe what an employer gets. Lead with the role and the evidence, not with a wish. The generator uses the same role vocabulary as the 29 keyword guides because that is the language both a parser and a recruiter are scanning for.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Now check the summary against a real posting.</h2>
+            <p>Paste the resume and the job description. Get the score, the gaps, and the fixes.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script defer src="assets/summary.js"></script>`;
+
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function summaryExamplesPage() {
   const title = "Resume Summary Examples for 29 Roles (2026) — Free Templates";
   const description = "Role-specific resume summary examples for 29 jobs, plus a three-sentence formula you can adapt. Free, no signup, with links to each ATS keyword guide.";
@@ -745,6 +885,7 @@ function guidesPage() {
     ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
     ["resume-action-verbs.html", "200+ resume action verbs", "Strong verbs by function, plus weak phrases to replace and before/after examples.", "Verb library"],
     ["resume-summary-examples.html", "Resume summary examples", "29 role-specific summaries built on a three-sentence formula you can adapt.", "Summary library"],
+    ["resume-summary-generator.html", "Resume summary generator", "Write three editable summary variants from a role, skills, and one measurable result.", "Free tool"],
     ["keyword-extractor.html", "Job keyword extractor", "Paste a posting to get a ranked, copyable keyword list, then send it to the scanner.", "Free tool"],
     ["roles.html", "Role keyword guides", "29 roles with core skills, tools, and action verbs. Start with the words employers search.", "Role guides"],
     ["web3.html", "Crypto & Web3 resumes", "Smart contract, blockchain, DeFi, product, and community roles with Web3 vocabulary.", "Web3"],
@@ -798,6 +939,7 @@ function sitemap() {
     { loc: `${siteUrl}/free-ats-resume-template.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/resume-action-verbs.html`, priority: "0.7", changefreq: "monthly" },
     { loc: `${siteUrl}/resume-summary-examples.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/resume-summary-generator.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/web3.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/pay-with-usdc.html`, priority: "0.5", changefreq: "yearly" },
     { loc: `${siteUrl}/pricing.html`, priority: "0.7", changefreq: "monthly" },
@@ -831,6 +973,7 @@ fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
 fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsCheckerPage());
 fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
+fs.writeFileSync(path.join(siteDir, "resume-summary-generator.html"), summaryGeneratorPage());
 fs.writeFileSync(path.join(siteDir, "guides.html"), guidesPage());
 fs.writeFileSync(path.join(siteDir, "sitemap.xml"), sitemap());
 fs.writeFileSync(
@@ -838,7 +981,7 @@ fs.writeFileSync(
   `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`
 );
 
-console.log(`Built ${roles.length} role pages + roles.html + summary examples + guides + sitemap.xml + robots.txt`);
+console.log(`Built ${roles.length} role pages + roles.html + summary examples + summary generator + guides + sitemap.xml + robots.txt`);
 console.log(`Canonical base: ${siteUrl}`);
 console.log(`Pro price: ${priceLabel}`);
 if (siteUrl.includes("resumeradar.example")) {

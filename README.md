@@ -40,7 +40,7 @@ All analysis is deterministic. The same input produces the same output, which ma
 
 ```bash
 cd resume-radar
-npm test          # builds the SEO layer and runs 32 tests
+npm test          # builds the SEO layer and runs 34 tests
 npm run serve     # http://127.0.0.1:4173
 ```
 
@@ -82,6 +82,7 @@ resume-radar/
 │   ├── free-ats-resume-template.html  copy/download/print template
 │   ├── resume-action-verbs.html   200+ verb library
 │   ├── resume-summary-examples.html  generated summaries for 29 roles
+│   ├── resume-summary-generator.html free summary generator
 │   ├── keyword-extractor.html     free job-posting keyword tool
 │   ├── web3.html                  crypto/Web3 landing page
 │   ├── pay-with-usdc.html         payment guide
@@ -94,6 +95,7 @@ resume-radar/
 │   │   ├── app.js                 scanner UI and report rendering
 │   │   ├── site.js                nav, Pro unlock, payment dialogs
 │   │   ├── template.js            copy/download/print controls
+│   │   ├── summary.js             local summary generator
 │   │   ├── payments.js            client-side USDC receipt verification
 │   │   ├── config.js              the only file you edit to run the business
 │   │   ├── styles.css             complete responsive/print design system

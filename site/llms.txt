@@ -15,6 +15,7 @@
 - [Free ATS resume template](https://automatethebs.github.io/resume-radar/free-ats-resume-template.html): a single-column skeleton to copy, download, or print. No email gate.
 - [Resume action verbs](https://automatethebs.github.io/resume-radar/resume-action-verbs.html): 200+ strong verbs by function, with weak phrases to replace and before/after examples.
 - [Resume summary examples](https://automatethebs.github.io/resume-radar/resume-summary-examples.html): 29 role-specific summaries built on a three-sentence formula.
+- [Resume summary generator](https://automatethebs.github.io/resume-radar/resume-summary-generator.html): generate three editable summary variants from a role, skills, and one measurable result.
 - [Crypto & Web3 resume checker](https://automatethebs.github.io/resume-radar/web3.html): Web3 role checklists and accountless USDC Pro checkout.
 - [How to pay with USDC](https://automatethebs.github.io/resume-radar/pay-with-usdc.html): step-by-step Base payment guide, network details, and troubleshooting.
 

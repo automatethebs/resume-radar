@@ -672,6 +672,30 @@ body.is-pro .lock-card { display: none; }
 .guide-card strong { font-size: 1.02rem; letter-spacing: -.015em; }
 .guide-card span { font-size: .84rem; color: var(--muted); line-height: 1.55; }
 .guide-card em { font-style: normal; margin-top: auto; padding-top: 8px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.generator-grid { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 30px; align-items: start; }
+.generator-card { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px, 3vw, 28px); }
+.generator-form { display: grid; gap: 15px; }
+.generator-form label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.generator-form input, .generator-form select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: .88rem;
+}
+.generator-form input:focus, .generator-form select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.generator-form .field-hint { margin-top: -7px; font-size: .75rem; color: var(--muted); }
+.generator-output { display: grid; gap: 14px; }
+.generator-output[hidden] { display: none; }
+.summary-variant { padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper-2); }
+.summary-variant-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.summary-variant-head strong { font-size: .78rem; letter-spacing: -.01em; }
+.summary-variant p { font-size: .9rem; line-height: 1.65; color: var(--ink-soft); }
+.summary-variant .copy-row { display: flex; justify-content: flex-end; margin-top: 10px; }
 .page-nav { position: sticky; top: 90px; border-left: 2px solid var(--line); padding-left: 18px; display: grid; gap: 10px; font-size: .85rem; }
 .page-nav a { color: var(--muted); text-decoration: none; }
 .page-nav a:hover { color: var(--accent); }
@@ -892,6 +916,7 @@ dialog::backdrop { background: rgba(20, 18, 14, .55); backdrop-filter: blur(3px)
   .extractor-grid { grid-template-columns: 1fr; }
   .extractor-side { position: static; }
   .playbook-grid { grid-template-columns: 1fr; }
+  .generator-grid { grid-template-columns: 1fr; }
   .score-card { position: static; }
   .role-body { grid-template-columns: 1fr; gap: 36px; }
   .aside-card { position: static; }

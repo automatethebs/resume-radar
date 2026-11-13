@@ -210,7 +210,7 @@ test("summary examples are generated for every role", () => {
 
 test("the guide hub links every free resource and roles include Web3", () => {
   const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
-  ["free-ats-resume-checker.html", "sample-report.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "keyword-extractor.html", "roles.html", "web3.html", "how-it-works.html"].forEach((href) => {
+  ["free-ats-resume-checker.html", "sample-report.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "resume-summary-generator.html", "keyword-extractor.html", "roles.html", "web3.html", "how-it-works.html"].forEach((href) => {
     assert.ok(guides.includes(`href="${href}"`), `guides hub missing ${href}`);
   });
   const rolesHtml = fs.readFileSync(path.join(site, "roles.html"), "utf8");
@@ -225,15 +225,30 @@ test("new guides are styled, in the sitemap, and linked from the footer", () => 
     assert.ok(css.includes(sel), `styles missing ${sel}`);
   });
   const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
-  ["guides.html", "free-ats-resume-checker.html", "sample-report.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html"].forEach((page) => {
+  ["guides.html", "free-ats-resume-checker.html", "sample-report.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "resume-summary-generator.html"].forEach((page) => {
     assert.ok(sitemap.includes(`${siteUrl}/${page}`), `sitemap missing ${page}`);
   });
   ["index.html", "pricing.html", "how-it-works.html", "web3.html", "pay-with-usdc.html"].forEach((page) => {
     const html = fs.readFileSync(path.join(site, page), "utf8");
-    ["free-ats-resume-checker.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "guides.html", "sample-report.html"].forEach((href) => {
+    ["free-ats-resume-checker.html", "ats-resume-format.html", "free-ats-resume-template.html", "resume-action-verbs.html", "resume-summary-examples.html", "resume-summary-generator.html", "guides.html", "sample-report.html"].forEach((href) => {
       assert.ok(html.includes(`href="${href}"`), `${page} footer missing ${href}`);
     });
   });
+});
+
+test("the summary generator is a local, working tool", () => {
+  const html = fs.readFileSync(path.join(site, "resume-summary-generator.html"), "utf8");
+  assert.ok(html.includes(`${siteUrl}/resume-summary-generator.html`), "generator missing canonical");
+  assert.ok(html.includes("WebApplication"), "generator missing app schema");
+  assert.ok(html.includes("FAQPage"), "generator missing FAQ schema");
+  ["summary-form", "summary-role", "summary-years", "summary-skills", "summary-result", "summary-output", "data-summary-sample", "assets/summary.js"].forEach((needle) => {
+    assert.ok(html.includes(needle), `generator missing ${needle}`);
+  });
+  const js = fs.readFileSync(path.join(site, "assets/summary.js"), "utf8");
+  ["RR_ROLES", "buildVariants", "data-copy-summary", "navigator.clipboard", "prefers-reduced-motion"].forEach((needle) => {
+    assert.ok(js.includes(needle), `summary.js missing ${needle}`);
+  });
+  assert.ok(!js.includes("fetch("), "summary generator should not make network requests");
 });
 
 test("the free checker landing page and sample report are complete and linked", () => {
