@@ -321,6 +321,25 @@ test("the tailoring guide explains the process and is linked", () => {
   assert.ok(sitemap.includes(`${siteUrl}/how-to-tailor-a-resume.html`), "sitemap missing the tailoring guide");
 });
 
+test("the no-interviews diagnostic guide is complete and linked", () => {
+  const file = path.join(site, "why-am-i-not-getting-interviews.html");
+  assert.ok(fs.existsSync(file), "missing why-am-i-not-getting-interviews.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/why-am-i-not-getting-interviews.html`), "diagnostic guide missing canonical");
+  assert.ok(html.includes("Article"), "diagnostic guide missing Article schema");
+  assert.ok(html.includes("FAQPage"), "diagnostic guide missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "diagnostic guide missing breadcrumb schema");
+  assert.ok(html.includes("copy-paste test"), "diagnostic guide missing the parser check");
+  assert.ok(html.includes("15-minute triage"), "diagnostic guide missing the triage");
+  assert.ok(html.includes("compare-before"), "diagnostic guide missing the before/after example");
+  assert.ok(html.includes("index.html#checker"), "diagnostic guide missing scanner CTA");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("why-am-i-not-getting-interviews.html"), "guide hub does not link the diagnostic guide");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/why-am-i-not-getting-interviews.html`), "sitemap missing the diagnostic guide");
+});
+
 test("the free checker landing page and sample report are complete and linked", () => {
   const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
   assert.ok(checker.includes(`${siteUrl}/free-ats-resume-checker.html`), "free checker missing canonical");

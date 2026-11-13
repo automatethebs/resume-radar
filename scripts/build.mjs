@@ -86,6 +86,7 @@ function footer(prefix) {
           <a href="${prefix}keyword-extractor.html">Job keyword extractor</a>
           <a href="${prefix}free-ats-resume-checker.html">Free ATS resume checker</a>
           <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
+          <a href="${prefix}why-am-i-not-getting-interviews.html">Why no interviews?</a>
           <a href="${prefix}ats-resume-format.html">ATS resume format</a>
           <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
           <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
@@ -1315,6 +1316,188 @@ function summaryExamplesPage() {
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
 }
 
+function notGettingInterviewsPage() {
+  const title = "Why Am I Not Getting Interviews? 12 Resume Fixes (2026) | ResumeRadar";
+  const description = "Applying but not hearing back? Work through 12 resume checks in order: parser failures, keyword gaps, generic summaries, duty-based bullets, format problems, and targeting mistakes.";
+  const canonical = `${siteUrl}/why-am-i-not-getting-interviews.html`;
+  const faq = [
+    {
+      q: "How many applications should I send before changing my resume?",
+      a: "Track a batch of 10 to 15 applications against one version of the resume. If none produce a screen, change the top third, the keyword match, and the roles you are targeting before sending another batch. A single application is too small a sample, and a hundred identical applications mostly repeats the same mistake."
+    },
+    {
+      q: "Does a high ATS score guarantee an interview?",
+      a: "No. A score only measures how readable and relevant the document is against one posting. Hiring decisions also depend on the market, the applicant pool, timing, referrals, and the hiring manager's judgment. Use the score to remove avoidable reasons for rejection, not as a prediction."
+    },
+    {
+      q: "Should I use AI to rewrite my resume?",
+      a: "It can help tighten phrasing and suggest structure, but you must verify every claim. Do not let it invent metrics, tools, or scope. A resume that reads well and fails an interview is worse than a plainly written one that is true."
+    },
+    {
+      q: "What if I have an employment gap?",
+      a: "Keep the dates honest and use the summary or a short line to explain the gap if it is relevant. You do not need to apologize for it. Recruiters are more confused by missing dates than by a gap with a simple explanation."
+    },
+    {
+      q: "What if I am changing careers?",
+      a: "Lead with transferable evidence and use the new field's vocabulary where it is accurate. A career-change resume should show what the employer gets, not a chronological apology. The tailoring guide has a worksheet for mapping old evidence to new requirements."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Why am I not getting interviews?", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": today,
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Why am I not getting interviews?
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Diagnostic guide</p>
+        <h1>Why am I not getting interviews? 12 resume fixes to try first.</h1>
+        <p class="lede">If applications are going out and interviews are not coming back, the problem is often visible before a human reads the resume. Work through these twelve checks in order. Each one has a fix and a way to verify it.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Find my resume gaps</a>
+          <a class="btn btn-ghost btn-lg" href="how-to-tailor-a-resume.html">Read the tailoring guide</a>
+        </div>
+        <p class="role-note">Free scan · no signup · nothing uploaded</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>Start with the filter, not the hiring manager</h2>
+          <p>Most applications are rejected before anyone reads them closely. The first filter is a parser or a recruiter skimming for a match. That means the highest-value fixes are structural and lexical: can the document be read, and does it answer this posting? Only after those are fixed does the story matter.</p>
+
+          <h2>1. The resume fails the copy-paste test</h2>
+          <p>Open your PDF, select all, and paste it into a plain text editor. If your contact line, section headings, dates, or bullets disappear or arrive scrambled, an ATS may see the same mess. Tables, text boxes, columns, headers, and footers are the usual causes.</p>
+          <p><strong>Fix:</strong> use one column, real text, standard headings, and no critical content in a text box. <strong>Verify:</strong> the pasted text still reads like a resume.</p>
+
+          <h2>2. The posting's must-have terms are missing</h2>
+          <p>Extract the top 8–12 requirements from the posting. If the resume never names the tool, platform, certification, or domain the employer asked for, both the parser and the recruiter have to guess. That guess usually costs you the screen.</p>
+          <p><strong>Fix:</strong> mirror the exact term where it is true, especially for tools and certifications. <strong>Verify:</strong> re-scan against the same posting and check that the remaining gaps are things you honestly cannot claim.</p>
+
+          <h2>3. The summary is generic</h2>
+          <p>“Seeking a challenging role where I can grow” describes what you want. A recruiter is looking for what they get. Replace it with the target role, your years or scope, two relevant skills, and one measurable result.</p>
+          <p><strong>Fix:</strong> write three sentences: who you are, what you have done, and the result you repeat. <strong>Verify:</strong> the summary still makes sense if you remove the company name.</p>
+
+          <h2>4. Bullets describe duties, not outcomes</h2>
+          <p>“Responsible for maintaining backend services” is a job description. It tells the reader what you were assigned, not what changed. Lead with an action, add scope, and end with a result.</p>
+          <div class="compare-grid">
+            <div class="compare-card compare-before">
+              <h3>Before</h3>
+              <p>Responsible for maintaining backend services and helping with deployments.</p>
+            </div>
+            <div class="compare-card compare-after">
+              <h3>After</h3>
+              <p>Migrated 18 Node.js services to Kubernetes, cutting deploy time from 25 minutes to 6 and reducing failed releases by 40%.</p>
+            </div>
+          </div>
+          <p><strong>Verify:</strong> every bullet should answer “so what changed?” If it only names an activity, rewrite it or cut it.</p>
+
+          <h2>5. There is no evidence of scale</h2>
+          <p>Numbers make relevance concrete: team size, budget, ticket volume, patient load, revenue, users, time saved, error rate. Use honest approximations when you do not have an exact figure. “About 40 engineers” is more useful than “large teams.”</p>
+
+          <h2>6. The job titles do not map to the target</h2>
+          <p>Internal titles are often opaque. If “Member of Technical Staff II” means “senior backend engineer” in the market, add the plain-language equivalent in parentheses. Do not change the official title; translate it.</p>
+
+          <h2>7. Dates and locations are ambiguous</h2>
+          <p>Write dates as month and year, with an end date for every role: “Jan 2022 – Mar 2024,” not “2022–24.” A missing end date can read as a gap, and a missing location can disqualify you from a hybrid role before anyone asks.</p>
+
+          <h2>8. The top third is wasted</h2>
+          <p>Recruiters skim the first screen. Put the summary, the core skills for the target role, and the most relevant experience there. Do not lead with a photo, an objective, or a list of every tool you have ever touched.</p>
+
+          <h2>9. The resume is pitched at the wrong level</h2>
+          <p>Applying to manager roles with an individual-contributor resume reads as a mismatch, and the reverse is also true. Lead with the level you can defend. For manager roles, show team size, hiring, and budget; for senior IC roles, show technical scope and judgment.</p>
+
+          <h2>10. The applications are late or too broad</h2>
+          <p>Response rates fall as a posting ages, and a resume that matches 40% of the must-haves is not a close call. Apply within the first days when you can, and prioritize roles where you meet most of the core requirements. Fewer, better-fit applications usually beat volume.</p>
+
+          <h2>11. There is no human path in</h2>
+          <p>A referral, an internal message, or a short note to the recruiter can move a resume from the pile to the shortlist. This is not a resume fix, but it changes outcomes. Ask former colleagues, alumni, and community contacts before you apply, not after.</p>
+
+          <h2>12. You are reusing one resume across industries</h2>
+          <p>A healthcare resume and a SaaS resume should not emphasize the same things. Keep one master document with all of your evidence, then tailor 20–30% of it for each posting: summary, skills order, three to five bullets, and sometimes one project.</p>
+
+          <h2>A 15-minute triage</h2>
+          <ol>
+            <li>Run the copy-paste test and fix any parsing failure first.</li>
+            <li>Paste the resume and the posting into the free scanner.</li>
+            <li>Fix structure warnings before adding keywords.</li>
+            <li>Add three to five missing terms that are true.</li>
+            <li>Rewrite two bullets with scope and a result.</li>
+            <li>Re-scan. Stop when the remaining gaps are things you cannot claim.</li>
+            <li>Apply while the posting is still fresh.</li>
+          </ol>
+
+          <h2>What not to do</h2>
+          <ul>
+            <li><strong>Do not lie or stuff keywords.</strong> A term you cannot defend in an interview is worse than a gap.</li>
+            <li><strong>Do not hide keywords in white text.</strong> It is dishonest, and modern parsers can flag it.</li>
+            <li><strong>Do not chase a perfect score.</strong> Past the high 80s, you are usually optimizing for the checker, not the hiring manager.</li>
+            <li><strong>Do not rewrite from scratch for every application.</strong> Build a master resume, then tailor the top third.</li>
+          </ul>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Find the avoidable gaps</h3>
+          <p class="small muted">Paste your resume and a real posting. See the missing terms, parser warnings, and the fixes that matter first.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-block" href="how-to-tailor-a-resume.html" style="margin-top:8px">Tailoring worksheet</a>
+          <a class="btn btn-ghost btn-block" href="what-is-a-good-ats-score.html" style="margin-top:8px">What is a good score?</a>
+          <p class="small muted" style="margin-top:10px">No account · nothing uploaded.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Before you send another application, check the first filter.</h2>
+            <p>A 20-second scan shows whether the resume is readable and whether it answers the posting.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function guidesPage() {
   const title = "Free Resume Guides — ATS Format, Templates, Verbs & Summaries";
   const description = "Free resume guides: ATS formatting, a copyable template, 200+ action verbs, 39 summary examples, keyword extraction, and role-specific checklists.";
@@ -1324,6 +1507,7 @@ function guidesPage() {
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
     ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
     ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
+    ["why-am-i-not-getting-interviews.html", "Why am I not getting interviews?", "Twelve resume checks for applications that are not turning into screens, plus a 15-minute triage.", "Diagnostic guide"],
     ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
     ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
@@ -1379,6 +1563,7 @@ function sitemap() {
     { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/what-is-a-good-ats-score.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/how-to-tailor-a-resume.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/why-am-i-not-getting-interviews.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/sample-report.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
@@ -1421,6 +1606,7 @@ fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsChec
 fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
+fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());
 fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-generator.html"), summaryGeneratorPage());
