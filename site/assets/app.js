@@ -323,6 +323,11 @@
     }
     lastReport = report;
     lastRole = roleEl.value;
+    var shareBase = (cfg.siteUrl || window.location.origin + window.location.pathname).replace(/\/+$/, "");
+    var shareUrl = shareBase + "/#checker";
+    var shareText = "I scored " + report.score + "/100 (" + report.grade + ") on ResumeRadar — a free, private ATS resume checker. Target: " + report.roleName + ".";
+    var linkedInShare = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(shareUrl);
+    var xShare = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(shareUrl);
     reportEl.hidden = false;
     reportEl.innerHTML =
       '<div class="report-grid">' +
@@ -358,7 +363,7 @@
           '<div class="pro-banner free-only">' +
             '<div><p class="eyebrow">Pro report</p>' +
             "<h3>See every gap, not just the first five.</h3>" +
-            "<p>One payment, no subscription. Unlock all missing keywords, the full role checklist, every fix, a cover-letter outline, interview questions, and a text export you can work from.</p>" +
+            "<p>One payment, no subscription. Unlock all missing keywords, the full role checklist, every fix, a cover-letter outline, interview questions, and a text export you can work from. <a href=\"sample-report.html\">See a sample report →</a></p>" +
             '<div class="pro-feats"><span>All missing keywords</span><span>Full role checklist</span><span>Every recommended fix</span><span>Cover letter outline</span><span>Interview questions</span><span>TXT export</span></div></div>' +
             '<button type="button" class="btn btn-lg" data-pay>Get Pro — ' + esc(cfg.priceLabel || "$9") + "</button>" +
           "</div>" +
@@ -367,6 +372,7 @@
       '<div class="report-actions">' +
         '<button type="button" class="btn btn-ghost btn-sm" data-print>Print / save PDF</button>' +
         '<button type="button" class="btn btn-ghost btn-sm" data-share>Share my score</button>' +
+        '<span class="share-links"><a href="' + esc(linkedInShare) + '" target="_blank" rel="noopener">LinkedIn</a><a href="' + esc(xShare) + '" target="_blank" rel="noopener">X</a></span>' +
         '<button type="button" class="btn btn-primary btn-sm pro-only" data-export>Download full report (.txt)</button>' +
         '<button type="button" class="btn btn-primary btn-sm free-only" data-unlock>Unlock full report — ' + esc(cfg.priceLabel || "$9") + "</button>" +
         '<span class="spacer"></span><span class="small">' + esc(report.jobKeywordCount) + " job terms detected</span>" +

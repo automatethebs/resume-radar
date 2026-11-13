@@ -157,6 +157,9 @@ test("report has a share loop and a wallet handoff", () => {
   assert.ok(appJs.includes("shareReport"), "shareReport missing");
   assert.ok(appJs.includes("data-share"), "share button missing");
   assert.ok(appJs.includes("navigator.share"), "native share missing");
+  assert.ok(appJs.includes("linkedin.com/sharing"), "LinkedIn share link missing");
+  assert.ok(appJs.includes("twitter.com/intent"), "X share link missing");
+  assert.ok(appJs.includes("sample-report.html"), "locked report does not link the sample report");
   const siteJs = fs.readFileSync(path.join(site, "assets/site.js"), "utf8");
   assert.ok(siteJs.includes("ethereum:"), "EIP-681 wallet URI missing");
   assert.ok(siteJs.includes("Open in wallet"), "wallet link missing");

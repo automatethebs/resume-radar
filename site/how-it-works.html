@@ -17,6 +17,47 @@
   <script defer src="assets/config.js"></script>
   <script defer src="assets/payments.js"></script>
   <script defer src="assets/site.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "How the ResumeRadar ATS score works",
+        "description": "The exact weights, the parsing checks, and the honest limits of an ATS score.",
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": "2026-11-13",
+        "mainEntityOfPage": "https://automatethebs.github.io/resume-radar/how-it-works.html"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is a higher score always better?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Above roughly 85, the remaining points are often synonym edge cases. At that stage, a human review and a referral matter more than another keyword. The score is a diagnostic, not a leaderboard." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why did my score change when I pasted a different job?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The keyword category is scored against the posting you provide. A resume can be an excellent match for one role and a poor match for another. That is the point: tailor per application." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the tool store my resume?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. It is processed in the browser and discarded when the tab closes. See the privacy page for the exact list of what is stored." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is the top score 100 but the grade A starts at 85?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Because a 100 would imply certainty about an algorithm that varies by employer. An A means the resume is in the strong band: most important terms present, structure clean, impact evidenced." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>

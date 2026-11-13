@@ -487,6 +487,9 @@ body.is-pro .lock-card { display: none; }
   background: #fbf8f1;
 }
 .report-actions .small { color: var(--muted); }
+.share-links { display: inline-flex; align-items: center; gap: 9px; font-size: .78rem; }
+.share-links a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.share-links a:hover { color: var(--accent); }
 .report-actions .spacer { flex: 1; }
 
 /* Pro banner -------------------------------------------------------------- */
@@ -516,6 +519,8 @@ body.is-pro .lock-card { display: none; }
 .pro-banner .eyebrow { color: #e9a27c; margin-bottom: 10px; }
 .pro-banner h3 { font-size: 1.5rem; color: #fff; }
 .pro-banner p { margin-top: 8px; color: #c9c2b6; font-size: .86rem; max-width: 50ch; }
+.pro-banner p a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.pro-banner p a:hover { color: #f4c7ae; }
 .pro-banner .btn { background: var(--accent); color: #fff; position: relative; z-index: 1; }
 .pro-banner .btn:hover { background: #e2521a; }
 .pro-feats { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; font-size: .78rem; color: #d8d1c5; }

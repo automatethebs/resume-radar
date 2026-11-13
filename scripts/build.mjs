@@ -377,6 +377,10 @@ function freeAtsCheckerPage() {
     {
       q: "What is the difference between the free scan and Pro?",
       a: "The free scan shows the top five missing keywords and top four fixes. Pro shows every missing keyword ranked by importance, the full role checklist, every recommended fix, a cover-letter outline, interview questions, and a downloadable text report."
+    },
+    {
+      q: "Is ResumeRadar a Jobscan alternative?",
+      a: "It is a lighter alternative for one job: checking a resume against a specific posting. Jobscan is a broader paid platform with LinkedIn optimization and other career tools. ResumeRadar is free to scan, $9 once for Pro, and does not require an account or resume upload. Use whichever fits the task you need done."
     }
   ];
   const jsonLd = JSON.stringify({
