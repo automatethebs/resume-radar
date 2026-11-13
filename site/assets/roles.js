@@ -271,6 +271,96 @@
       core: ["community management", "moderation", "discord", "telegram", "content strategy", "social media", "growth", "engagement", "event planning", "ambassador programs", "support", "crisis communication", "token incentives", "governance", "user feedback", "analytics", "copywriting", "partnerships"],
       tools: ["discord", "telegram", "x", "notion", "typeform", "zealy", "galxe", "buffer", "canva", "google analytics"],
       verbs: ["grew", "moderated", "launched", "engaged", "coordinated", "managed", "created", "supported", "partnered", "measured"]
+    },
+    {
+      slug: "data-scientist",
+      title: "Data Scientist",
+      plural: "Data Scientists",
+      focus: "turning ambiguous questions into models, experiments, and decisions",
+      core: ["python", "statistics", "machine learning", "data cleaning", "feature engineering", "model evaluation", "a/b testing", "regression", "classification", "clustering", "time series", "sql", "data visualization", "stakeholder communication", "experiment design", "causal inference", "forecasting", "data storytelling"],
+      tools: ["python", "pandas", "numpy", "scikit-learn", "tensorflow", "pytorch", "sql", "jupyter", "tableau", "power bi", "snowflake", "bigquery", "mlflow", "git"],
+      verbs: ["modeled", "analyzed", "predicted", "measured", "experimented", "forecasted", "segmented", "validated", "automated", "presented"]
+    },
+    {
+      slug: "machine-learning-engineer",
+      title: "Machine Learning Engineer",
+      plural: "Machine Learning Engineers",
+      focus: "taking models from a notebook to a reliable, monitored production service",
+      core: ["machine learning", "deep learning", "model training", "feature engineering", "model deployment", "mlops", "model monitoring", "data pipelines", "experiment tracking", "distributed training", "inference optimization", "model evaluation", "python", "statistics", "ci/cd", "containerization", "api design"],
+      tools: ["python", "pytorch", "tensorflow", "scikit-learn", "mlflow", "kubeflow", "sagemaker", "vertex ai", "docker", "kubernetes", "airflow", "spark", "aws", "gcp", "git"],
+      verbs: ["trained", "deployed", "optimized", "built", "scaled", "monitored", "automated", "evaluated", "shipped", "reduced"]
+    },
+    {
+      slug: "frontend-developer",
+      title: "Frontend Developer",
+      plural: "Frontend Developers",
+      focus: "shipping fast, accessible interfaces that hold up in real browsers",
+      core: ["javascript", "typescript", "html", "css", "react", "responsive design", "accessibility", "web performance", "state management", "component architecture", "unit testing", "end-to-end testing", "rest apis", "browser devtools", "seo", "design systems"],
+      tools: ["react", "vue", "next.js", "typescript", "javascript", "tailwind css", "sass", "webpack", "vite", "jest", "playwright", "cypress", "figma", "git", "github actions"],
+      verbs: ["built", "shipped", "optimized", "implemented", "refactored", "improved", "tested", "migrated", "designed", "fixed"]
+    },
+    {
+      slug: "backend-developer",
+      title: "Backend Developer",
+      plural: "Backend Developers",
+      focus: "building APIs, data models, and services that stay correct under load",
+      core: ["api design", "rest apis", "graphql", "microservices", "database design", "sql", "caching", "message queues", "authentication", "authorization", "system design", "unit testing", "performance optimization", "observability", "distributed systems", "data modeling"],
+      tools: ["node.js", "python", "java", "go", "postgresql", "mysql", "redis", "kafka", "rabbitmq", "docker", "kubernetes", "aws", "terraform", "git"],
+      verbs: ["built", "designed", "implemented", "optimized", "scaled", "migrated", "secured", "automated", "debugged", "reduced"]
+    },
+    {
+      slug: "data-engineer",
+      title: "Data Engineer",
+      plural: "Data Engineers",
+      focus: "building pipelines and warehouses that analysts can actually trust",
+      core: ["data pipelines", "etl", "elt", "data modeling", "data warehousing", "sql", "data quality", "orchestration", "streaming", "batch processing", "schema design", "data governance", "performance tuning", "cloud storage", "ci/cd"],
+      tools: ["python", "sql", "airflow", "dbt", "spark", "kafka", "snowflake", "bigquery", "redshift", "databricks", "aws", "gcp", "docker", "terraform", "git"],
+      verbs: ["built", "designed", "migrated", "automated", "modeled", "optimized", "monitored", "integrated", "reduced", "scaled"]
+    },
+    {
+      slug: "cloud-engineer",
+      title: "Cloud Engineer",
+      plural: "Cloud Engineers",
+      focus: "making cloud infrastructure reproducible, observable, and affordable",
+      core: ["aws", "azure", "gcp", "terraform", "infrastructure as code", "kubernetes", "docker", "ci/cd", "linux", "networking", "iam", "monitoring", "cost optimization", "high availability", "disaster recovery", "security", "scripting"],
+      tools: ["aws", "azure", "gcp", "terraform", "kubernetes", "docker", "helm", "ansible", "prometheus", "grafana", "cloudwatch", "github actions", "linux", "python", "bash"],
+      verbs: ["migrated", "automated", "deployed", "optimized", "secured", "monitored", "reduced", "built", "managed", "scaled"]
+    },
+    {
+      slug: "qa-engineer",
+      title: "QA Engineer",
+      plural: "QA Engineers",
+      focus: "finding the failure before a customer does, and keeping the test suite fast",
+      core: ["test planning", "test automation", "manual testing", "regression testing", "api testing", "performance testing", "bug tracking", "test cases", "quality assurance", "ci/cd", "agile", "sql", "accessibility testing", "mobile testing", "test strategy"],
+      tools: ["selenium", "cypress", "playwright", "jest", "postman", "jira", "testrail", "github actions", "browserstack", "sql", "appium", "k6"],
+      verbs: ["tested", "automated", "found", "reduced", "verified", "built", "documented", "improved", "validated", "reported"]
+    },
+    {
+      slug: "customer-success-manager",
+      title: "Customer Success Manager",
+      plural: "Customer Success Managers",
+      focus: "keeping accounts healthy, adopted, and likely to renew",
+      core: ["customer onboarding", "account management", "retention", "churn reduction", "quarterly business reviews", "customer advocacy", "upselling", "relationship building", "product adoption", "customer health scores", "renewals", "support escalation", "stakeholder management", "crm", "kpis"],
+      tools: ["salesforce", "hubspot", "gainsight", "churnzero", "zendesk", "intercom", "looker", "excel", "notion", "slack"],
+      verbs: ["retained", "onboarded", "grew", "renewed", "reduced", "increased", "managed", "advocated", "aligned", "drove"]
+    },
+    {
+      slug: "recruiter",
+      title: "Recruiter",
+      plural: "Recruiters",
+      focus: "finding, screening, and closing candidates without losing the good ones",
+      core: ["sourcing", "screening", "interviewing", "talent pipeline", "candidate experience", "offer negotiation", "stakeholder management", "employer branding", "applicant tracking systems", "job descriptions", "diversity recruiting", "hiring metrics", "relationship building", "market research"],
+      tools: ["linkedin recruiter", "greenhouse", "lever", "workday", "ashby", "gem", "calendly", "excel", "notion", "slack"],
+      verbs: ["sourced", "screened", "hired", "filled", "negotiated", "built", "partnered", "reduced", "managed", "improved"]
+    },
+    {
+      slug: "executive-assistant",
+      title: "Executive Assistant",
+      plural: "Executive Assistants",
+      focus: "protecting an executive's time with calm, precise coordination",
+      core: ["calendar management", "travel coordination", "expense reports", "meeting planning", "email management", "confidentiality", "stakeholder communication", "event planning", "document preparation", "office management", "vendor management", "prioritization", "project coordination", "written communication"],
+      tools: ["google workspace", "microsoft office", "outlook", "excel", "slack", "notion", "concur", "zoom", "asana", "calendly"],
+      verbs: ["coordinated", "managed", "scheduled", "organized", "prepared", "streamlined", "supported", "arranged", "tracked", "communicated"]
     }
   ];
 

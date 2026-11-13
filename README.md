@@ -13,7 +13,7 @@ A private, client-side ATS resume checker with a one-time Pro unlock. No server,
 - **Real willingness to pay.** Job seekers already pay $50–$300 for resume reviews and $20–$50/month for resume builders. A $9 one-time gap report is an easy yes compared with another month of applications that go nowhere.
 - **Zero marginal cost.** Scoring runs as deterministic JavaScript in the browser. There is no inference bill, no server, and no per-scan cost. Every sale is almost pure margin.
 - **Privacy is the differentiator.** The resume never leaves the device. That is a credible claim because there is no upload endpoint at all.
-- **Built-in distribution surface.** The build generates 29 role-specific landing pages, a guide hub, a sitemap, FAQ schema, canonical URLs, and copyable keyword lists. Those pages target long-tail searches such as "ATS resume checker for nurses" and "software engineer resume keywords".
+- **Built-in distribution surface.** The build generates 39 role-specific landing pages, a guide hub, a sitemap, FAQ schema, canonical URLs, and copyable keyword lists. Those pages target long-tail searches such as "ATS resume checker for nurses" and "software engineer resume keywords".
 - **No payment account required to start.** The default USDC checkout is self-custody and verified on-chain. A Stripe Payment Link can be added later for card buyers.
 
 Revenue still requires traffic. The code removes the infrastructure and payment-setup excuses; it cannot remove the need to distribute the product. See [PLAYBOOK.md](PLAYBOOK.md) for the launch plan and realistic math.
@@ -23,7 +23,7 @@ Revenue still requires traffic. The code removes the infrastructure and payment-
 ## What it does
 
 1. Paste a resume and, optionally, a real job description.
-2. Pick one of 29 roles or let the job description drive keyword extraction.
+2. Pick one of 39 roles or let the job description drive keyword extraction.
 3. Get a 0–100 ATS readiness score with four category scores:
    - **Keyword match — 40%**: job-description coverage plus role-checklist coverage, with synonym and partial matching.
    - **Parser-safe structure — 20%**: contact details, standard section headings, date ranges, bullet density, and obvious formatting risks.
@@ -76,13 +76,13 @@ resume-radar/
 │   ├── pricing.html               Free vs Pro, payment FAQ
 │   ├── how-it-works.html          methodology and ATS explainer
 │   ├── roles.html                 generated role directory
-│   ├── roles/*.html               29 generated role landing pages
+│   ├── roles/*.html               39 generated role landing pages
 │   ├── guides.html                generated guide hub
 │   ├── jobscan-alternative.html   honest ResumeRadar vs Jobscan comparison
 │   ├── ats-resume-format.html     formatting guide
 │   ├── free-ats-resume-template.html  copy/download/print template
 │   ├── resume-action-verbs.html   200+ verb library
-│   ├── resume-summary-examples.html  generated summaries for 29 roles
+│   ├── resume-summary-examples.html  generated summaries for 39 roles
 │   ├── resume-summary-generator.html free summary generator
 │   ├── keyword-extractor.html     free job-posting keyword tool
 │   ├── web3.html                  crypto/Web3 landing page
@@ -92,7 +92,7 @@ resume-radar/
 │   ├── 404.html
 │   ├── assets/
 │   │   ├── engine.js              scoring engine (no DOM, testable)
-│   │   ├── roles.js               29 role keyword libraries
+│   │   ├── roles.js               39 role keyword libraries
 │   │   ├── app.js                 scanner UI and report rendering
 │   │   ├── site.js                nav, Pro unlock, payment dialogs
 │   │   ├── template.js            copy/download/print controls
@@ -203,7 +203,7 @@ Set `SITE_URL` in `site/assets/config.js` to the final domain and rebuild before
 
 The build generates:
 
-- 29 role pages with unique titles, descriptions, H1s, canonicals, breadcrumb schema, and FAQ schema;
+- 39 role pages with unique titles, descriptions, H1s, canonicals, breadcrumb schema, and FAQ schema;
 - a guide hub plus format, template, action-verb, summary, free-checker, sample-report, and Jobscan-comparison pages;
 - `roles.html` with category grouping (including a Web3 category) and internal links;
 - `sitemap.xml` and `robots.txt` using the configured `siteUrl` (47 URLs at launch);

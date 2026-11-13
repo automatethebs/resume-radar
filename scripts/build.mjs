@@ -27,8 +27,8 @@ const siteUrl = (process.env.SITE_URL || configSiteUrl).replace(/\/+$/, "");
 const today = new Date().toISOString().slice(0, 10);
 
 const CATEGORIES = [
-  { title: "Technology & data", slugs: ["software-engineer", "data-analyst", "devops-engineer", "cybersecurity-analyst"] },
-  { title: "Business & finance", slugs: ["product-manager", "project-manager", "business-analyst", "marketing-manager", "sales-representative", "accountant", "financial-analyst", "operations-manager", "human-resources", "supply-chain", "customer-service", "administrative-assistant"] },
+  { title: "Technology & data", slugs: ["software-engineer", "data-analyst", "devops-engineer", "cybersecurity-analyst", "data-scientist", "machine-learning-engineer", "frontend-developer", "backend-developer", "data-engineer", "cloud-engineer", "qa-engineer"] },
+  { title: "Business & finance", slugs: ["product-manager", "project-manager", "business-analyst", "marketing-manager", "sales-representative", "accountant", "financial-analyst", "operations-manager", "human-resources", "supply-chain", "customer-service", "administrative-assistant", "customer-success-manager", "recruiter", "executive-assistant"] },
   { title: "Healthcare & education", slugs: ["registered-nurse", "pharmacist", "teacher"] },
   { title: "Engineering & design", slugs: ["mechanical-engineer", "electrical-engineer", "civil-engineer", "graphic-designer", "ux-designer"] },
   { title: "Crypto & Web3", slugs: ["smart-contract-engineer", "blockchain-developer", "defi-analyst", "web3-product-manager", "crypto-community-manager"] }
@@ -297,7 +297,7 @@ function rolePage(role) {
         <div class="role-links">
           ${others.map((r) => `<a href="${r.slug}.html">${esc(r.title)}</a>`).join("")}
         </div>
-        <p class="small" style="margin-top:16px"><a class="link-arrow" href="../roles.html">See all 29 role guides →</a></p>
+        <p class="small" style="margin-top:16px"><a class="link-arrow" href="../roles.html">See all 39 role guides →</a></p>
       </div>
     </section>
   </main>`;
@@ -306,7 +306,7 @@ function rolePage(role) {
 }
 
 function rolesIndexPage() {
-  const title = "ATS Resume Guides for 29 Roles — Free Keyword Lists";
+  const title = "ATS Resume Guides for 39 Roles — Free Keyword Lists";
   const description = "Browse free ATS resume keyword guides for software engineers, nurses, teachers, analysts, designers, accountants, and more. Copy the keywords, then score your resume.";
   const canonical = `${siteUrl}/roles.html`;
   const body = `<main>
@@ -373,7 +373,7 @@ function freeAtsCheckerPage() {
     },
     {
       q: "Does it work without a job description?",
-      a: "Yes. You can scan against one of 29 built-in role checklists. Adding a real posting makes the result more specific because the keyword match is built from the employer's language."
+      a: "Yes. You can scan against one of 39 built-in role checklists. Adding a real posting makes the result more specific because the keyword match is built from the employer's language."
     },
     {
       q: "What is the difference between the free scan and Pro?",
@@ -465,7 +465,7 @@ function freeAtsCheckerPage() {
           <p><a href="jobscan-alternative.html">See the detailed ResumeRadar vs Jobscan comparison</a> for a fair look at when a broader, account-based platform is the better fit.</p>
 
           <h2>Who it is for</h2>
-          <p>Anyone applying through a company portal: software engineers, nurses, teachers, analysts, designers, accountants, operations managers, and the 29 role guides on this site. It is also useful for career changers who need to see which language from the new field is missing from an old resume.</p>
+          <p>Anyone applying through a company portal: software engineers, nurses, teachers, analysts, designers, accountants, operations managers, and the 39 role guides on this site. It is also useful for career changers who need to see which language from the new field is missing from an old resume.</p>
 
           <h2>Frequently asked questions</h2>
           <div class="faq">
@@ -585,7 +585,7 @@ function jobscanAlternativePage() {
               <tr><td>Price model</td><td>$0 scan; $9 one-time Pro</td><td>Subscription plans; check current pricing</td></tr>
               <tr><td>LinkedIn optimization</td><td>Not offered</td><td>Yes</td></tr>
               <tr><td>Job tracking &amp; extension</td><td>Not offered</td><td>Yes</td></tr>
-              <tr><td>Role-specific keyword lists</td><td>29 free role guides, including 5 Web3 roles</td><td>Broader general job-search content</td></tr>
+              <tr><td>Role-specific keyword lists</td><td>39 free role guides, including 5 Web3 roles</td><td>Broader general job-search content</td></tr>
               <tr><td>Best for</td><td>One private, low-cost ATS check</td><td>A full, account-based job-search workflow</td></tr>
             </tbody>
           </table>
@@ -906,7 +906,7 @@ function summaryGeneratorPage() {
     },
     {
       q: "Does the generator use AI?",
-      a: "No. It uses deterministic templates built from the role vocabulary in the 29 role guides. That means the output is predictable and private, but you still need to add your own true evidence. It will not invent experience for you."
+      a: "No. It uses deterministic templates built from the role vocabulary in the 39 role guides. That means the output is predictable and private, but you still need to add your own true evidence. It will not invent experience for you."
     },
     {
       q: "How do I make the summary sound less generic?",
@@ -948,7 +948,7 @@ function summaryGeneratorPage() {
         <p class="lede">Pick a role, add your years, skills, and one measurable outcome. The generator writes three editable variants using the same vocabulary as the role guides. No account, no AI API, nothing uploaded.</p>
         <div class="role-actions">
           <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
-          <a class="btn btn-ghost btn-lg" href="resume-summary-examples.html">See 29 examples</a>
+          <a class="btn btn-ghost btn-lg" href="resume-summary-examples.html">See 39 examples</a>
         </div>
       </div>
     </section>
@@ -1007,7 +1007,7 @@ function summaryGeneratorPage() {
 
         <div class="prose" style="margin-top:44px">
           <h2>Why a summary is not an objective statement</h2>
-          <p>“Seeking a challenging role where I can grow” describes what you want from an employer. A summary should describe what an employer gets. Lead with the role and the evidence, not with a wish. The generator uses the same role vocabulary as the 29 keyword guides because that is the language both a parser and a recruiter are scanning for.</p>
+          <p>“Seeking a challenging role where I can grow” describes what you want from an employer. A summary should describe what an employer gets. Lead with the role and the evidence, not with a wish. The generator uses the same role vocabulary as the 39 keyword guides because that is the language both a parser and a recruiter are scanning for.</p>
 
           <h2>Frequently asked questions</h2>
           <div class="faq">
@@ -1035,8 +1035,8 @@ function summaryGeneratorPage() {
 }
 
 function summaryExamplesPage() {
-  const title = "Resume Summary Examples for 29 Roles (2026) — Free Templates";
-  const description = "Role-specific resume summary examples for 29 jobs, plus a three-sentence formula you can adapt. Free, no signup, with links to each ATS keyword guide.";
+  const title = "Resume Summary Examples for 39 Roles (2026) — Free Templates";
+  const description = "Role-specific resume summary examples for 39 jobs, plus a three-sentence formula you can adapt. Free, no signup, with links to each ATS keyword guide.";
   const canonical = `${siteUrl}/resume-summary-examples.html`;
 
   const faq = [
@@ -1091,7 +1091,7 @@ function summaryExamplesPage() {
     <section class="page-hero">
       <div class="wrap">
         <p class="eyebrow">Summary library</p>
-        <h1>Resume summary examples for 29 roles.</h1>
+        <h1>Resume summary examples for 39 roles.</h1>
         <p class="lede">A summary is not an objective statement. It is the first evidence a recruiter reads. Steal the structure, replace the brackets with true specifics, and keep the measurable result.</p>
         <div class="role-actions">
           <a class="btn btn-primary btn-lg" href="index.html#checker">Check my resume free</a>
@@ -1157,7 +1157,7 @@ function summaryExamplesPage() {
 
 function guidesPage() {
   const title = "Free Resume Guides — ATS Format, Templates, Verbs & Summaries";
-  const description = "Free resume guides: ATS formatting, a copyable template, 200+ action verbs, 29 summary examples, keyword extraction, and role-specific checklists.";
+  const description = "Free resume guides: ATS formatting, a copyable template, 200+ action verbs, 39 summary examples, keyword extraction, and role-specific checklists.";
   const canonical = `${siteUrl}/guides.html`;
   const cards = [
     ["free-ats-resume-checker.html", "Free ATS resume checker", "The full scanner: score, keyword gaps, parser warnings, and fixes. No signup, no upload.", "Free tool"],
@@ -1167,10 +1167,10 @@ function guidesPage() {
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
     ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
     ["resume-action-verbs.html", "200+ resume action verbs", "Strong verbs by function, plus weak phrases to replace and before/after examples.", "Verb library"],
-    ["resume-summary-examples.html", "Resume summary examples", "29 role-specific summaries built on a three-sentence formula you can adapt.", "Summary library"],
+    ["resume-summary-examples.html", "Resume summary examples", "39 role-specific summaries built on a three-sentence formula you can adapt.", "Summary library"],
     ["resume-summary-generator.html", "Resume summary generator", "Write three editable summary variants from a role, skills, and one measurable result.", "Free tool"],
     ["keyword-extractor.html", "Job keyword extractor", "Paste a posting to get a ranked, copyable keyword list, then send it to the scanner.", "Free tool"],
-    ["roles.html", "Role keyword guides", "29 roles with core skills, tools, and action verbs. Start with the words employers search.", "Role guides"],
+    ["roles.html", "Role keyword guides", "39 roles with core skills, tools, and action verbs. Start with the words employers search.", "Role guides"],
     ["web3.html", "Crypto & Web3 resumes", "Smart contract, blockchain, DeFi, product, and community roles with Web3 vocabulary.", "Web3"],
     ["how-it-works.html", "How the scoring works", "What the score measures, what it cannot predict, and why the scan stays in your browser.", "Method"]
   ];

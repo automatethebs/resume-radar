@@ -132,9 +132,9 @@ test("scoring is deterministic", () => {
   assert.deepEqual(a, b);
 });
 
-test("all 29 role checklists are populated and unique", () => {
-  assert.equal(roles.length, 29);
-  assert.equal(new Set(roles.map((r) => r.slug)).size, 29);
+test("all 39 role checklists are populated and unique", () => {
+  assert.equal(roles.length, 39);
+  assert.equal(new Set(roles.map((r) => r.slug)).size, 39);
   roles.forEach((role) => {
     assert.ok(role.core.length >= 10, `${role.slug} core too small`);
     assert.ok(role.tools.length >= 4, `${role.slug} tools too small`);

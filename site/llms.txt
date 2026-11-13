@@ -10,13 +10,13 @@
 - [Sample ATS report](https://automatethebs.github.io/resume-radar/sample-report.html): see a complete example report with score, keyword gaps, and fixes.
 - [Pricing](https://automatethebs.github.io/resume-radar/pricing.html): free scan; Pro is $9 once, no subscription.
 - [How it works](https://automatethebs.github.io/resume-radar/how-it-works.html): scoring methodology, ATS explanation, and limitations.
-- [Role guides](https://automatethebs.github.io/resume-radar/roles.html): 29 role-specific keyword lists with copyable terms.
+- [Role guides](https://automatethebs.github.io/resume-radar/roles.html): 39 role-specific keyword lists with copyable terms.
 - [Job description keyword extractor](https://automatethebs.github.io/resume-radar/keyword-extractor.html): paste a posting to get a ranked, copyable keyword list. Free and local.
 - [All resume guides](https://automatethebs.github.io/resume-radar/guides.html): free format, template, verb, and summary guides in one place.
 - [ATS resume format](https://automatethebs.github.io/resume-radar/ats-resume-format.html): the nine formatting rules that decide whether a parser can read a resume.
 - [Free ATS resume template](https://automatethebs.github.io/resume-radar/free-ats-resume-template.html): a single-column skeleton to copy, download, or print. No email gate.
 - [Resume action verbs](https://automatethebs.github.io/resume-radar/resume-action-verbs.html): 200+ strong verbs by function, with weak phrases to replace and before/after examples.
-- [Resume summary examples](https://automatethebs.github.io/resume-radar/resume-summary-examples.html): 29 role-specific summaries built on a three-sentence formula.
+- [Resume summary examples](https://automatethebs.github.io/resume-radar/resume-summary-examples.html): 39 role-specific summaries built on a three-sentence formula.
 - [Resume summary generator](https://automatethebs.github.io/resume-radar/resume-summary-generator.html): generate three editable summary variants from a role, skills, and one measurable result.
 - [Crypto & Web3 resume checker](https://automatethebs.github.io/resume-radar/web3.html): Web3 role checklists and accountless USDC Pro checkout.
 - [How to pay with USDC](https://automatethebs.github.io/resume-radar/pay-with-usdc.html): step-by-step Base payment guide, network details, and troubleshooting.
