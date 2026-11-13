@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
  * Builds the static SEO layer from site/assets/roles.js:
- *   - site/roles/<slug>.html  (24 role landing pages)
+ *   - site/roles/<slug>.html  (39 role landing pages)
  *   - site/roles.html         (role directory)
  *   - site/sitemap.xml
  *   - site/robots.txt

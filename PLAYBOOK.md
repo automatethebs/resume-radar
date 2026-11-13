@@ -37,7 +37,7 @@ The first meaningful milestone is **100 visitors/day**. That is roughly 3,000/mo
 ## Before promoting
 
 - [x] Site deployed and mobile-tested.
-- [x] 29 role landing pages generated.
+- [x] 39 role landing pages generated.
 - [x] Sitemap, robots, canonicals, FAQ schema, Open Graph image.
 - [x] USDC payment rail configured and tested.
 - [x] Free scan, Pro unlock, TXT export.
@@ -71,7 +71,7 @@ A good comment:
 
 ### 2. SEO — compounding, slower
 
-The site already has 29 role pages. They target queries such as:
+The site already has 39 role pages. They target queries such as:
 
 - "ATS resume checker for nurses"
 - "software engineer resume keywords"
