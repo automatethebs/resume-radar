@@ -207,10 +207,25 @@ test("the free template page has working copy, download, and print controls", ()
     assert.ok(html.includes(hook), `template page missing ${hook}`);
   });
   assert.ok(html.includes("assets/template.js"), "template page missing its script");
+  assert.ok(html.includes("assets/ats-resume-checklist.pdf"), "template page missing the checklist PDF link");
   const js = fs.readFileSync(path.join(site, "assets/template.js"), "utf8");
   assert.ok(js.includes("navigator.clipboard"), "copy control does not use the clipboard");
   assert.ok(js.includes("ats-resume-template.txt"), "download control missing a filename");
   assert.ok(js.includes("window.print"), "print control missing");
+});
+
+test("the printable ATS checklist PDF ships and is linked", () => {
+  const pdfPath = path.join(site, "assets/ats-resume-checklist.pdf");
+  assert.ok(fs.existsSync(pdfPath), "missing ats-resume-checklist.pdf");
+  const pdf = fs.readFileSync(pdfPath);
+  assert.equal(pdf.subarray(0, 5).toString(), "%PDF-", "checklist is not a PDF");
+  assert.ok(pdf.length > 20000, "checklist PDF is unexpectedly small");
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("assets/ats-resume-checklist.pdf"), "guide hub does not link the checklist PDF");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/assets/ats-resume-checklist.pdf`), "sitemap missing the checklist PDF");
+  const llms = fs.readFileSync(path.join(site, "llms.txt"), "utf8");
+  assert.ok(llms.includes("assets/ats-resume-checklist.pdf"), "llms.txt missing the checklist PDF");
 });
 
 test("the action verb library is interactive and crawlable", () => {
