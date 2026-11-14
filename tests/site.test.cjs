@@ -313,6 +313,34 @@ test("the Jobscan comparison is fair, structured, and linked", () => {
   assert.ok(sitemap.includes(`${siteUrl}/jobscan-alternative.html`), "sitemap missing the comparison");
 });
 
+test("the Teal comparison is fair, dated, disclosed, and linked", () => {
+  const file = path.join(site, "teal-alternative.html");
+  assert.ok(fs.existsSync(file), "missing teal-alternative.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/teal-alternative.html`), "comparison missing canonical");
+  assert.ok(html.includes("Teal"), "comparison does not name Teal");
+  assert.ok(html.includes("November 14, 2026"), "comparison missing the price verification date");
+  assert.ok(html.includes("https://www.tealhq.com/pricing"), "comparison does not link Teal's pricing page");
+  assert.ok(html.includes("$13/week"), "comparison missing the verified weekly price");
+  assert.ok(html.includes("$29/30 days"), "comparison missing the verified 30-day price");
+  assert.ok(html.includes("$79/90 days"), "comparison missing the verified 90-day price");
+  assert.ok(html.includes("Free Forever"), "comparison missing Teal's free plan");
+  assert.ok(html.includes("our own product"), "comparison missing the ownership disclosure");
+  assert.ok(html.includes("not affiliated"), "comparison missing the affiliation disclaimer");
+  assert.ok(html.includes("trademark"), "comparison missing the trademark note");
+  assert.ok(html.includes("FAQPage"), "comparison missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "comparison missing breadcrumb schema");
+  assert.ok(html.includes("index.html#checker"), "comparison missing scanner CTA");
+  assert.ok(html.includes("pricing.html"), "comparison missing Pro link");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("teal-alternative.html"), "guide hub does not link the comparison");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/teal-alternative.html`), "sitemap missing the comparison");
+  const footer = fs.readFileSync(path.join(site, "index.html"), "utf8");
+  assert.ok(footer.includes("teal-alternative.html"), "footer does not link the comparison");
+});
+
 test("the ATS score guide explains the bands honestly and is linked", () => {
   const file = path.join(site, "what-is-a-good-ats-score.html");
   assert.ok(fs.existsSync(file), "missing what-is-a-good-ats-score.html");

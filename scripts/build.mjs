@@ -87,6 +87,7 @@ function footer(prefix) {
           <a href="${prefix}free-ats-resume-checker.html">Free ATS resume checker</a>
           <a href="${prefix}private-ats-resume-checker.html">Private, no-upload checker</a>
           <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
+          <a href="${prefix}teal-alternative.html">Teal alternative</a>
           <a href="${prefix}why-am-i-not-getting-interviews.html">Why no interviews?</a>
           <a href="${prefix}career-change-resume-checker.html">Career change resume</a>
           <a href="${prefix}new-grad-resume-checker.html">New grad resume</a>
@@ -606,6 +607,146 @@ function jobscanAlternativePage() {
 
           <h2>How the comparison was made</h2>
           <p>This page compares the products on the tasks ResumeRadar is built for. Jobscan's features and prices are set by Jobscan and can change; verify them on Jobscan's site before buying. ResumeRadar is not affiliated with, endorsed by, or sponsored by Jobscan. Jobscan is a trademark of its owner.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Try the free scan</h3>
+          <p class="small muted">Paste your resume and a real posting. No account. Nothing uploaded.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Check my resume</a>
+          <a class="btn btn-ghost btn-block" href="pricing.html" style="margin-top:8px">See the $9 Pro report</a>
+          <p class="small muted" style="margin-top:10px">One-time payment. No subscription.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Check the posting in front of you.</h2>
+            <p>20 seconds. Free. Private. Then fix the first four gaps.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
+function tealAlternativePage() {
+  const title = "Free Teal Alternative — No Account, $9 One-Time Pro | ResumeRadar";
+  const description = "An honest comparison of ResumeRadar and Teal: a private, no-signup ATS scan with a $9 one-time Pro report versus an account-based resume builder with a Free Forever plan and Teal+ subscriptions.";
+  const canonical = `${siteUrl}/teal-alternative.html`;
+  const verified = "November 14, 2026";
+  const faq = [
+    {
+      q: "Is ResumeRadar a Teal alternative?",
+      a: "For one task, yes: checking a resume against a specific job posting. ResumeRadar gives you a score, missing keywords, parser warnings, and fixes without an account or resume upload. Teal is the better fit if you want to build and store multiple resumes, use designed templates, and manage a broader job search inside an account."
+    },
+    {
+      q: "How much does Teal cost?",
+      a: "Teal advertises a Free Forever plan. Teal+ was listed at $13 per week, $29 per 30 days, or $79 per 90 days when we checked on November 14, 2026. Teal sets its own prices and they can change, so verify the current offer on Teal's pricing page before buying."
+    },
+    {
+      q: "What does Teal include for free?",
+      a: "At the time of checking, Teal's free plan included 10 resume templates, top-5 keyword matching, and basic resume analysis. Teal+ unlocked unlimited templates, keyword matching, and analysis. Check Teal's site for the current limits, because plan details change."
+    },
+    {
+      q: "Does ResumeRadar require an account?",
+      a: "No. You paste resume text and a job description, and the scan runs in your browser. There is no signup, no resume upload endpoint, and no server-side resume storage. Pro is a one-time $9 unlock, not a subscription."
+    },
+    {
+      q: "Which one should I use?",
+      a: "Use Teal if you want a resume builder with templates and an account that stores your documents, and you are comfortable with a subscription for unlimited analysis. Use ResumeRadar if you want one private, low-cost check of the posting in front of you and would rather not create another account."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Teal alternative", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": "2026-11-14",
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Teal alternative
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Honest comparison</p>
+        <h1>A lighter Teal alternative for one ATS check.</h1>
+        <p class="lede">Teal is a resume builder and job-search platform with a genuinely useful free plan. ResumeRadar does one narrower job: it scores your resume against a specific posting, shows the keyword gaps, and explains the fixes — without an account, an upload, or a subscription.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="sample-report.html">See a sample report</a>
+        </div>
+        <p class="role-note">Free scan · $9 once for Pro · no account · resume stays in the browser</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>The short version</h2>
+          <p>If you want to build, store, and reuse resumes, Teal is the more complete product. It has designed templates, a free tier that never expires, and paid plans for unlimited analysis. If you want a private, inexpensive check of the posting in front of you, ResumeRadar is deliberately smaller: no account, no document storage, and a one-time price instead of a subscription.</p>
+          <p class="small muted">Teal prices and plan limits below were checked on <strong>${verified}</strong> at <a href="https://www.tealhq.com/pricing" rel="nofollow noopener">tealhq.com/pricing</a>.</p>
+
+          <table class="score-table">
+            <thead><tr><th>What matters</th><th>ResumeRadar</th><th>Teal</th></tr></thead>
+            <tbody>
+              <tr><td>Price model</td><td>$0 scan; $9 one-time Pro</td><td>Free Forever; Teal+ at $13/week, $29/30 days, or $79/90 days</td></tr>
+              <tr><td>Account required</td><td>No</td><td>Yes, Teal is an account-based resume builder</td></tr>
+              <tr><td>Resume handling</td><td>Stays in your browser; no upload endpoint</td><td>Stored in your Teal account for editing and reuse</td></tr>
+              <tr><td>Resume templates</td><td>Not a builder; a free copyable single-column template</td><td>10 templates free; unlimited on Teal+</td></tr>
+              <tr><td>Keyword matching</td><td>Full missing-keyword list in the scan; Pro ranks every gap</td><td>Top-5 keyword matching free; unlimited on Teal+</td></tr>
+              <tr><td>Resume analysis</td><td>0–100 score with four categories on every free scan</td><td>Basic analysis free; fuller analysis on Teal+</td></tr>
+              <tr><td>Job-search features</td><td>Not offered</td><td>Broader job-search platform; check Teal for the current feature list</td></tr>
+              <tr><td>Best for</td><td>One private, low-cost ATS check</td><td>Building and managing resumes in an account</td></tr>
+            </tbody>
+          </table>
+
+          <h2>When Teal is the better choice</h2>
+          <p>Choose Teal if you are actively building resumes and want designed templates, a place to store multiple versions, and a free plan you can keep using indefinitely. Teal's free tier is unusually generous for a resume builder: 10 templates, top-5 keyword matching, and basic analysis at no cost. If those limits cover your search, you may not need to pay anyone. Teal+ makes sense if you want unlimited templates and analysis and you are applying often enough to justify a subscription.</p>
+
+          <h2>When ResumeRadar is the better choice</h2>
+          <p>Choose ResumeRadar if you already have a resume you like and need to know whether it matches one specific posting. There is no account to create, no document library to maintain, and no resume upload. The scan runs in your browser, and the $9 Pro unlock is a single payment rather than a recurring charge. It is also a practical fit for technical and Web3 roles, where the keyword lists are specific.</p>
+
+          <h2>What the free scan actually shows</h2>
+          <p>The free report gives you a 0–100 score, four category scores, the top five missing keywords, parser warnings, and the first four fixes. Pro adds every missing keyword ranked by importance, the complete role checklist, every fix, a cover-letter outline, eight interview questions, and a downloadable text report. There is no subscription and no recurring charge.</p>
+
+          <h2>How the comparison was made</h2>
+          <p>This page compares the products on the tasks ResumeRadar is built for. Teal's features and prices are set by Teal and can change; the figures above were checked on ${verified}, and you should verify them on Teal's pricing page before buying. ResumeRadar is our own product, so treat this comparison as a disclosed vendor comparison rather than an independent review. We have tried to state Teal's offer accurately, including where its free plan is the better deal. ResumeRadar is not affiliated with, endorsed by, or sponsored by Teal. Teal is a trademark of its owner.</p>
 
           <h2>Frequently asked questions</h2>
           <div class="faq">
@@ -2204,6 +2345,7 @@ function guidesPage() {
     ["free-ats-resume-checker.html", "Free ATS resume checker", "The full scanner: score, keyword gaps, parser warnings, and fixes. No signup, no upload.", "Free tool"],
     ["private-ats-resume-checker.html", "Private, no-upload checker", "How the local scan works, how to verify it sends nothing, and where the trade-offs are.", "Privacy"],
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
+    ["teal-alternative.html", "ResumeRadar vs Teal", "A disclosed comparison of a no-account, $9 one-time ATS check and Teal's Free Forever resume builder plus Teal+ plans.", "Comparison"],
     ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
     ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
     ["career-change-resume-checker.html", "Career change resume checker", "Map transferable evidence to the target role and avoid functional-resume parsing traps.", "Career change"],
@@ -2265,6 +2407,7 @@ function sitemap() {
     { loc: `${siteUrl}/free-ats-resume-checker.html`, priority: "0.9", changefreq: "monthly" },
     { loc: `${siteUrl}/private-ats-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/teal-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/what-is-a-good-ats-score.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/how-to-tailor-a-resume.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/why-am-i-not-getting-interviews.html`, priority: "0.8", changefreq: "monthly" },
@@ -2314,6 +2457,7 @@ fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
 fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsCheckerPage());
 fs.writeFileSync(path.join(siteDir, "private-ats-resume-checker.html"), privateCheckerPage());
 fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
+fs.writeFileSync(path.join(siteDir, "teal-alternative.html"), tealAlternativePage());
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
 fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());
