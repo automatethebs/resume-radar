@@ -1189,6 +1189,7 @@ function bestFreeCheckersPage() {
           <p>Each tool runs different checks and weights them differently. ResumeRadar scores keyword match, parser-safe structure, measurable impact, and readability. Resume Worded uses 30+ recruiter-style checks. Teal and Rezi emphasize their own builder and keyword systems. A resume that scores 82 in one tool can score 91 in another without a single edit. Use the score to track changes within one tool, and compare the reasons and fixes across tools.</p>
 
           <h2>How to choose</h2>
+          <p>Before you compare tools, rule out problems no scanner can fix: use the <a href="ats-resume-checklist.html">24-point ATS resume checklist</a> to catch parsing traps, missing evidence, and formatting errors first.</p>
           <ul>
             <li><strong>You want no account and no upload:</strong> use ResumeRadar's free scan, then decide whether the $9 Pro report is worth it.</li>
             <li><strong>You want to build or rewrite the resume:</strong> use Teal or Rezi, and compare their free limits and template libraries.</li>
