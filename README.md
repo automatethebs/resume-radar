@@ -43,7 +43,7 @@ All analysis is deterministic. The same input produces the same output, which ma
 
 ```bash
 cd resume-radar
-npm test          # builds the SEO layer and runs 38 tests
+npm test          # builds the SEO layer and runs 51 tests
 npm run serve     # http://127.0.0.1:4173
 ```
 
@@ -81,7 +81,11 @@ resume-radar/
 │   ├── roles.html                 generated role directory
 │   ├── roles/*.html               39 generated role landing pages
 │   ├── guides.html                generated guide hub
+│   ├── best-free-ats-resume-checkers.html  dated, disclosed five-tool comparison hub
 │   ├── jobscan-alternative.html   honest ResumeRadar vs Jobscan comparison
+│   ├── teal-alternative.html      honest ResumeRadar vs Teal comparison
+│   ├── rezi-alternative.html      honest ResumeRadar vs Rezi comparison
+│   ├── resume-worded-alternative.html  honest ResumeRadar vs Resume Worded comparison
 │   ├── ats-resume-format.html     formatting guide
 │   ├── free-ats-resume-template.html  copy/download/print template
 │   ├── resume-action-verbs.html   200+ verb library
@@ -207,16 +211,17 @@ Set `SITE_URL` in `site/assets/config.js` to the final domain and rebuild before
 The build generates:
 
 - 39 role pages with unique titles, descriptions, H1s, canonicals, breadcrumb schema, and FAQ schema;
-- a guide hub plus format, template, action-verb, summary, free-checker, sample-report, and Jobscan-comparison pages;
+- a guide hub plus format, template, action-verb, summary, free-checker, sample-report, and four dated competitor comparisons;
+- a disclosed "best free ATS resume checkers" hub with official vendor pricing links;
 - `roles.html` with category grouping (including a Web3 category) and internal links;
-- `sitemap.xml` and `robots.txt` using the configured `siteUrl` (47 URLs at launch);
+- `sitemap.xml` and `robots.txt` using the configured `siteUrl` (69 URLs);
 - Open Graph and Twitter card metadata;
 - copy-to-clipboard keyword chips on every role page.
 
 After deployment:
 
 1. Submit the sitemap in Google Search Console and Bing Webmaster Tools (both need a free account).
-2. Submit the URL list through IndexNow: `npm run indexnow` (the repo includes a host key file). The launch submission returned HTTP 200 for all 45 URLs.
+2. Submit the URL list through IndexNow: `npm run indexnow` (the repo includes a host key file). The latest submission returned HTTP 200 for all 69 URLs.
 3. Add 1–2 new role pages or guides per week. Long-tail pages compound; a single page rarely ranks quickly.
 4. Answer real questions in job-search communities with the free checker as a tool, not as a drive-by link.
 
