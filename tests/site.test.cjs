@@ -409,6 +409,26 @@ test("the career-change guide maps transferable evidence and is linked", () => {
   assert.ok(sitemap.includes(`${siteUrl}/career-change-resume-checker.html`), "sitemap missing the career-change guide");
 });
 
+test("the new-grad guide turns projects into evidence and is linked", () => {
+  const file = path.join(site, "new-grad-resume-checker.html");
+  assert.ok(fs.existsSync(file), "missing new-grad-resume-checker.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/new-grad-resume-checker.html`), "new-grad guide missing canonical");
+  assert.ok(html.includes("Article"), "new-grad guide missing Article schema");
+  assert.ok(html.includes("FAQPage"), "new-grad guide missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "new-grad guide missing breadcrumb schema");
+  assert.ok(html.includes("evidence inventory"), "new-grad guide missing the evidence inventory");
+  assert.ok(html.includes("Target-role language"), "new-grad guide missing the mapping table");
+  assert.ok(html.includes("One page"), "new-grad guide missing the length advice");
+  assert.ok(html.includes("compare-before"), "new-grad guide missing the before/after example");
+  assert.ok(html.includes("index.html#checker"), "new-grad guide missing scanner CTA");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("new-grad-resume-checker.html"), "guide hub does not link the new-grad guide");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/new-grad-resume-checker.html`), "sitemap missing the new-grad guide");
+});
+
 test("the free checker landing page and sample report are complete and linked", () => {
   const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
   assert.ok(checker.includes(`${siteUrl}/free-ats-resume-checker.html`), "free checker missing canonical");

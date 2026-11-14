@@ -89,6 +89,7 @@ function footer(prefix) {
           <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
           <a href="${prefix}why-am-i-not-getting-interviews.html">Why no interviews?</a>
           <a href="${prefix}career-change-resume-checker.html">Career change resume</a>
+          <a href="${prefix}new-grad-resume-checker.html">New grad resume</a>
           <a href="${prefix}ats-resume-format.html">ATS resume format</a>
           <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
           <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
@@ -1662,6 +1663,180 @@ function careerChangePage() {
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
 }
 
+function newGradPage() {
+  const title = "New Grad Resume Checker — Entry-Level ATS Guide (2026) | ResumeRadar";
+  const description = "A new grad resume checker guide: turn coursework, projects, internships, and part-time work into ATS-readable evidence, avoid empty skill lists, and check against a real entry-level posting.";
+  const canonical = `${siteUrl}/new-grad-resume-checker.html`;
+  const faq = [
+    {
+      q: "How long should a new grad resume be?",
+      a: "One page is the right default. You are selecting the most relevant projects, internships, and part-time work, not cataloguing every course. If you have several years of relevant internships and publications, two pages can be justified, but one page is easier for a recruiter to skim."
+    },
+    {
+      q: "Do I need an internship to have a good new grad resume?",
+      a: "No. Projects, part-time jobs, volunteering, coursework, and certifications can all show evidence. What matters is that each entry names the scope, the tools, and a result. An internship is useful, but it is not the only proof that you can do the work."
+    },
+    {
+      q: "Should I include my GPA?",
+      a: "Include it if it is strong for your field, if the posting requires it, or if you are applying to a graduate program. Otherwise, leave it out and use the space for projects and evidence. A GPA without context rarely helps a recruiter decide."
+    },
+    {
+      q: "Can I list coursework as experience?",
+      a: "Put coursework under Education or a Projects section, not under professional experience. Do not imply you were employed when you were not. A capstone project can still be strong evidence if you describe the scope, your role, and the result."
+    },
+    {
+      q: "What if my projects have no metrics?",
+      a: "Use honest scope instead: team size, users, dataset size, number of features, runtime, grade, or time saved. “Built a 12-table SQL schema for a course project” is more useful than “worked with databases.” Do not invent numbers."
+    },
+    {
+      q: "Should I include a photo or a skill-bar chart?",
+      a: "No. Photos and graphical skill bars add little for an ATS and can distract a recruiter. Use plain text, standard headings, and a simple skills list. Keep the design clean rather than decorative."
+    },
+    {
+      q: "How do I handle little or no work experience?",
+      a: "Lead with projects, relevant coursework, and the skills you can defend. Use part-time or volunteer work to show reliability, customer handling, and teamwork. Apply to entry-level roles whose must-haves you mostly meet, and build direct evidence through a project or internship where you can."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "New grad resume checker", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": today,
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>New grad resume checker
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">New grad guide</p>
+        <h1>New grad resume checker: prove you can do the job without inventing experience.</h1>
+        <p class="lede">You do not need years of full-time experience to have evidence. You need to show scope, tools, and outcomes from the experience you do have. Here is how to build an entry-level resume that a parser and a recruiter can both read.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Check my entry-level resume</a>
+          <a class="btn btn-ghost btn-lg" href="free-ats-resume-template.html">Get the free template</a>
+        </div>
+        <p class="role-note">Free scan · no signup · nothing uploaded</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>Why new grad resumes get filtered</h2>
+          <p>Entry-level resumes often read like a list of courses and soft adjectives: hardworking, detail-oriented, passionate about technology. None of that tells a recruiter what you can do. If the posting asks for Python, SQL, and a portfolio, the resume needs evidence of those things, not a claim that you are eager to learn them.</p>
+          <p>The other common failure is structural. A two-column template, a photo, or a skills chart can look polished and still parse badly. A new grad resume does not get an exemption from the same parser rules as anyone else's.</p>
+
+          <h2>Build an evidence inventory</h2>
+          <p>List the work you actually did: projects, internships, part-time jobs, volunteering, coursework, and certifications. For each one, write the scope, the tools, and a result. Then translate it into the target role's language.</p>
+          <table class="score-table">
+            <thead><tr><th>What you did</th><th>Evidence to show</th><th>Target-role language</th></tr></thead>
+            <tbody>
+              <tr><td>Built a course-planning app with three classmates</td><td>Stack, users, performance</td><td>Built a Flask and PostgreSQL app with a three-person team; cut page load from 2.1s to 1.2s for 200 test users</td></tr>
+              <tr><td>Interned at a small marketing agency</td><td>Deliverables, tools, result</td><td>Produced 12 social campaigns in Canva and Hootsuite; increased engagement 18% over eight weeks</td></tr>
+              <tr><td>Worked part-time in retail</td><td>Volume, reliability, training</td><td>Trained five new hires and handled 60+ customers per shift while maintaining 99% checkout accuracy</td></tr>
+            </tbody>
+          </table>
+          <p>Use honest scope when you do not have a metric. “Team of four,” “12-table schema,” “200 test users,” and “three-week deadline” are all evidence. Do not invent numbers to fill the column.</p>
+
+          <h2>Pick one target role and extract its terms</h2>
+          <p>Choose one entry-level role, not five. Pull the top eight to twelve must-haves from a real posting. The <a href="keyword-extractor.html">keyword extractor</a> and the <a href="roles.html">role guides</a> can help. Then mark which requirements you can support with a project, internship, or part-time example.</p>
+          <p>If a posting asks for three years of experience and you have none, that is a targeting problem, not a resume wording problem. Apply to roles whose core requirements you mostly meet, and use the resume to make the match obvious.</p>
+
+          <h2>Write a summary that leads with evidence</h2>
+          <p>Use a simple formula: target role + degree or graduation date + two relevant skills + one result. Compare:</p>
+          <div class="compare-grid">
+            <div class="compare-card compare-before">
+              <h3>Before</h3>
+              <p>Motivated computer science graduate seeking an entry-level software engineering role.</p>
+            </div>
+            <div class="compare-card compare-after">
+              <h3>After</h3>
+              <p>Computer science graduate (May 2026) with project experience in Python, Flask, and PostgreSQL. Built a 200-user course-planning app with a three-person team and cut query time by 40%.</p>
+            </div>
+          </div>
+          <p>The second version names the target, the stack, and a concrete result. It does not claim professional experience you do not have.</p>
+
+          <h2>Put projects and internships in the right places</h2>
+          <p>Use a standard order: Education, Skills, Experience, Projects. If your projects are stronger than your work history, put a Projects section directly under Education. Label internships and part-time jobs accurately; do not call coursework “professional experience.”</p>
+          <p>For each project, include the problem, your role, the stack, and the result. A link to a live demo or repository is useful if it is working and you are proud of it. Do not include a link you have not checked.</p>
+
+          <h2>Keep the format boring</h2>
+          <p>One column. Standard headings. Real selectable text. Month-and-year dates. No photo, no skill bars, no tables or text boxes holding key content. Keep it to one page unless you have a genuine reason to go longer.</p>
+          <p>Use a plain PDF export and run the copy-paste test: select the text, paste it into a plain editor, and see whether the resume still reads. If it does not, an ATS may see the same thing.</p>
+
+          <h2>Scan against an entry-level posting</h2>
+          <p>Paste the resume and a real entry-level posting into the scanner. Fix structure warnings first, add three to five missing terms that are true, and rewrite two bullets with scope and a result. Re-scan. Stop when the remaining gaps are things you cannot claim.</p>
+          <p>Do not scan against a senior role to chase a higher score. The score is only meaningful against a job you can actually pursue.</p>
+
+          <h2>Common new grad mistakes</h2>
+          <ul>
+            <li><strong>Listing courses instead of evidence.</strong> A course name is not a result; a project is.</li>
+            <li><strong>Using soft adjectives as skills.</strong> “Hardworking” and “team player” are not searchable tools.</li>
+            <li><strong>Hiding projects below unrelated jobs.</strong> Lead with the evidence that matches the target role.</li>
+            <li><strong>Using a decorative template.</strong> Columns, photos, and skill bars can break parsing.</li>
+            <li><strong>Applying to roles that require experience you do not have.</strong> Target entry-level roles whose must-haves you mostly meet.</li>
+            <li><strong>Chasing a perfect score.</strong> Past the high 80s, you are usually optimizing for the checker, not the hiring manager.</li>
+          </ul>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Check the entry-level match</h3>
+          <p class="small muted">Paste your resume and a real entry-level posting. See which target terms are missing and which fixes are honest.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-block" href="free-ats-resume-template.html" style="margin-top:8px">Free ATS template</a>
+          <a class="btn btn-ghost btn-block" href="roles.html" style="margin-top:8px">Browse target roles</a>
+          <p class="small muted" style="margin-top:10px">No account · nothing uploaded.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Your projects are evidence. Make them readable.</h2>
+            <p>A 20-second scan shows whether the entry-level posting's language is actually on the page.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function notGettingInterviewsPage() {
   const title = "Why Am I Not Getting Interviews? 12 Resume Fixes (2026) | ResumeRadar";
   const description = "Applying but not hearing back? Work through 12 resume checks in order: parser failures, keyword gaps, generic summaries, duty-based bullets, format problems, and targeting mistakes.";
@@ -1855,6 +2030,7 @@ function guidesPage() {
     ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
     ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
     ["career-change-resume-checker.html", "Career change resume checker", "Map transferable evidence to the target role and avoid functional-resume parsing traps.", "Career change"],
+    ["new-grad-resume-checker.html", "New grad resume checker", "Turn projects, internships, and part-time work into entry-level ATS evidence.", "New grad"],
     ["why-am-i-not-getting-interviews.html", "Why am I not getting interviews?", "Twelve resume checks for applications that are not turning into screens, plus a 15-minute triage.", "Diagnostic guide"],
     ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
@@ -1915,6 +2091,7 @@ function sitemap() {
     { loc: `${siteUrl}/how-to-tailor-a-resume.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/why-am-i-not-getting-interviews.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/career-change-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/new-grad-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/sample-report.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
@@ -1962,6 +2139,7 @@ fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGu
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
 fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());
 fs.writeFileSync(path.join(siteDir, "career-change-resume-checker.html"), careerChangePage());
+fs.writeFileSync(path.join(siteDir, "new-grad-resume-checker.html"), newGradPage());
 fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-generator.html"), summaryGeneratorPage());

@@ -12,6 +12,7 @@
 - [How to tailor a resume](https://automatethebs.github.io/resume-radar/how-to-tailor-a-resume.html): a five-step process for matching a resume to a real posting without keyword stuffing.
 - [Why am I not getting interviews?](https://automatethebs.github.io/resume-radar/why-am-i-not-getting-interviews.html): twelve resume checks for applications that are not turning into screens, plus a 15-minute triage.
 - [Career change resume checker](https://automatethebs.github.io/resume-radar/career-change-resume-checker.html): map transferable evidence to the target role and avoid functional-resume parsing traps.
+- [New grad resume checker](https://automatethebs.github.io/resume-radar/new-grad-resume-checker.html): turn projects, internships, and part-time work into entry-level ATS evidence.
 - [Sample ATS report](https://automatethebs.github.io/resume-radar/sample-report.html): see a complete example report with score, keyword gaps, and fixes.
 - [Pricing](https://automatethebs.github.io/resume-radar/pricing.html): free scan; Pro is $9 once, no subscription.
 - [How it works](https://automatethebs.github.io/resume-radar/how-it-works.html): scoring methodology, ATS explanation, and limitations.
