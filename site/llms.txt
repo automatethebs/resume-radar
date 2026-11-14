@@ -13,6 +13,7 @@
 - [Why am I not getting interviews?](https://automatethebs.github.io/resume-radar/why-am-i-not-getting-interviews.html): twelve resume checks for applications that are not turning into screens, plus a 15-minute triage.
 - [Career change resume checker](https://automatethebs.github.io/resume-radar/career-change-resume-checker.html): map transferable evidence to the target role and avoid functional-resume parsing traps.
 - [New grad resume checker](https://automatethebs.github.io/resume-radar/new-grad-resume-checker.html): turn projects, internships, and part-time work into entry-level ATS evidence.
+- [Remote job resume checker](https://automatethebs.github.io/resume-radar/remote-job-resume-checker.html): show distributed-work evidence and get the location and time-zone details right.
 - [Sample ATS report](https://automatethebs.github.io/resume-radar/sample-report.html): see a complete example report with score, keyword gaps, and fixes.
 - [Pricing](https://automatethebs.github.io/resume-radar/pricing.html): free scan; Pro is $9 once, no subscription.
 - [How it works](https://automatethebs.github.io/resume-radar/how-it-works.html): scoring methodology, ATS explanation, and limitations.

@@ -90,6 +90,7 @@ function footer(prefix) {
           <a href="${prefix}why-am-i-not-getting-interviews.html">Why no interviews?</a>
           <a href="${prefix}career-change-resume-checker.html">Career change resume</a>
           <a href="${prefix}new-grad-resume-checker.html">New grad resume</a>
+          <a href="${prefix}remote-job-resume-checker.html">Remote job resume</a>
           <a href="${prefix}ats-resume-format.html">ATS resume format</a>
           <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
           <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
@@ -1837,6 +1838,182 @@ function newGradPage() {
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
 }
 
+function remoteJobPage() {
+  const title = "Remote Job Resume Checker — ATS Keywords and Distributed-Work Evidence (2026) | ResumeRadar";
+  const description = "A remote-job resume checker guide: show distributed-work evidence, use the posting's async and tool keywords honestly, avoid location and time-zone mismatches, and scan against a real remote posting.";
+  const canonical = `${siteUrl}/remote-job-resume-checker.html`;
+  const faq = [
+    {
+      q: "Do I need remote experience to get a remote job?",
+      a: "Not necessarily. You can show distributed-work evidence from any role: written updates, documentation, asynchronous coordination, independent ownership, and collaboration across locations or shifts. Projects and volunteer work can count too. What matters is that the evidence is specific and true."
+    },
+    {
+      q: "Should I put “remote” in my address?",
+      a: "Use your actual city, state, and country. If you are open to remote work, say so in the summary or a location line, but do not fake a location to pass a filter. Many postings have real country, state, or time-zone restrictions, and misrepresenting your location creates problems later."
+    },
+    {
+      q: "How do I show asynchronous communication?",
+      a: "Point to artifacts: decision documents, runbooks, RFCs, written status updates, support tickets, and handoffs. A bullet such as “Documented the release process in runbooks used by three on-call teams” is stronger than “excellent communicator.”"
+    },
+    {
+      q: "What should I say about time zones?",
+      a: "State your time zone and the overlap you can realistically offer. If the posting requires four hours of overlap with a specific region, say whether you can meet it. Do not claim availability you cannot sustain."
+    },
+    {
+      q: "Will an ATS reject a remote resume?",
+      a: "There is no separate remote-resume format. The same rules apply: standard headings, one column, real text, month-and-year dates, and the posting's must-have terms where they are true. The remote-specific work is in the evidence and the location details."
+    },
+    {
+      q: "Should I list my home-office setup?",
+      a: "Usually no. Focus on work evidence. If the posting explicitly asks about equipment, connectivity, or a security setup, answer it directly in the application rather than filling the resume with it."
+    },
+    {
+      q: "How do I handle a hybrid role?",
+      a: "Follow the posting. If it requires a certain number of days on-site, state your proximity or willingness to commute honestly. A hybrid role is not a remote role, and pretending otherwise wastes both sides' time."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Remote job resume checker", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": today,
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Remote job resume checker
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Remote work guide</p>
+        <h1>Remote job resume checker: show you can work without a hallway.</h1>
+        <p class="lede">Remote employers are not only checking whether you can do the job. They are checking whether you can do it without constant supervision, across time zones, and in writing. Here is how to put that evidence on the resume, then test it against the posting.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Check my remote-job fit</a>
+          <a class="btn btn-ghost btn-lg" href="how-to-tailor-a-resume.html">Read the tailoring guide</a>
+        </div>
+        <p class="role-note">Free scan · no signup · nothing uploaded</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>Why remote resumes get filtered</h2>
+          <p>The posting usually says more than “remote.” It may say “remote within the US,” “async-first,” “four hours of overlap with CET,” or “some travel.” Those are requirements, not decoration. A resume that ignores them can look like a mismatch before anyone reads the experience.</p>
+          <p>The second issue is evidence. “Self-starter” and “excellent communicator” are claims. A recruiter looking for a distributed teammate wants to see written updates, documentation, independent ownership, and coordination across locations.</p>
+
+          <h2>Step 1: Read the remote model in the posting</h2>
+          <p>Write down the logistics before you edit the resume: country or state restriction, time-zone overlap, travel expectations, on-call, language, and work authorization. If the posting says “US only” and you are not authorized to work in the US, do not try to word your way around it. Apply where you genuinely fit.</p>
+          <p>Then extract the top eight to twelve must-have terms. The <a href="keyword-extractor.html">keyword extractor</a> can rank them, and the <a href="roles.html">role guides</a> can help with the role vocabulary.</p>
+
+          <h2>Step 2: Build remote evidence</h2>
+          <p>List the work you actually did and translate it into distributed-work evidence. The goal is not to claim you worked from home; it is to show how you worked when no one was looking over your shoulder.</p>
+          <table class="score-table">
+            <thead><tr><th>What you did</th><th>Remote evidence</th><th>Target-role language</th></tr></thead>
+            <tbody>
+              <tr><td>Worked with a team across three time zones</td><td>Coordination, documentation, handoffs</td><td>Coordinated with engineers in UTC+1 and UTC-7; documented decisions in Notion and ran async standups</td></tr>
+              <tr><td>Handled customer issues on a remote support team</td><td>Written communication, volume, satisfaction</td><td>Resolved 40+ support tickets per week in Zendesk with a 95% customer satisfaction score</td></tr>
+              <tr><td>Managed a project during a remote period</td><td>Ownership, tools, delivery</td><td>Led a six-person distributed project; shipped on time using Jira, Slack, and weekly written status updates</td></tr>
+            </tbody>
+          </table>
+          <p>Only claim tools and arrangements you actually used. If your team was co-located, you can still show written documentation, independent ownership, and coordination with other offices or shifts.</p>
+
+          <h2>Step 3: Put remote evidence in the top third</h2>
+          <p>Use a summary that names the target role, the distributed scope, the tools, and a result. Compare:</p>
+          <div class="compare-grid">
+            <div class="compare-card compare-before">
+              <h3>Before</h3>
+              <p>Experienced project manager seeking a remote role with a collaborative team.</p>
+            </div>
+            <div class="compare-card compare-after">
+              <h3>After</h3>
+              <p>Project manager with five years leading distributed teams across three time zones. Shipped 12 releases using Jira, Slack, and async written updates, with 95% on-time delivery.</p>
+            </div>
+          </div>
+          <p>The second version gives the recruiter something to verify. It also names the collaboration tools without turning the resume into a software list.</p>
+
+          <h2>Step 4: Add a compact remote-collaboration line</h2>
+          <p>Under Skills, add a short line such as “Remote collaboration: async updates, runbooks, time-zone handoffs, Slack, Notion, Jira.” Keep it to tools and practices you can discuss. Do not create a separate “Remote Work” section that pushes your experience down the page; integrate the evidence into the roles where it happened.</p>
+
+          <h2>Step 5: Make location and authorization unambiguous</h2>
+          <p>Put your city, state or region, and country in plain text at the top. If you are open to remote work, say so. If the posting requires work authorization in a specific country, state it accurately. If it requires hybrid attendance, state your proximity or willingness to commute.</p>
+          <p>Do not hide your location to get past a filter. It creates a mismatch that surfaces later, and it is not fair to either side.</p>
+
+          <h2>Step 6: Show written communication</h2>
+          <p>Remote teams run on writing. Point to decision documents, runbooks, RFCs, status reports, support tickets, and handoffs. A bullet such as “Documented the release process in runbooks used by three on-call teams” is stronger than “excellent communicator.”</p>
+
+          <h2>Step 7: Keep the structure boring and scan the posting</h2>
+          <p>One column, standard headings, month-and-year dates, real selectable text, no photo or skill bars. Then paste the resume and the actual remote posting into the scanner. Fix structure warnings first, add three to five missing terms that are true, and rewrite two bullets with scope and a result. Re-scan and stop when the remaining gaps are things you cannot claim.</p>
+
+          <h2>Common remote-job mistakes</h2>
+          <ul>
+            <li><strong>Stuffing the word “remote.”</strong> It is a work arrangement, not a skill; the evidence is how you worked.</li>
+            <li><strong>Listing every collaboration tool.</strong> Name the ones you used and can discuss.</li>
+            <li><strong>Omitting location and time zone.</strong> These are real filters for distributed roles.</li>
+            <li><strong>Applying to restricted locations.</strong> A “remote” role can still be limited to one country or state.</li>
+            <li><strong>Claiming to be a self-starter without evidence.</strong> Show independent ownership and written follow-through.</li>
+            <li><strong>Using a decorative template.</strong> Remote does not mean the parser takes a day off.</li>
+            <li><strong>Chasing a perfect score.</strong> Past the high 80s, you are usually optimizing for the checker, not the hiring manager.</li>
+          </ul>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Check the remote posting, not the word</h3>
+          <p class="small muted">Paste your resume and a real remote posting. See which must-have terms and logistics are missing from the page.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-block" href="keyword-extractor.html" style="margin-top:8px">Extract job keywords</a>
+          <a class="btn btn-ghost btn-block" href="roles.html" style="margin-top:8px">Browse target roles</a>
+          <p class="small muted" style="margin-top:10px">No account · nothing uploaded.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Show how you work, not just where.</h2>
+            <p>A 20-second scan shows whether the remote posting's must-haves are actually on the page.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function notGettingInterviewsPage() {
   const title = "Why Am I Not Getting Interviews? 12 Resume Fixes (2026) | ResumeRadar";
   const description = "Applying but not hearing back? Work through 12 resume checks in order: parser failures, keyword gaps, generic summaries, duty-based bullets, format problems, and targeting mistakes.";
@@ -2031,6 +2208,7 @@ function guidesPage() {
     ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
     ["career-change-resume-checker.html", "Career change resume checker", "Map transferable evidence to the target role and avoid functional-resume parsing traps.", "Career change"],
     ["new-grad-resume-checker.html", "New grad resume checker", "Turn projects, internships, and part-time work into entry-level ATS evidence.", "New grad"],
+    ["remote-job-resume-checker.html", "Remote job resume checker", "Show distributed-work evidence and get the location and time-zone details right.", "Remote work"],
     ["why-am-i-not-getting-interviews.html", "Why am I not getting interviews?", "Twelve resume checks for applications that are not turning into screens, plus a 15-minute triage.", "Diagnostic guide"],
     ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
@@ -2092,6 +2270,7 @@ function sitemap() {
     { loc: `${siteUrl}/why-am-i-not-getting-interviews.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/career-change-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/new-grad-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/remote-job-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/sample-report.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
@@ -2140,6 +2319,7 @@ fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuideP
 fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());
 fs.writeFileSync(path.join(siteDir, "career-change-resume-checker.html"), careerChangePage());
 fs.writeFileSync(path.join(siteDir, "new-grad-resume-checker.html"), newGradPage());
+fs.writeFileSync(path.join(siteDir, "remote-job-resume-checker.html"), remoteJobPage());
 fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-generator.html"), summaryGeneratorPage());

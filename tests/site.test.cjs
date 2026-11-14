@@ -429,6 +429,26 @@ test("the new-grad guide turns projects into evidence and is linked", () => {
   assert.ok(sitemap.includes(`${siteUrl}/new-grad-resume-checker.html`), "sitemap missing the new-grad guide");
 });
 
+test("the remote-job guide shows distributed-work evidence and is linked", () => {
+  const file = path.join(site, "remote-job-resume-checker.html");
+  assert.ok(fs.existsSync(file), "missing remote-job-resume-checker.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/remote-job-resume-checker.html`), "remote-job guide missing canonical");
+  assert.ok(html.includes("Article"), "remote-job guide missing Article schema");
+  assert.ok(html.includes("FAQPage"), "remote-job guide missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "remote-job guide missing breadcrumb schema");
+  assert.ok(html.includes("distributed-work evidence"), "remote-job guide missing the distributed-work framing");
+  assert.ok(html.includes("time zone"), "remote-job guide missing time-zone advice");
+  assert.ok(html.includes("Target-role language"), "remote-job guide missing the evidence table");
+  assert.ok(html.includes("compare-before"), "remote-job guide missing the before/after example");
+  assert.ok(html.includes("index.html#checker"), "remote-job guide missing scanner CTA");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("remote-job-resume-checker.html"), "guide hub does not link the remote-job guide");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/remote-job-resume-checker.html`), "sitemap missing the remote-job guide");
+});
+
 test("the free checker landing page and sample report are complete and linked", () => {
   const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
   assert.ok(checker.includes(`${siteUrl}/free-ats-resume-checker.html`), "free checker missing canonical");
