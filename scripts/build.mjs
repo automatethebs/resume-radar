@@ -666,7 +666,7 @@ function jobscanAlternativePage() {
 
 function tealAlternativePage() {
   const title = "Free Teal Alternative — No Account, $9 One-Time Pro | ResumeRadar";
-  const description = "An honest comparison of ResumeRadar and Teal: a private, no-signup ATS scan with a $9 one-time Pro report versus an account-based resume builder with a Free Forever plan and Teal+ subscriptions.";
+  const description = "An honest comparison of ResumeRadar and Teal: a private, no-signup ATS scan with a $9 one-time report versus a resume builder with a Free Forever plan and Teal+ subscriptions.";
   const canonical = `${siteUrl}/teal-alternative.html`;
   const verified = "November 14, 2026";
   const faq = [
@@ -806,7 +806,7 @@ function tealAlternativePage() {
 
 function reziAlternativePage() {
   const title = "Free Rezi Alternative — No Account, $9 One-Time Pro | ResumeRadar";
-  const description = "An honest comparison of ResumeRadar and Rezi: a private, no-signup ATS scan with a $9 one-time Pro report versus an AI resume builder with a free tier, a $29/month Pro plan, and a $149 lifetime option.";
+  const description = "An honest comparison of ResumeRadar and Rezi: a private, no-signup ATS scan with a $9 one-time report versus an AI resume builder with a free tier, $29/month Pro, and a $149 lifetime option.";
   const canonical = `${siteUrl}/rezi-alternative.html`;
   const verified = "November 14, 2026";
   const faq = [
@@ -946,7 +946,7 @@ function reziAlternativePage() {
 
 function resumeWordedAlternativePage() {
   const title = "Free Resume Worded Alternative — No Account, $9 One-Time | ResumeRadar";
-  const description = "An honest comparison of ResumeRadar and Resume Worded: a private, no-signup ATS scan with a $9 one-time Pro report versus an AI resume review platform with a free score and Pro plans from $19/month billed yearly.";
+  const description = "An honest comparison of ResumeRadar and Resume Worded: a private, no-signup ATS scan with a $9 one-time report versus an AI review platform with a free score and Pro plans from $19/month.";
   const canonical = `${siteUrl}/resume-worded-alternative.html`;
   const verified = "November 14, 2026";
   const faq = [
@@ -1085,8 +1085,8 @@ function resumeWordedAlternativePage() {
 }
 
 function bestFreeCheckersPage() {
-  const title = "Best Free ATS Resume Checkers in 2026 — Honest Comparison | ResumeRadar";
-  const description = "We compared the free tiers of ResumeRadar, Jobscan, Teal, Rezi, and Resume Worded: what you get for $0, what needs an account or upload, and what the paid upgrade costs. Prices checked November 14, 2026.";
+  const title = "Best Free ATS Resume Checkers 2026 — Honest Comparison | ResumeRadar";
+  const description = "We compared the free tiers of ResumeRadar, Jobscan, Teal, Rezi, and Resume Worded: what $0 buys, what needs an account, and what upgrades cost. Prices checked November 14, 2026.";
   const canonical = `${siteUrl}/best-free-ats-resume-checkers.html`;
   const verified = "November 14, 2026";
   const faq = [
@@ -2089,8 +2089,8 @@ function privateCheckerPage() {
 }
 
 function careerChangePage() {
-  const title = "Career Change Resume Checker — Transferable Skills and ATS Gaps (2026) | ResumeRadar";
-  const description = "A practical career-change resume guide: build an evidence inventory, translate transferable skills into the target role's language, avoid functional-resume parsing traps, and check the resume against a real posting.";
+  const title = "Career Change Resume Checker: Transferable Skills & ATS | ResumeRadar";
+  const description = "A practical career-change resume guide: inventory your evidence, translate transferable skills into the target role's language, avoid parsing traps, and scan against a real posting.";
   const canonical = `${siteUrl}/career-change-resume-checker.html`;
   const faq = [
     {
@@ -2263,7 +2263,7 @@ function careerChangePage() {
 
 function newGradPage() {
   const title = "New Grad Resume Checker — Entry-Level ATS Guide (2026) | ResumeRadar";
-  const description = "A new grad resume checker guide: turn coursework, projects, internships, and part-time work into ATS-readable evidence, avoid empty skill lists, and check against a real entry-level posting.";
+  const description = "A new grad resume guide: turn coursework, projects, internships, and part-time work into ATS-readable evidence, avoid empty skill lists, and scan against a real entry-level posting.";
   const canonical = `${siteUrl}/new-grad-resume-checker.html`;
   const faq = [
     {
@@ -2436,8 +2436,8 @@ function newGradPage() {
 }
 
 function remoteJobPage() {
-  const title = "Remote Job Resume Checker — ATS Keywords and Distributed-Work Evidence (2026) | ResumeRadar";
-  const description = "A remote-job resume checker guide: show distributed-work evidence, use the posting's async and tool keywords honestly, avoid location and time-zone mismatches, and scan against a real remote posting.";
+  const title = "Remote Job Resume Checker: ATS Keywords & Evidence | ResumeRadar";
+  const description = "A remote-job resume guide: show distributed-work evidence, use the posting's async and tool keywords honestly, avoid location and time-zone mismatches, and scan a real remote posting.";
   const canonical = `${siteUrl}/remote-job-resume-checker.html`;
   const faq = [
     {
@@ -2613,7 +2613,7 @@ function remoteJobPage() {
 
 function notGettingInterviewsPage() {
   const title = "Why Am I Not Getting Interviews? 12 Resume Fixes (2026) | ResumeRadar";
-  const description = "Applying but not hearing back? Work through 12 resume checks in order: parser failures, keyword gaps, generic summaries, duty-based bullets, format problems, and targeting mistakes.";
+  const description = "Applying but not hearing back? Work through 12 resume checks: parser failures, keyword gaps, generic summaries, duty-based bullets, format problems, and targeting mistakes.";
   const canonical = `${siteUrl}/why-am-i-not-getting-interviews.html`;
   const faq = [
     {
