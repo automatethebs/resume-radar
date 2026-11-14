@@ -47,6 +47,7 @@ test("sitemap lists every page and robots points to it", () => {
   });
   const robots = fs.readFileSync(path.join(site, "robots.txt"), "utf8");
   assert.ok(robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`), "robots missing sitemap URL");
+  assert.ok(!sitemap.includes("<lastmod>"), "sitemap must not stamp every URL with the build date");
 });
 
 test("pricing and unlock flows are wired", () => {

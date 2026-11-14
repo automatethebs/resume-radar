@@ -1754,11 +1754,12 @@ function sitemap() {
     { loc: `${siteUrl}/terms.html`, priority: "0.3", changefreq: "yearly" },
     ...roles.map((r) => ({ loc: `${siteUrl}/roles/${r.slug}.html`, priority: "0.7", changefreq: "monthly" }))
   ];
+  // lastmod is intentionally omitted. It is optional, and stamping every URL
+  // with the build date would falsely tell crawlers that all pages changed.
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${today}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join("\n")}
