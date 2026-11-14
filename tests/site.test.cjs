@@ -610,3 +610,31 @@ test("the free-checker hub is dated, disclosed, and linked across the site", () 
   const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
   assert.ok(sitemap.includes(`${siteUrl}/best-free-ats-resume-checkers.html`), "sitemap missing the checker hub");
 });
+
+test("the interactive ATS checklist is complete, private, and linked", () => {
+  const file = path.join(site, "ats-resume-checklist.html");
+  assert.ok(fs.existsSync(file), "missing ats-resume-checklist.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/ats-resume-checklist.html`), "checklist missing canonical");
+  assert.ok(html.includes("November 14, 2026"), "checklist missing the review date");
+  assert.ok(html.includes("Article"), "checklist missing Article schema");
+  assert.ok(html.includes("FAQPage"), "checklist missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "checklist missing breadcrumb schema");
+  assert.ok(html.includes("index.html#checker"), "checklist missing scanner CTA");
+  assert.ok(html.includes("assets/checklist.js"), "checklist missing its script");
+  assert.ok(html.includes("localStorage"), "checklist does not explain local-only storage");
+  assert.equal((html.match(/data-check=/g) || []).length, 24, "checklist should contain 24 checks");
+
+  const script = fs.readFileSync(path.join(site, "assets/checklist.js"), "utf8");
+  assert.ok(script.includes("localStorage"), "checklist script does not persist locally");
+  assert.ok(script.includes("window.print"), "checklist script does not wire printing");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("ats-resume-checklist.html"), "guide hub does not link the checklist");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/ats-resume-checklist.html`), "sitemap missing the checklist");
+  const llms = fs.readFileSync(path.join(site, "llms.txt"), "utf8");
+  assert.ok(llms.includes("ats-resume-checklist.html"), "llms.txt does not list the checklist");
+  const pricing = fs.readFileSync(path.join(site, "pricing.html"), "utf8");
+  assert.ok(pricing.includes("ats-resume-checklist.html"), "static footer does not link the checklist");
+});

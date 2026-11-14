@@ -96,6 +96,7 @@ function footer(prefix) {
           <a href="${prefix}new-grad-resume-checker.html">New grad resume</a>
           <a href="${prefix}remote-job-resume-checker.html">Remote job resume</a>
           <a href="${prefix}ats-resume-format.html">ATS resume format</a>
+          <a href="${prefix}ats-resume-checklist.html">ATS resume checklist</a>
           <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
           <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
           <a href="${prefix}resume-summary-examples.html">Resume summary examples</a>
@@ -151,7 +152,7 @@ function scripts(prefix, withApp) {
   ${withApp ? `<script defer src="${prefix}assets/app.js"></script>` : ""}`;
 }
 
-function shell({ title, description, canonical, prefix, body, jsonLd }) {
+function shell({ title, description, canonical, prefix, body, jsonLd, extraScripts }) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -171,6 +172,7 @@ function shell({ title, description, canonical, prefix, body, jsonLd }) {
   <link rel="manifest" href="${prefix}manifest.webmanifest">
   <link rel="stylesheet" href="${prefix}assets/styles.css">
   ${scripts(prefix, false)}
+  ${extraScripts || ""}
   ${jsonLd ? `<script type="application/ld+json">${jsonLd}</script>` : ""}
 </head>
 <body>
@@ -1235,6 +1237,219 @@ function bestFreeCheckersPage() {
     </section>
   </main>`;
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
+function atsChecklistPage() {
+  const title = "ATS Resume Checklist (2026) — 24 Checks Before You Apply";
+  const description = "A free, interactive ATS resume checklist covering parsing, keywords, evidence, and a final pre-submit pass. Check items off in your browser. No upload, no account.";
+  const canonical = `${siteUrl}/ats-resume-checklist.html`;
+  const reviewed = "November 14, 2026";
+  const sections = [
+    {
+      id: "parsing",
+      title: "Parsing and format",
+      intro: "An ATS has to read the file before it can score it. Fix these first: a resume that parses badly loses before keyword matching starts.",
+      items: [
+        ["Single-column layout", "No tables, text boxes, sidebars, or multi-column blocks that can scramble reading order."],
+        ["Standard section headings", "Use Summary, Experience, Education, and Skills — not creative labels like \"My Journey\"."],
+        ["Month-and-year dates", "Write dates as \"Mar 2023 – Jun 2025\". A year alone makes tenure and recency ambiguous."],
+        ["Contact details in plain text", "Put name, email, phone, city, and portfolio links in the body, not in a header, footer, or image."],
+        ["A clean file", "Submit a PDF or DOCX under 5 MB with a sensible filename such as first-last-resume.pdf."],
+        ["No meaning-carrying graphics", "Skip photos, skill bars, icon-only contact rows, and logos that hold information."]
+      ]
+    },
+    {
+      id: "keywords",
+      title: "Keywords and targeting",
+      intro: "Match the posting's language where it is true. The goal is coverage with evidence, not a wall of terms.",
+      items: [
+        ["The posted title appears near the top", "Use the employer's title when it accurately describes the work you want."],
+        ["The top 10 requirements are covered", "Pull the hard requirements from the posting and check each one against the resume."],
+        ["Tools and technologies are named", "List the actual systems, languages, and platforms — not ratings like \"Excel: 4/5\"."],
+        ["Keywords appear inside bullets", "A skills list alone is weak; show the term in a real accomplishment."],
+        ["No keyword stuffing", "Every term must be backed by work you actually did and can discuss in an interview."],
+        ["Employer and role names are exact", "Spell company and product names the way the posting does."]
+      ]
+    },
+    {
+      id: "evidence",
+      title: "Evidence and impact",
+      intro: "Recruiters scan for outcomes. Turn duties into evidence of scope, judgment, and results.",
+      items: [
+        ["At least half the bullets are quantified", "Include a number, percentage, dollar amount, time saved, or volume wherever it is honest."],
+        ["Bullets start with strong verbs", "Replace \"Responsible for\" and \"Helped with\" with verbs such as led, built, reduced, or shipped."],
+        ["Each bullet states an outcome", "Show what changed because of the work, not only what the job description said to do."],
+        ["Scope is visible", "Name team size, budget, users, accounts, tickets, or timeline when it supports the claim."],
+        ["Recent roles carry the most detail", "Give the last two roles 3–6 bullets and older roles 2–3."],
+        ["The evidence matches the target level", "If you want a senior role, show ownership and influence, not only task execution."]
+      ]
+    },
+    {
+      id: "final",
+      title: "Readability and final pass",
+      intro: "The last pass catches the errors that make a strong resume look careless.",
+      items: [
+        ["Length fits the experience", "One page for most candidates under 10 years; two pages maximum when the experience earns it."],
+        ["The summary names the target", "Two or three lines that state the role, the strongest evidence, and the value you bring."],
+        ["Bullets stay short", "One or two lines each; cut nested clauses and repeated context."],
+        ["Tense is consistent", "Present tense for the current role, past tense for prior roles."],
+        ["Names, numbers, and dates are proofread", "Check company names, metrics, months, and the file itself, not just the spell checker."],
+        ["The resume was scanned against the posting", "Run the free scan, fix the top three gaps, and re-scan before applying."]
+      ]
+    }
+  ];
+  let index = 0;
+  const total = sections.reduce((sum, section) => sum + section.items.length, 0);
+  const sectionHtml = sections.map((section, sIndex) => {
+    const items = section.items.map(([name, detail]) => {
+      index += 1;
+      const id = `check-${index}`;
+      return `<li><label for="${id}"><input type="checkbox" id="${id}" data-check="${id}"> <span><strong>${esc(name)}.</strong> ${esc(detail)}</span></label></li>`;
+    }).join("\n            ");
+    return `<section class="checklist-section" aria-labelledby="${section.id}-heading">
+          <h2 id="${section.id}-heading">${sIndex + 1}. ${esc(section.title)}</h2>
+          <p>${esc(section.intro)}</p>
+          <ul class="checklist-list">
+            ${items}
+          </ul>
+        </section>`;
+  }).join("\n\n        ");
+  const faq = [
+    {
+      q: "How long does this ATS checklist take?",
+      a: "A first pass takes about 10–15 minutes. Once the resume is in shape, the final pre-submit pass usually takes five minutes per application."
+    },
+    {
+      q: "Do I need to check every box?",
+      a: "No. A few items do not apply to every career or posting. Fix parsing and keyword coverage first: those checks decide whether the rest of the resume is read at all."
+    },
+    {
+      q: "Does the checklist save my progress?",
+      a: "Yes, but only in this browser. The checked boxes are stored in localStorage on your device; nothing is uploaded or sent to ResumeRadar. Clearing site data resets the list."
+    },
+    {
+      q: "Is this checklist affiliated with an ATS vendor?",
+      a: "No. ResumeRadar is an independent, client-side checker. This checklist is general resume advice, not a guarantee of passing any particular applicant tracking system."
+    },
+    {
+      q: "What should I do after the checklist?",
+      a: "Scan the resume against the actual posting, fix the top three gaps it finds, and re-scan. Use the checklist again before you submit the next application."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "ATS resume checklist", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": "2026-11-14",
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>ATS resume checklist
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Free checklist</p>
+        <h1>The ATS resume checklist.</h1>
+        <p class="lede">Twenty-four checks across parsing, keywords, evidence, and the final pass. Work top to bottom before you apply; the boxes are saved in this browser only, so nothing about your resume is uploaded or sent anywhere.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="assets/ats-resume-checklist.pdf">Download the one-page PDF</a>
+        </div>
+        <p class="role-note">Last reviewed ${reviewed} · No account · No upload</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <div class="checklist-progress">
+            <div class="checklist-progress-head">
+              <strong><span data-checklist-count>0</span> of ${total} checked</strong>
+              <span class="small muted">Saved in this browser only</span>
+            </div>
+            <progress id="checklist-progress" max="${total}" value="0">0 of ${total}</progress>
+            <div class="checklist-actions">
+              <button class="btn btn-ghost btn-sm" type="button" data-checklist-reset>Reset</button>
+              <button class="btn btn-ghost btn-sm" type="button" data-checklist-print>Print checklist</button>
+            </div>
+          </div>
+
+          <h2>How to use it</h2>
+          <p>Run the checklist on the resume you are about to submit, not a master copy. Fix parsing and keyword problems first because they decide whether a human ever sees the rest. Then tighten the evidence and do the final pass. Re-scan after edits so you can see which change actually moved the score.</p>
+
+          ${sectionHtml}
+
+          <h2>What to fix first</h2>
+          <ol>
+            <li><strong>Parsing failures.</strong> If the contact block, headings, or dates cannot be read, nothing else matters.</li>
+            <li><strong>Missing top requirements.</strong> Cover the posting's most important terms where they are true, then show them inside experience bullets.</li>
+            <li><strong>Generic bullets.</strong> Replace duties with outcomes, scope, and numbers. This is usually the largest score gain after keywords.</li>
+            <li><strong>The final read.</strong> Proofread names, dates, and metrics, then scan the exact file you plan to send.</li>
+          </ol>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Check it against a real posting</h3>
+          <p class="small muted">The checklist catches general problems. The scan catches gaps against the job you are actually applying to.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Scan my resume</a>
+          <a class="btn btn-ghost btn-block" href="sample-report.html" style="margin-top:8px">See a sample report</a>
+          <p class="small muted" style="margin-top:10px">Free scan. No account, no upload. Pro is $9 once.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Checklist done? Run the scan.</h2>
+            <p>Paste the resume and the posting. Get the score, the keyword gaps, and the first fixes in about 20 seconds.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({
+    title,
+    description,
+    canonical,
+    prefix: "",
+    body,
+    jsonLd,
+    extraScripts: `<script defer src="assets/checklist.js"></script>`
+  });
 }
 
 function atsScoreGuidePage() {
@@ -2815,6 +3030,7 @@ function guidesPage() {
     ["why-am-i-not-getting-interviews.html", "Why am I not getting interviews?", "Twelve resume checks for applications that are not turning into screens, plus a 15-minute triage.", "Diagnostic guide"],
     ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
+    ["ats-resume-checklist.html", "ATS resume checklist (24 checks)", "An interactive pre-submit checklist for parsing, keywords, evidence, and the final read. Saved in your browser.", "Checklist"],
     ["free-ats-resume-template.html", "Free ATS resume template", "A single-column skeleton you can copy, download, or print. No email gate.", "Template"],
     ["assets/ats-resume-checklist.pdf", "ATS resume checklist (PDF)", "A one-page printable checklist covering parsing, keywords, evidence, and the final pre-submit test.", "Download"],
     ["resume-action-verbs.html", "200+ resume action verbs", "Strong verbs by function, plus weak phrases to replace and before/after examples.", "Verb library"],
@@ -2882,6 +3098,7 @@ function sitemap() {
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/ats-resume-format.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/ats-resume-checklist.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/free-ats-resume-template.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/assets/ats-resume-checklist.pdf`, priority: "0.5", changefreq: "yearly" },
     { loc: `${siteUrl}/resume-action-verbs.html`, priority: "0.7", changefreq: "monthly" },
@@ -2935,6 +3152,7 @@ for (const slug of ["jobscan-alternative.html", "teal-alternative.html", "rezi-a
   fs.writeFileSync(file, html.replace("</main>", `${comparisonLinks(slug)}\n  </main>`));
 }
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
+fs.writeFileSync(path.join(siteDir, "ats-resume-checklist.html"), atsChecklistPage());
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
 fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());
 fs.writeFileSync(path.join(siteDir, "career-change-resume-checker.html"), careerChangePage());

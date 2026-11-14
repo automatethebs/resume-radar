@@ -721,6 +721,25 @@ body.is-pro .lock-card { display: none; }
 .score-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: .9rem; }
 .table-scroll { margin-top: 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .table-scroll .score-table { margin-top: 0; min-width: 720px; }
+
+/* Interactive checklist --------------------------------------------------- */
+.checklist-progress { margin: 24px 0 30px; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper-2); }
+.checklist-progress-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+.checklist-progress progress { width: 100%; height: 8px; accent-color: var(--accent); }
+.checklist-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.checklist-section { margin-top: 32px; }
+.checklist-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+.checklist-list label { display: flex; gap: 11px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper); font-size: .88rem; color: var(--ink-soft); cursor: pointer; }
+.checklist-list input { margin-top: 2px; width: 17px; height: 17px; accent-color: var(--accent); flex: none; }
+.checklist-list input:checked + span { color: var(--muted); }
+.checklist-list strong { color: var(--ink); }
+@media print {
+  .site-header, .site-footer, .aside-card, .cta-band, .checklist-actions, .breadcrumb, .role-actions { display: none !important; }
+  .page-grid { display: block; }
+  .checklist-list label { break-inside: avoid; }
+  .checklist-list input:checked + span { color: inherit; }
+  .checklist-progress { border-color: #999; background: #fff; }
+}
 .score-table th, .score-table td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .score-table th { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
 .score-table td:first-child { width: 26%; }
