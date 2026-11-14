@@ -410,6 +410,17 @@ test("the Resume Worded comparison is fair, dated, disclosed, and linked", () =>
   assert.ok(footer.includes("resume-worded-alternative.html"), "footer does not link the comparison");
 });
 
+test("comparison pages cross-link the alternative cluster", () => {
+  const slugs = ["jobscan-alternative.html", "teal-alternative.html", "rezi-alternative.html", "resume-worded-alternative.html"];
+  for (const slug of slugs) {
+    const html = fs.readFileSync(path.join(site, slug), "utf8");
+    for (const other of slugs) {
+      if (other === slug) continue;
+      assert.ok(html.includes(`href="${other}"`), `${slug} missing cross-link to ${other}`);
+    }
+  }
+});
+
 test("the ATS score guide explains the bands honestly and is linked", () => {
   const file = path.join(site, "what-is-a-good-ats-score.html");
   assert.ok(fs.existsSync(file), "missing what-is-a-good-ats-score.html");

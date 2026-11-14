@@ -119,6 +119,27 @@ function footer(prefix) {
   </footer>`;
 }
 
+function comparisonLinks(current) {
+  const items = [
+    ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An account-based job-search platform with LinkedIn optimization."],
+    ["teal-alternative.html", "ResumeRadar vs Teal", "A Free Forever resume builder with Teal+ subscription plans."],
+    ["rezi-alternative.html", "ResumeRadar vs Rezi", "An AI resume builder with a free tier and a lifetime option."],
+    ["resume-worded-alternative.html", "ResumeRadar vs Resume Worded", "A free resume score plus AI review and templates on Pro."]
+  ];
+  const others = items.filter(([href]) => href !== current);
+  return `<section class="section-tight" aria-labelledby="compare-more">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Compare another tool</p>
+          <h2 id="compare-more">Which alternative fits your search?</h2>
+        </div>
+        <div class="guide-grid">
+          ${others.map(([href, name, desc]) => `<a class="guide-card" href="${href}"><strong>${esc(name)}</strong><span>${esc(desc)}</span><em>Comparison</em></a>`).join("\n          ")}
+        </div>
+      </div>
+    </section>`;
+}
+
 function scripts(prefix, withApp) {
   return `<script defer src="${prefix}assets/roles.js"></script>
   ${withApp ? `<script defer src="${prefix}assets/engine.js"></script>` : ""}
@@ -2746,6 +2767,15 @@ fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternat
 fs.writeFileSync(path.join(siteDir, "teal-alternative.html"), tealAlternativePage());
 fs.writeFileSync(path.join(siteDir, "rezi-alternative.html"), reziAlternativePage());
 fs.writeFileSync(path.join(siteDir, "resume-worded-alternative.html"), resumeWordedAlternativePage());
+
+// Each comparison page links to the other three so visitors can compare
+// alternatives without going back to the guide hub, and crawlers get a
+// clear path through the cluster.
+for (const slug of ["jobscan-alternative.html", "teal-alternative.html", "rezi-alternative.html", "resume-worded-alternative.html"]) {
+  const file = path.join(siteDir, slug);
+  const html = fs.readFileSync(file, "utf8");
+  fs.writeFileSync(file, html.replace("</main>", `${comparisonLinks(slug)}\n  </main>`));
+}
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
 fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());
