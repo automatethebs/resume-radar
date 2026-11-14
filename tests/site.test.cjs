@@ -381,6 +381,34 @@ test("the Rezi comparison is fair, dated, disclosed, and linked", () => {
   assert.ok(footer.includes("rezi-alternative.html"), "footer does not link the comparison");
 });
 
+test("the Resume Worded comparison is fair, dated, disclosed, and linked", () => {
+  const file = path.join(site, "resume-worded-alternative.html");
+  assert.ok(fs.existsSync(file), "missing resume-worded-alternative.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/resume-worded-alternative.html`), "comparison missing canonical");
+  assert.ok(html.includes("Resume Worded"), "comparison does not name Resume Worded");
+  assert.ok(html.includes("November 14, 2026"), "comparison missing the price verification date");
+  assert.ok(html.includes("https://resumeworded.com/get-pro"), "comparison does not link Resume Worded's Pro page");
+  assert.ok(html.includes("$49/month"), "comparison missing the verified monthly price");
+  assert.ok(html.includes("$99/3 months"), "comparison missing the verified quarterly price");
+  assert.ok(html.includes("$229/year"), "comparison missing the verified annual price");
+  assert.ok(html.includes("30+ checks"), "comparison missing the Resume Worded check count");
+  assert.ok(html.includes("our own product"), "comparison missing the ownership disclosure");
+  assert.ok(html.includes("not affiliated"), "comparison missing the affiliation disclaimer");
+  assert.ok(html.includes("trademark"), "comparison missing the trademark note");
+  assert.ok(html.includes("FAQPage"), "comparison missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "comparison missing breadcrumb schema");
+  assert.ok(html.includes("index.html#checker"), "comparison missing scanner CTA");
+  assert.ok(html.includes("pricing.html"), "comparison missing Pro link");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("resume-worded-alternative.html"), "guide hub does not link the comparison");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/resume-worded-alternative.html`), "sitemap missing the comparison");
+  const footer = fs.readFileSync(path.join(site, "index.html"), "utf8");
+  assert.ok(footer.includes("resume-worded-alternative.html"), "footer does not link the comparison");
+});
+
 test("the ATS score guide explains the bands honestly and is linked", () => {
   const file = path.join(site, "what-is-a-good-ats-score.html");
   assert.ok(fs.existsSync(file), "missing what-is-a-good-ats-score.html");

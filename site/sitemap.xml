@@ -36,6 +36,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://automatethebs.github.io/resume-radar/resume-worded-alternative.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://automatethebs.github.io/resume-radar/what-is-a-good-ats-score.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

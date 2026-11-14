@@ -89,6 +89,7 @@ function footer(prefix) {
           <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
           <a href="${prefix}teal-alternative.html">Teal alternative</a>
           <a href="${prefix}rezi-alternative.html">Rezi alternative</a>
+          <a href="${prefix}resume-worded-alternative.html">Resume Worded alternative</a>
           <a href="${prefix}why-am-i-not-getting-interviews.html">Why no interviews?</a>
           <a href="${prefix}career-change-resume-checker.html">Career change resume</a>
           <a href="${prefix}new-grad-resume-checker.html">New grad resume</a>
@@ -888,6 +889,146 @@ function reziAlternativePage() {
 
           <h2>How the comparison was made</h2>
           <p>This page compares the products on the tasks ResumeRadar is built for. Rezi's features and prices are set by Rezi and can change; the figures above were checked on ${verified}, and you should verify them on Rezi's pricing page before buying. ResumeRadar is our own product, so treat this comparison as a disclosed vendor comparison rather than an independent review. We have tried to state Rezi's offer accurately, including where its free plan or lifetime option may be the better deal. ResumeRadar is not affiliated with, endorsed by, or sponsored by Rezi. Rezi is a trademark of its owner.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Try the free scan</h3>
+          <p class="small muted">Paste your resume and a real posting. No account. Nothing uploaded.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Check my resume</a>
+          <a class="btn btn-ghost btn-block" href="pricing.html" style="margin-top:8px">See the $9 Pro report</a>
+          <p class="small muted" style="margin-top:10px">One-time payment. No subscription.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Check the posting in front of you.</h2>
+            <p>20 seconds. Free. Private. Then fix the first four gaps.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
+function resumeWordedAlternativePage() {
+  const title = "Free Resume Worded Alternative — No Account, $9 One-Time | ResumeRadar";
+  const description = "An honest comparison of ResumeRadar and Resume Worded: a private, no-signup ATS scan with a $9 one-time Pro report versus an AI resume review platform with a free score and Pro plans from $19/month billed yearly.";
+  const canonical = `${siteUrl}/resume-worded-alternative.html`;
+  const verified = "November 14, 2026";
+  const faq = [
+    {
+      q: "Is ResumeRadar a Resume Worded alternative?",
+      a: "For one task, yes: checking a resume against a specific job posting. ResumeRadar gives you a score, missing keywords, parser warnings, and fixes without an account or resume upload. Resume Worded is the better fit if you want AI rewriting, line-by-line feedback on the resume itself, LinkedIn review, and ATS templates inside an account."
+    },
+    {
+      q: "How much does Resume Worded cost?",
+      a: "Resume Worded's Pro plan was listed at $49 per month, $99 every 3 months ($33 per month), or $229 for one year ($19 per month) when we checked on November 14, 2026. Resume Worded sets its own prices and they can change, so verify the current offer on its Pro page before buying."
+    },
+    {
+      q: "Is Resume Worded free?",
+      a: "Resume Worded offers a free Score My Resume review with a score and the top issues holding the resume down. The full line-by-line analysis, AI rewriting, full Targeted Resume report, LinkedIn review, and templates are part of the paid Pro plan. The free review still requires an account and a PDF or DOCX upload."
+    },
+    {
+      q: "Does ResumeRadar require an account?",
+      a: "No. You paste resume text and a job description, and the scan runs in your browser. There is no signup, no resume upload endpoint, and no server-side resume storage. Pro is a one-time $9 unlock, not a subscription."
+    },
+    {
+      q: "Which one should I use?",
+      a: "Use Resume Worded if you want AI help rewriting the resume and a line-by-line review, and you are comfortable with a subscription plus a document upload. Use ResumeRadar if you already have resume text you trust and want one private, low-cost check of the posting in front of you."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Resume Worded alternative", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": "2026-11-14",
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Resume Worded alternative
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Honest comparison</p>
+        <h1>A lighter Resume Worded alternative for one ATS check.</h1>
+        <p class="lede">Resume Worded is an AI resume review platform with a genuinely useful free score and detailed line-by-line feedback on Pro. ResumeRadar does one narrower job: it checks the resume you already have against a specific posting, shows the keyword gaps, and explains the fixes — without an account, an upload, or a subscription.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="sample-report.html">See a sample report</a>
+        </div>
+        <p class="role-note">Free scan · $9 once for Pro · no account · resume stays in the browser</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>The short version</h2>
+          <p>If you want AI rewriting and line-by-line feedback on the resume itself, Resume Worded is the more complete product. It gives you a free score and the top issues, then charges Pro pricing for full analysis, AI rewriting, targeted resumes, LinkedIn review, and templates. If you want a private, inexpensive check of the posting in front of you, ResumeRadar is smaller on purpose.</p>
+          <p class="small muted">Resume Worded prices and plan limits below were checked on <strong>${verified}</strong> at <a href="https://resumeworded.com/get-pro" rel="nofollow noopener">resumeworded.com/get-pro</a>.</p>
+
+          <table class="score-table">
+            <thead><tr><th>What matters</th><th>ResumeRadar</th><th>Resume Worded</th></tr></thead>
+            <tbody>
+              <tr><td>Price model</td><td>$0 scan; $9 one-time Pro</td><td>Free score; Pro $49/month, $99/3 months, or $229/year</td></tr>
+              <tr><td>Account required</td><td>No</td><td>Yes, including for the free review</td></tr>
+              <tr><td>Resume handling</td><td>Stays in your browser; no upload endpoint</td><td>Uploaded as PDF or DOCX and stored in your account</td></tr>
+              <tr><td>Resume feedback</td><td>Deterministic 0–100 score across four categories</td><td>30+ checks, up to about 40; full line-by-line on Pro</td></tr>
+              <tr><td>Keyword targeting</td><td>Full missing job keywords in the scan; Pro ranks every gap</td><td>Smart Target keyword matching; full report on Pro</td></tr>
+              <tr><td>AI rewriting</td><td>Not offered; Pro includes a cover-letter outline</td><td>AutoFix and AI writer on Pro</td></tr>
+              <tr><td>LinkedIn review &amp; templates</td><td>Not offered</td><td>Included on Pro</td></tr>
+              <tr><td>Best for</td><td>One private, low-cost ATS check</td><td>AI-assisted resume rewriting and LinkedIn review</td></tr>
+            </tbody>
+          </table>
+
+          <h2>When Resume Worded is the better choice</h2>
+          <p>Choose Resume Worded if the resume itself needs a deep edit and you want the tool to suggest the rewrite. Its free review gives you a score and the biggest issues, which is enough to judge whether the paid product is worth it. Pro adds line-by-line analysis, AI rewriting, targeted resumes, LinkedIn review, and ATS templates. If you are applying broadly and want a coach-like workflow, the annual plan at $19/month is the cheapest way to use it.</p>
+
+          <h2>When ResumeRadar is the better choice</h2>
+          <p>Choose ResumeRadar if you do not want to create an account or upload a document, and you mainly need to know whether the resume you already have answers one posting. Paste the text, get the score and keyword gaps, fix the highest-leverage items, and re-scan. Pro is $9 once, there is no renewal, and the resume never leaves the browser tab.</p>
+
+          <h2>What the free scan actually shows</h2>
+          <p>The free report gives you a 0–100 score, four category scores, the top five missing keywords, parser warnings, and the first four fixes. Pro adds every missing keyword ranked by importance, the complete role checklist, every fix, a cover-letter outline, eight interview questions, and a downloadable text report. There is no subscription and no recurring charge.</p>
+
+          <h2>How the comparison was made</h2>
+          <p>This page compares the products on the tasks ResumeRadar is built for. Resume Worded's features and prices are set by Resume Worded and can change; the figures above were checked on ${verified}, and you should verify them on Resume Worded's Pro page before buying. ResumeRadar is our own product, so treat this comparison as a disclosed vendor comparison rather than an independent review. We have tried to state Resume Worded's offer accurately, including where its free review or AI rewriting is the better deal. ResumeRadar is not affiliated with, endorsed by, or sponsored by Resume Worded. Resume Worded is a trademark of its owner.</p>
 
           <h2>Frequently asked questions</h2>
           <div class="faq">
@@ -2488,6 +2629,7 @@ function guidesPage() {
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
     ["teal-alternative.html", "ResumeRadar vs Teal", "A disclosed comparison of a no-account, $9 one-time ATS check and Teal's Free Forever resume builder plus Teal+ plans.", "Comparison"],
     ["rezi-alternative.html", "ResumeRadar vs Rezi", "A disclosed comparison of a private, $9 one-time ATS scan and Rezi's AI resume builder, free tier, Pro plan, and lifetime option.", "Comparison"],
+    ["resume-worded-alternative.html", "ResumeRadar vs Resume Worded", "A disclosed comparison of a no-account, $9 one-time ATS check and Resume Worded's free score plus AI review and Pro plans.", "Comparison"],
     ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
     ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
     ["career-change-resume-checker.html", "Career change resume checker", "Map transferable evidence to the target role and avoid functional-resume parsing traps.", "Career change"],
@@ -2551,6 +2693,7 @@ function sitemap() {
     { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/teal-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/rezi-alternative.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/resume-worded-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/what-is-a-good-ats-score.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/how-to-tailor-a-resume.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/why-am-i-not-getting-interviews.html`, priority: "0.8", changefreq: "monthly" },
@@ -2602,6 +2745,7 @@ fs.writeFileSync(path.join(siteDir, "private-ats-resume-checker.html"), privateC
 fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
 fs.writeFileSync(path.join(siteDir, "teal-alternative.html"), tealAlternativePage());
 fs.writeFileSync(path.join(siteDir, "rezi-alternative.html"), reziAlternativePage());
+fs.writeFileSync(path.join(siteDir, "resume-worded-alternative.html"), resumeWordedAlternativePage());
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
 fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());
