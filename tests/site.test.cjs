@@ -341,6 +341,33 @@ test("the Teal comparison is fair, dated, disclosed, and linked", () => {
   assert.ok(footer.includes("teal-alternative.html"), "footer does not link the comparison");
 });
 
+test("the Rezi comparison is fair, dated, disclosed, and linked", () => {
+  const file = path.join(site, "rezi-alternative.html");
+  assert.ok(fs.existsSync(file), "missing rezi-alternative.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/rezi-alternative.html`), "comparison missing canonical");
+  assert.ok(html.includes("Rezi"), "comparison does not name Rezi");
+  assert.ok(html.includes("November 14, 2026"), "comparison missing the price verification date");
+  assert.ok(html.includes("https://www.rezi.ai/pricing"), "comparison does not link Rezi's pricing page");
+  assert.ok(html.includes("$29/month"), "comparison missing the verified Pro price");
+  assert.ok(html.includes("$149 one-time"), "comparison missing the verified lifetime price");
+  assert.ok(html.includes("23 metrics"), "comparison missing the Rezi Score metric count");
+  assert.ok(html.includes("our own product"), "comparison missing the ownership disclosure");
+  assert.ok(html.includes("not affiliated"), "comparison missing the affiliation disclaimer");
+  assert.ok(html.includes("trademark"), "comparison missing the trademark note");
+  assert.ok(html.includes("FAQPage"), "comparison missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "comparison missing breadcrumb schema");
+  assert.ok(html.includes("index.html#checker"), "comparison missing scanner CTA");
+  assert.ok(html.includes("pricing.html"), "comparison missing Pro link");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("rezi-alternative.html"), "guide hub does not link the comparison");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/rezi-alternative.html`), "sitemap missing the comparison");
+  const footer = fs.readFileSync(path.join(site, "index.html"), "utf8");
+  assert.ok(footer.includes("rezi-alternative.html"), "footer does not link the comparison");
+});
+
 test("the ATS score guide explains the bands honestly and is linked", () => {
   const file = path.join(site, "what-is-a-good-ats-score.html");
   assert.ok(fs.existsSync(file), "missing what-is-a-good-ats-score.html");

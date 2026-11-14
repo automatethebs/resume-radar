@@ -88,6 +88,7 @@ function footer(prefix) {
           <a href="${prefix}private-ats-resume-checker.html">Private, no-upload checker</a>
           <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
           <a href="${prefix}teal-alternative.html">Teal alternative</a>
+          <a href="${prefix}rezi-alternative.html">Rezi alternative</a>
           <a href="${prefix}why-am-i-not-getting-interviews.html">Why no interviews?</a>
           <a href="${prefix}career-change-resume-checker.html">Career change resume</a>
           <a href="${prefix}new-grad-resume-checker.html">New grad resume</a>
@@ -747,6 +748,146 @@ function tealAlternativePage() {
 
           <h2>How the comparison was made</h2>
           <p>This page compares the products on the tasks ResumeRadar is built for. Teal's features and prices are set by Teal and can change; the figures above were checked on ${verified}, and you should verify them on Teal's pricing page before buying. ResumeRadar is our own product, so treat this comparison as a disclosed vendor comparison rather than an independent review. We have tried to state Teal's offer accurately, including where its free plan is the better deal. ResumeRadar is not affiliated with, endorsed by, or sponsored by Teal. Teal is a trademark of its owner.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Try the free scan</h3>
+          <p class="small muted">Paste your resume and a real posting. No account. Nothing uploaded.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Check my resume</a>
+          <a class="btn btn-ghost btn-block" href="pricing.html" style="margin-top:8px">See the $9 Pro report</a>
+          <p class="small muted" style="margin-top:10px">One-time payment. No subscription.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Check the posting in front of you.</h2>
+            <p>20 seconds. Free. Private. Then fix the first four gaps.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
+function reziAlternativePage() {
+  const title = "Free Rezi Alternative — No Account, $9 One-Time Pro | ResumeRadar";
+  const description = "An honest comparison of ResumeRadar and Rezi: a private, no-signup ATS scan with a $9 one-time Pro report versus an AI resume builder with a free tier, a $29/month Pro plan, and a $149 lifetime option.";
+  const canonical = `${siteUrl}/rezi-alternative.html`;
+  const verified = "November 14, 2026";
+  const faq = [
+    {
+      q: "Is ResumeRadar a Rezi alternative?",
+      a: "For one task, yes: checking a resume against a specific job posting. ResumeRadar gives you a score, missing keywords, parser warnings, and fixes without an account or resume upload. Rezi is the better fit if you want an AI resume builder, designed templates, and a place to store and rewrite resumes inside an account."
+    },
+    {
+      q: "How much does Rezi cost?",
+      a: "Rezi advertises a free plan at $0, a Pro plan at $29 per month, and a Lifetime plan at $149 one-time when we checked on November 14, 2026. Rezi sets its own prices and they can change, so verify the current offer on Rezi's pricing page before buying."
+    },
+    {
+      q: "What does Rezi include for free?",
+      a: "At the time of checking, Rezi's free plan included 1 resume, 1 AI interview, 3 PDF downloads, standard format templates, and the AI resume writer and editor. The Rezi Score and keyword targeting were listed as limited on the free plan and full on Pro."
+    },
+    {
+      q: "Does ResumeRadar require an account?",
+      a: "No. You paste resume text and a job description, and the scan runs in your browser. There is no signup, no resume upload endpoint, and no server-side resume storage. Pro is a one-time $9 unlock, not a subscription."
+    },
+    {
+      q: "Which one should I use?",
+      a: "Use Rezi if you want AI help rewriting the resume itself and a template library, and you are comfortable creating an account. Use ResumeRadar if you already have resume text you trust and want one private, low-cost check of the posting in front of you."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Rezi alternative", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": "2026-11-14",
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Rezi alternative
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Honest comparison</p>
+        <h1>A lighter Rezi alternative for one ATS check.</h1>
+        <p class="lede">Rezi is an AI resume builder with templates, rewriting tools, and a free tier. ResumeRadar does one narrower job: it scores the resume you already have against a specific posting, shows the keyword gaps, and explains the fixes — without an account, an upload, or a subscription.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="sample-report.html">See a sample report</a>
+        </div>
+        <p class="role-note">Free scan · $9 once for Pro · no account · resume stays in the browser</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>The short version</h2>
+          <p>If you want AI writing help and a template library, Rezi is the more complete product. It offers a free plan for one resume, a $29/month Pro plan for unlimited work, and a $149 lifetime option. If you want to test the resume you already wrote against the job you are about to apply for, ResumeRadar is smaller on purpose: no account, no document storage, and a one-time price.</p>
+          <p class="small muted">Rezi prices and plan limits below were checked on <strong>${verified}</strong> at <a href="https://www.rezi.ai/pricing" rel="nofollow noopener">rezi.ai/pricing</a>.</p>
+
+          <table class="score-table">
+            <thead><tr><th>What matters</th><th>ResumeRadar</th><th>Rezi</th></tr></thead>
+            <tbody>
+              <tr><td>Price model</td><td>$0 scan; $9 one-time Pro</td><td>Free $0; Pro $29/month; Lifetime $149 one-time</td></tr>
+              <tr><td>Account required</td><td>No</td><td>Yes, Rezi is an account-based resume builder</td></tr>
+              <tr><td>Resume handling</td><td>Stays in your browser; no upload endpoint</td><td>Stored in your Rezi account for editing and reuse</td></tr>
+              <tr><td>Resume templates</td><td>Not a builder; a free copyable single-column template</td><td>Multiple template formats; all templates on Pro</td></tr>
+              <tr><td>ATS scoring</td><td>0–100 score with four categories on every free scan</td><td>Rezi Score uses 23 metrics; limited free, full on Pro</td></tr>
+              <tr><td>Keyword targeting</td><td>Full missing-keyword list in the scan; Pro ranks every gap</td><td>Limited free; full keyword targeting on Pro</td></tr>
+              <tr><td>AI writing &amp; rewriting</td><td>Cover-letter outline in Pro; no AI resume rewriting</td><td>AI resume writer and editor on the free plan</td></tr>
+              <tr><td>Best for</td><td>One private, low-cost ATS check</td><td>Building and rewriting resumes with AI in an account</td></tr>
+            </tbody>
+          </table>
+
+          <h2>When Rezi is the better choice</h2>
+          <p>Choose Rezi if the resume itself needs work and you want help rewriting it. Its free plan includes the AI resume writer and editor, one resume, one AI interview, and three PDF downloads, which is enough to test the workflow. Pro at $29/month removes the resume and download limits and unlocks the full Rezi Score and keyword targeting. The $149 lifetime plan is worth comparing with a few months of Pro if you expect to keep using the builder.</p>
+
+          <h2>When ResumeRadar is the better choice</h2>
+          <p>Choose ResumeRadar if you do not want another account or another AI rewriting your experience. Paste the resume text and the posting, and the scanner shows what a parser can read, which important terms are missing, and which fixes are worth making first. The scan is free, Pro is $9 once, and nothing is uploaded. That makes it a low-commitment second opinion before you apply.</p>
+
+          <h2>What the free scan actually shows</h2>
+          <p>The free report gives you a 0–100 score, four category scores, the top five missing keywords, parser warnings, and the first four fixes. Pro adds every missing keyword ranked by importance, the complete role checklist, every fix, a cover-letter outline, eight interview questions, and a downloadable text report. There is no subscription and no recurring charge.</p>
+
+          <h2>How the comparison was made</h2>
+          <p>This page compares the products on the tasks ResumeRadar is built for. Rezi's features and prices are set by Rezi and can change; the figures above were checked on ${verified}, and you should verify them on Rezi's pricing page before buying. ResumeRadar is our own product, so treat this comparison as a disclosed vendor comparison rather than an independent review. We have tried to state Rezi's offer accurately, including where its free plan or lifetime option may be the better deal. ResumeRadar is not affiliated with, endorsed by, or sponsored by Rezi. Rezi is a trademark of its owner.</p>
 
           <h2>Frequently asked questions</h2>
           <div class="faq">
@@ -2346,6 +2487,7 @@ function guidesPage() {
     ["private-ats-resume-checker.html", "Private, no-upload checker", "How the local scan works, how to verify it sends nothing, and where the trade-offs are.", "Privacy"],
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
     ["teal-alternative.html", "ResumeRadar vs Teal", "A disclosed comparison of a no-account, $9 one-time ATS check and Teal's Free Forever resume builder plus Teal+ plans.", "Comparison"],
+    ["rezi-alternative.html", "ResumeRadar vs Rezi", "A disclosed comparison of a private, $9 one-time ATS scan and Rezi's AI resume builder, free tier, Pro plan, and lifetime option.", "Comparison"],
     ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
     ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
     ["career-change-resume-checker.html", "Career change resume checker", "Map transferable evidence to the target role and avoid functional-resume parsing traps.", "Career change"],
@@ -2408,6 +2550,7 @@ function sitemap() {
     { loc: `${siteUrl}/private-ats-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/teal-alternative.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/rezi-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/what-is-a-good-ats-score.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/how-to-tailor-a-resume.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/why-am-i-not-getting-interviews.html`, priority: "0.8", changefreq: "monthly" },
@@ -2458,6 +2601,7 @@ fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsChec
 fs.writeFileSync(path.join(siteDir, "private-ats-resume-checker.html"), privateCheckerPage());
 fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
 fs.writeFileSync(path.join(siteDir, "teal-alternative.html"), tealAlternativePage());
+fs.writeFileSync(path.join(siteDir, "rezi-alternative.html"), reziAlternativePage());
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
 fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());

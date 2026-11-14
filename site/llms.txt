@@ -9,6 +9,7 @@
 - [ATS resume checklist (PDF)](https://automatethebs.github.io/resume-radar/assets/ats-resume-checklist.pdf): a one-page printable checklist covering parsing, keywords, evidence, and the final pre-submit test.
 - [ResumeRadar vs Jobscan](https://automatethebs.github.io/resume-radar/jobscan-alternative.html): an honest comparison of the private, $9 one-time checker and Jobscan's account-based platform.
 - [ResumeRadar vs Teal](https://automatethebs.github.io/resume-radar/teal-alternative.html): a disclosed comparison of the no-account, $9 one-time ATS check and Teal's Free Forever resume builder plus Teal+ plans, with prices verified November 14, 2026.
+- [ResumeRadar vs Rezi](https://automatethebs.github.io/resume-radar/rezi-alternative.html): a disclosed comparison of the private, $9 one-time ATS scan and Rezi's AI resume builder, free tier, $29/month Pro plan, and $149 lifetime option, verified November 14, 2026.
 - [What is a good ATS score?](https://automatethebs.github.io/resume-radar/what-is-a-good-ats-score.html): score bands, the four weighted checks, and why 100 is not the goal.
 - [How to tailor a resume](https://automatethebs.github.io/resume-radar/how-to-tailor-a-resume.html): a five-step process for matching a resume to a real posting without keyword stuffing.
 - [Why am I not getting interviews?](https://automatethebs.github.io/resume-radar/why-am-i-not-getting-interviews.html): twelve resume checks for applications that are not turning into screens, plus a 15-minute triage.
