@@ -517,6 +517,7 @@ function freeAtsCheckerPage() {
           </ul>
           <a class="btn btn-primary btn-block" href="index.html#checker">Check my resume</a>
           <a class="btn btn-ghost btn-block" href="free-ats-resume-template.html" style="margin-top:8px">Get the free template</a>
+          <a class="btn btn-ghost btn-block" href="ats-resume-checklist.html" style="margin-top:8px">Run the 24-point checklist</a>
           <p class="small muted" style="margin-top:10px">No account. Nothing uploaded.</p>
         </aside>
       </div>
@@ -1129,8 +1130,20 @@ function bestFreeCheckersPage() {
         "description": description,
         "author": { "@type": "Organization", "name": "ResumeRadar" },
         "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "datePublished": "2026-11-14",
         "dateModified": "2026-11-14",
         "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "ItemList",
+        "name": "Best free ATS resume checkers in 2026",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "ResumeRadar", "url": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Jobscan", "url": "https://www.jobscan.co/pricing" },
+          { "@type": "ListItem", "position": 3, "name": "Teal", "url": "https://www.tealhq.com/pricing" },
+          { "@type": "ListItem", "position": 4, "name": "Rezi", "url": "https://www.rezi.ai/pricing" },
+          { "@type": "ListItem", "position": 5, "name": "Resume Worded", "url": "https://resumeworded.com/get-pro" }
+        ]
       },
       {
         "@type": "FAQPage",
@@ -1353,6 +1366,7 @@ function atsChecklistPage() {
         "description": description,
         "author": { "@type": "Organization", "name": "ResumeRadar" },
         "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "datePublished": "2026-11-14",
         "dateModified": "2026-11-14",
         "mainEntityOfPage": canonical
       },
