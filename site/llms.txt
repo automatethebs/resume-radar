@@ -6,6 +6,7 @@
 
 - [Free ATS resume checker](https://automatethebs.github.io/resume-radar/free-ats-resume-checker.html): score a resume against any job post. No signup, no upload.
 - [Private, no-upload ATS checker](https://automatethebs.github.io/resume-radar/private-ats-resume-checker.html): how the local scan works, how to verify it sends nothing, and where the trade-offs are.
+- [Best free ATS resume checkers](https://automatethebs.github.io/resume-radar/best-free-ats-resume-checkers.html): the free tiers of ResumeRadar, Jobscan, Teal, Rezi, and Resume Worded compared side by side, with prices verified November 14, 2026. ResumeRadar is our own product; this is a disclosed comparison.
 - [ATS resume checklist (PDF)](https://automatethebs.github.io/resume-radar/assets/ats-resume-checklist.pdf): a one-page printable checklist covering parsing, keywords, evidence, and the final pre-submit test.
 - [ResumeRadar vs Jobscan](https://automatethebs.github.io/resume-radar/jobscan-alternative.html): an honest comparison of the private, $9 one-time checker and Jobscan's account-based platform.
 - [ResumeRadar vs Teal](https://automatethebs.github.io/resume-radar/teal-alternative.html): a disclosed comparison of the no-account, $9 one-time ATS check and Teal's Free Forever resume builder plus Teal+ plans, with prices verified November 14, 2026.

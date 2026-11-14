@@ -579,3 +579,34 @@ test("the free checker landing page and sample report are complete and linked", 
   assert.ok(home.includes("guides.html"), "homepage does not link the guide hub");
 });
 
+
+test("the free-checker hub is dated, disclosed, and linked across the site", () => {
+  const file = path.join(site, "best-free-ats-resume-checkers.html");
+  assert.ok(fs.existsSync(file), "missing best-free-ats-resume-checkers.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/best-free-ats-resume-checkers.html`), "hub missing canonical");
+  assert.ok(html.includes("November 14, 2026"), "hub missing the price verification date");
+  assert.ok(html.includes("our own product"), "hub missing the ownership disclosure");
+  assert.ok(html.includes("not affiliated"), "hub missing the affiliation disclaimer");
+  assert.ok(html.includes("trademark"), "hub missing the trademark note");
+  assert.ok(html.includes("FAQPage"), "hub missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "hub missing breadcrumb schema");
+  assert.ok(html.includes("index.html#checker"), "hub missing scanner CTA");
+  ["jobscan-alternative.html", "teal-alternative.html", "rezi-alternative.html", "resume-worded-alternative.html"].forEach((href) => {
+    assert.ok(html.includes(href), `hub does not link ${href}`);
+  });
+  ["https://www.jobscan.co/pricing", "https://www.tealhq.com/pricing", "https://www.rezi.ai/pricing", "https://resumeworded.com/get-pro"].forEach((href) => {
+    assert.ok(html.includes(href), `hub does not link the official pricing page ${href}`);
+  });
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("best-free-ats-resume-checkers.html"), "guide hub does not link the checker hub");
+  const home = fs.readFileSync(path.join(site, "index.html"), "utf8");
+  assert.ok(home.includes("best-free-ats-resume-checkers.html"), "homepage footer does not link the checker hub");
+  const jobscan = fs.readFileSync(path.join(site, "jobscan-alternative.html"), "utf8");
+  assert.ok(jobscan.includes("best-free-ats-resume-checkers.html"), "comparison pages do not link the checker hub");
+  const llms = fs.readFileSync(path.join(site, "llms.txt"), "utf8");
+  assert.ok(llms.includes("best-free-ats-resume-checkers.html"), "llms.txt does not list the checker hub");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/best-free-ats-resume-checkers.html`), "sitemap missing the checker hub");
+});

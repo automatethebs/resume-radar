@@ -86,6 +86,7 @@ function footer(prefix) {
           <a href="${prefix}keyword-extractor.html">Job keyword extractor</a>
           <a href="${prefix}free-ats-resume-checker.html">Free ATS resume checker</a>
           <a href="${prefix}private-ats-resume-checker.html">Private, no-upload checker</a>
+          <a href="${prefix}best-free-ats-resume-checkers.html">Best free ATS checkers</a>
           <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
           <a href="${prefix}teal-alternative.html">Teal alternative</a>
           <a href="${prefix}rezi-alternative.html">Rezi alternative</a>
@@ -124,7 +125,8 @@ function comparisonLinks(current) {
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An account-based job-search platform with LinkedIn optimization."],
     ["teal-alternative.html", "ResumeRadar vs Teal", "A Free Forever resume builder with Teal+ subscription plans."],
     ["rezi-alternative.html", "ResumeRadar vs Rezi", "An AI resume builder with a free tier and a lifetime option."],
-    ["resume-worded-alternative.html", "ResumeRadar vs Resume Worded", "A free resume score plus AI review and templates on Pro."]
+    ["resume-worded-alternative.html", "ResumeRadar vs Resume Worded", "A free resume score plus AI review and templates on Pro."],
+    ["best-free-ats-resume-checkers.html", "Best free ATS checkers, compared", "All five free tiers side by side, with the date each price was verified."]
   ];
   const others = items.filter(([href]) => href !== current);
   return `<section class="section-tight" aria-labelledby="compare-more">
@@ -1073,6 +1075,157 @@ function resumeWordedAlternativePage() {
           <div>
             <h2>Check the posting in front of you.</h2>
             <p>20 seconds. Free. Private. Then fix the first four gaps.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
+function bestFreeCheckersPage() {
+  const title = "Best Free ATS Resume Checkers in 2026 — Honest Comparison | ResumeRadar";
+  const description = "We compared the free tiers of ResumeRadar, Jobscan, Teal, Rezi, and Resume Worded: what you get for $0, what needs an account or upload, and what the paid upgrade costs. Prices checked November 14, 2026.";
+  const canonical = `${siteUrl}/best-free-ats-resume-checkers.html`;
+  const verified = "November 14, 2026";
+  const faq = [
+    {
+      q: "Which free ATS resume checker is actually free?",
+      a: "All five tools have a free entry point, but free means different things. ResumeRadar gives the full four-category scan with no account and no upload. Teal's Free Forever plan includes 10 templates, top-5 keyword matching, and basic analysis. Rezi's free plan includes 1 resume, 1 AI interview, and 3 PDF downloads. Resume Worded gives a free score and the top issues. Jobscan offers limited free scans with an account."
+    },
+    {
+      q: "Do free ATS checkers require an account?",
+      a: "ResumeRadar does not. Jobscan, Teal, Rezi, and Resume Worded are account-based products, so their free tiers require signing up. Check each vendor's current terms before uploading a resume."
+    },
+    {
+      q: "Do these tools upload my resume?",
+      a: "ResumeRadar does not: you paste plain text and the scan runs in the browser. Jobscan, Teal, Rezi, and Resume Worded process uploaded resumes in their accounts. Their privacy policies govern how those files are stored and deleted."
+    },
+    {
+      q: "Are ATS scores comparable across tools?",
+      a: "No. Each tool uses different checks, keyword lists, and weighting, so the same resume can score 10 or more points apart. Compare the reasons and the recommended fixes, not the number alone."
+    },
+    {
+      q: "Which free ATS checker should I use?",
+      a: "Use ResumeRadar for a private, no-account check of one posting. Use Jobscan for a broad job-search platform with LinkedIn optimization. Use Teal or Rezi if you want a resume builder with templates. Use Resume Worded if you want AI rewriting and line-by-line feedback on the resume itself."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Best free ATS resume checkers", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": "2026-11-14",
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Best free ATS resume checkers
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Honest comparison</p>
+        <h1>The best free ATS resume checkers, compared honestly.</h1>
+        <p class="lede">Free is not one thing. Some tools give you a complete scan with no account, while others show a score and hold the useful details for a subscription. We checked the official pricing pages on <strong>${verified}</strong> and compared what you actually get for $0.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-lg" href="sample-report.html">See a sample report</a>
+        </div>
+        <p class="role-note">Five tools · free tiers compared · prices verified ${verified}</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>The short answer</h2>
+          <p>If you want the most complete free check without an account or an upload, ResumeRadar is the only tool in this group that gives the full four-category scan that way. If you want a resume builder, Teal's Free Forever plan and Rezi's free plan are the more generous builders. If you want AI rewriting or line-by-line feedback on the resume itself, Resume Worded is the deeper review product. If you want one platform for scanning, LinkedIn, and application tracking, Jobscan is the broadest.</p>
+          <p class="small muted">ResumeRadar is our own product. The comparison below is a disclosed vendor comparison, not an independent review. Prices and free-tier limits are set by each vendor and can change; verify them on the linked pricing pages before buying.</p>
+
+          <table class="score-table">
+            <thead><tr><th>Tool</th><th>What you get free</th><th>Account / upload</th><th>Paid upgrade</th><th>Best for</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ResumeRadar</strong> (ours)</td><td>Full 0–100 scan, four category scores, top 5 missing keywords, top 4 fixes</td><td>No account; resume text stays in the browser</td><td>$9 one-time Pro</td><td>A private check of one posting</td></tr>
+              <tr><td><a href="https://www.jobscan.co/pricing" rel="nofollow noopener">Jobscan</a></td><td>Limited free scans</td><td>Account and resume upload</td><td>Subscription plans; check current pricing</td><td>A broad job-search platform with LinkedIn optimization</td></tr>
+              <tr><td><a href="https://www.tealhq.com/pricing" rel="nofollow noopener">Teal</a></td><td>Free Forever: 10 templates, top-5 keyword matching, basic analysis</td><td>Account and resume upload</td><td>Teal+ at $13/week, $29/30 days, or $79/90 days</td><td>A resume builder with templates</td></tr>
+              <tr><td><a href="https://www.rezi.ai/pricing" rel="nofollow noopener">Rezi</a></td><td>Free $0: 1 resume, 1 AI interview, 3 PDF downloads</td><td>Account and resume upload</td><td>Pro $29/month; Lifetime $149 one-time</td><td>An AI resume builder with a lifetime option</td></tr>
+              <tr><td><a href="https://resumeworded.com/get-pro" rel="nofollow noopener">Resume Worded</a></td><td>Free score and the top issues holding the resume down</td><td>Account and PDF/DOCX upload</td><td>Pro $49/month, $99/3 months, or $229/year</td><td>AI rewriting and line-by-line review</td></tr>
+            </tbody>
+          </table>
+
+          <h2>What "free" actually means</h2>
+          <p>Before you upload a resume, ask three questions. First, does the free tier require an account? Four of the five tools here do. Second, does it require a document upload? Again, four of the five do; ResumeRadar only needs pasted text. Third, what is held back? A free score is useful, but it is not the same as a free fix list. ResumeRadar's free scan includes the top five missing keywords and the first four fixes, while the paid tools generally keep the full line-by-line report for subscribers.</p>
+
+          <h2>Why the scores are not comparable</h2>
+          <p>Each tool runs different checks and weights them differently. ResumeRadar scores keyword match, parser-safe structure, measurable impact, and readability. Resume Worded uses 30+ recruiter-style checks. Teal and Rezi emphasize their own builder and keyword systems. A resume that scores 82 in one tool can score 91 in another without a single edit. Use the score to track changes within one tool, and compare the reasons and fixes across tools.</p>
+
+          <h2>How to choose</h2>
+          <ul>
+            <li><strong>You want no account and no upload:</strong> use ResumeRadar's free scan, then decide whether the $9 Pro report is worth it.</li>
+            <li><strong>You want to build or rewrite the resume:</strong> use Teal or Rezi, and compare their free limits and template libraries.</li>
+            <li><strong>You want AI line-by-line feedback:</strong> use Resume Worded's free score first, then decide whether Pro is worth the subscription.</li>
+            <li><strong>You want one platform for the whole search:</strong> compare Jobscan's plans, especially if LinkedIn optimization and application tracking matter to you.</li>
+          </ul>
+
+          <h2>Detailed comparisons</h2>
+          <p>Each comparison below states the vendor's verified prices and where that vendor is the better choice:</p>
+          <div class="guide-grid">
+            <a class="guide-card" href="jobscan-alternative.html"><strong>ResumeRadar vs Jobscan</strong><span>An account-based job-search platform with LinkedIn optimization.</span><em>Comparison</em></a>
+            <a class="guide-card" href="teal-alternative.html"><strong>ResumeRadar vs Teal</strong><span>A Free Forever resume builder with Teal+ subscription plans.</span><em>Comparison</em></a>
+            <a class="guide-card" href="rezi-alternative.html"><strong>ResumeRadar vs Rezi</strong><span>An AI resume builder with a free tier and a lifetime option.</span><em>Comparison</em></a>
+            <a class="guide-card" href="resume-worded-alternative.html"><strong>ResumeRadar vs Resume Worded</strong><span>A free resume score plus AI review and templates on Pro.</span><em>Comparison</em></a>
+          </div>
+
+          <h2>How this comparison was made</h2>
+          <p>We checked each vendor's official pricing page on ${verified} and recorded only what was publicly stated: free-tier limits, account and upload requirements, and paid prices. We did not create accounts, upload test resumes, or test paid features for this page. Jobscan's current free-scan limit and subscription prices should be verified on its pricing page. Teal, Rezi, and Resume Worded prices were taken from their official pages on the date shown. ResumeRadar is our own product, so treat this as a disclosed vendor comparison rather than an independent review. We have tried to state each competitor's offer accurately, including where its free tier is the better deal. ResumeRadar is not affiliated with, endorsed by, or sponsored by any vendor named here. All product names are trademarks of their owners.</p>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Try the no-account scan</h3>
+          <p class="small muted">Paste your resume and a real posting. Get a score, keyword gaps, and fixes without uploading a file.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Check my resume</a>
+          <a class="btn btn-ghost btn-block" href="pricing.html" style="margin-top:8px">See the $9 Pro report</a>
+          <p class="small muted" style="margin-top:10px">One-time payment. No subscription.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Start with the scan you can judge for free.</h2>
+            <p>No account, no upload, no email gate. See the score and the first fixes before paying anything.</p>
           </div>
           <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
         </div>
@@ -2647,6 +2800,7 @@ function guidesPage() {
   const cards = [
     ["free-ats-resume-checker.html", "Free ATS resume checker", "The full scanner: score, keyword gaps, parser warnings, and fixes. No signup, no upload.", "Free tool"],
     ["private-ats-resume-checker.html", "Private, no-upload checker", "How the local scan works, how to verify it sends nothing, and where the trade-offs are.", "Privacy"],
+    ["best-free-ats-resume-checkers.html", "Best free ATS resume checkers", "The free tiers of ResumeRadar, Jobscan, Teal, Rezi, and Resume Worded side by side, with verified pricing dates.", "Comparison"],
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
     ["teal-alternative.html", "ResumeRadar vs Teal", "A disclosed comparison of a no-account, $9 one-time ATS check and Teal's Free Forever resume builder plus Teal+ plans.", "Comparison"],
     ["rezi-alternative.html", "ResumeRadar vs Rezi", "A disclosed comparison of a private, $9 one-time ATS scan and Rezi's AI resume builder, free tier, Pro plan, and lifetime option.", "Comparison"],
@@ -2711,6 +2865,7 @@ function sitemap() {
     { loc: `${siteUrl}/roles.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/free-ats-resume-checker.html`, priority: "0.9", changefreq: "monthly" },
     { loc: `${siteUrl}/private-ats-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/best-free-ats-resume-checkers.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/jobscan-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/teal-alternative.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/rezi-alternative.html`, priority: "0.8", changefreq: "monthly" },
@@ -2763,6 +2918,7 @@ for (const role of roles) {
 fs.writeFileSync(path.join(siteDir, "roles.html"), rolesIndexPage());
 fs.writeFileSync(path.join(siteDir, "free-ats-resume-checker.html"), freeAtsCheckerPage());
 fs.writeFileSync(path.join(siteDir, "private-ats-resume-checker.html"), privateCheckerPage());
+fs.writeFileSync(path.join(siteDir, "best-free-ats-resume-checkers.html"), bestFreeCheckersPage());
 fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternativePage());
 fs.writeFileSync(path.join(siteDir, "teal-alternative.html"), tealAlternativePage());
 fs.writeFileSync(path.join(siteDir, "rezi-alternative.html"), reziAlternativePage());
