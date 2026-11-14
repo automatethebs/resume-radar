@@ -719,6 +719,8 @@ body.is-pro .lock-card { display: none; }
 .legal strong { color: var(--ink); }
 
 .score-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: .9rem; }
+.table-scroll { margin-top: 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-scroll .score-table { margin-top: 0; min-width: 720px; }
 .score-table th, .score-table td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .score-table th { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
 .score-table td:first-child { width: 26%; }
