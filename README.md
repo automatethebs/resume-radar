@@ -5,7 +5,7 @@ A private, client-side ATS resume checker with a one-time Pro unlock. No server,
 **Live site:** <https://automatethebs.github.io/resume-radar/>  
 **Price:** $9 one-time  
 **Payments:** USDC on Base out of the box, verified in the buyer's browser. Card checkout via Stripe can be enabled in one config file.  
-**Free checklist:** <https://automatethebs.github.io/resume-radar/assets/ats-resume-checklist.pdf> (one page, no email)
+**Free checklist:** [one-page PDF](https://automatethebs.github.io/resume-radar/assets/ats-resume-checklist.pdf) · [release page](https://github.com/automatethebs/resume-radar/releases/tag/ats-checklist-2026) (no email)
 
 ![ResumeRadar landing page](docs/screenshot.png)
 
