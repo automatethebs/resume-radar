@@ -57,6 +57,7 @@ test("pricing and unlock flows are wired", () => {
   assert.ok(pricing.includes("data-price"), "pricing missing price placeholder");
   assert.ok(pricing.includes("data-crypto"), "pricing missing USDC CTA");
   assert.ok(pricing.includes("data-payment-note"), "pricing missing dynamic payment note");
+  assert.ok(pricing.includes('id="unlock"'), "pricing missing the restore-access anchor used by the payment guide");
   const siteJs = fs.readFileSync(path.join(site, "assets/site.js"), "utf8");
   assert.ok(siteJs.includes("rr_pro_v1"), "unlock storage key missing");
   assert.ok(siteJs.includes("paymentLink"), "payment link config not read");
