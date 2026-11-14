@@ -260,6 +260,7 @@
           '<p class="dialog-msg" id="crypto-msg" role="alert"></p>' +
           '<button class="btn btn-primary" type="submit">Verify payment</button>' +
         "</form>" +
+        '<p class="dialog-foot">14-day refund if the report does not work for you. <a href="terms.html">Details</a>.</p>' +
         '<p class="dialog-foot">Find the hash in your wallet or on <a href="' + esc(explorerRoot) + '" target="_blank" rel="noopener">BaseScan</a>. ' +
           '<button type="button" class="linklike" data-unlock>Use a license code instead</button></p>' +
       "</div>";

@@ -64,6 +64,19 @@ test("pricing and unlock flows are wired", () => {
   assert.ok(configSrc.includes(usdcAddress), "USDC address is not configured");
 });
 
+test("Pro copy and checkout describe the live payment rail accurately", () => {
+  const appJs = fs.readFileSync(path.join(site, "assets/app.js"), "utf8");
+  assert.ok(appJs.includes("Unlock the full role checklist and every fix"), "Pro card still overstates the free-view gap");
+  assert.ok(appJs.includes("14-day refund"), "Pro card is missing the refund promise");
+  const siteJs = fs.readFileSync(path.join(site, "assets/site.js"), "utf8");
+  assert.ok(siteJs.includes("14-day refund"), "USDC dialog is missing the refund promise");
+  const pricing = fs.readFileSync(path.join(site, "pricing.html"), "utf8");
+  assert.ok(pricing.includes("USDC on Base is the live payment rail"), "pricing FAQ does not name the live rail");
+  assert.ok(pricing.includes("If card checkout is enabled"), "pricing FAQ still implies card checkout is live");
+  assert.ok(!pricing.includes("With a card, you are redirected back"), "pricing FAQ describes a card flow that is not enabled");
+  assert.ok(pricing.includes("does not store wallet or payment details"), "privacy FAQ does not describe USDC handling");
+});
+
 test("USDC buyers can restore Pro from a transaction link", () => {
   const siteJs = fs.readFileSync(path.join(site, "assets/site.js"), "utf8");
   assert.ok(siteJs.includes("function restoreUrl"), "restoreUrl helper missing");

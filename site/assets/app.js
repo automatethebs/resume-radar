@@ -382,9 +382,10 @@
           renderProPlaybook(report) +
           '<div class="pro-banner free-only">' +
             '<div><p class="eyebrow">Pro report</p>' +
-            "<h3>See every gap, not just the first five.</h3>" +
-            "<p>One payment, no subscription. Unlock all missing keywords, the full role checklist, every fix, a cover-letter outline, interview questions, and a text export you can work from. <a href=\"sample-report.html\">See a sample report →</a></p>" +
-            '<div class="pro-feats"><span>All missing keywords</span><span>Full role checklist</span><span>Every recommended fix</span><span>Cover letter outline</span><span>Interview questions</span><span>TXT export</span></div></div>' +
+            "<h3>Unlock the full role checklist and every fix.</h3>" +
+            "<p>One payment, no subscription. Pro adds the complete role checklist, every missing keyword ranked by importance, all recommended fixes, a cover-letter outline, eight interview questions, and a text export. <a href=\"sample-report.html\">See a sample report →</a></p>" +
+            '<div class="pro-feats"><span>Ranked keyword gaps</span><span>Full role checklist</span><span>Every recommended fix</span><span>Cover letter outline</span><span>Interview questions</span><span>TXT export</span></div>' +
+            '<p class="small muted">14-day refund if the report does not work for you. <a href="terms.html">Details</a>.</p></div>' +
             '<button type="button" class="btn btn-lg" data-pay>Get Pro — ' + esc(cfg.priceLabel || "$9") + "</button>" +
           "</div>" +
         "</div>" +
