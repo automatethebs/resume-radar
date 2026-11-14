@@ -88,6 +88,7 @@ function footer(prefix) {
           <a href="${prefix}private-ats-resume-checker.html">Private, no-upload checker</a>
           <a href="${prefix}jobscan-alternative.html">Jobscan alternative</a>
           <a href="${prefix}why-am-i-not-getting-interviews.html">Why no interviews?</a>
+          <a href="${prefix}career-change-resume-checker.html">Career change resume</a>
           <a href="${prefix}ats-resume-format.html">ATS resume format</a>
           <a href="${prefix}free-ats-resume-template.html">Free ATS template</a>
           <a href="${prefix}resume-action-verbs.html">Resume action verbs</a>
@@ -1488,6 +1489,179 @@ function privateCheckerPage() {
   return shell({ title, description, canonical, prefix: "", body, jsonLd });
 }
 
+function careerChangePage() {
+  const title = "Career Change Resume Checker — Transferable Skills and ATS Gaps (2026) | ResumeRadar";
+  const description = "A practical career-change resume guide: build an evidence inventory, translate transferable skills into the target role's language, avoid functional-resume parsing traps, and check the resume against a real posting.";
+  const canonical = `${siteUrl}/career-change-resume-checker.html`;
+  const faq = [
+    {
+      q: "Do I need a functional resume for a career change?",
+      a: "Usually no. Many applicant tracking systems expect a reverse-chronological experience section with dated roles. A functional resume that groups skills and hides dates can parse poorly and make recruiters hunt for your history. Keep the chronology, use the summary and skills sections to foreground transferable evidence, and reframe the bullets inside each role."
+    },
+    {
+      q: "How do I explain a career gap?",
+      a: "Keep the dates honest and add a short, factual line if it helps. You do not need to apologize or invent consulting work. A gap with a simple explanation is easier to process than missing dates that look like an error."
+    },
+    {
+      q: "Should I remove my old experience?",
+      a: "No. Keep the roles and dates, but condense older or less relevant positions and use the space you save for evidence that maps to the target role. Removing chronology creates parsing and credibility problems."
+    },
+    {
+      q: "How do I know which skills transfer?",
+      a: "Take each must-have requirement from the target posting and write down one true example from your work, projects, volunteering, or training. If the example is adjacent rather than direct, say what it actually was. If you have no example, treat it as a gap and leave it out."
+    },
+    {
+      q: "What if I have no direct experience in the new field?",
+      a: "Use projects, certifications, volunteer work, and adjacent responsibilities. A bridge role, freelance project, or internal transfer can also create direct evidence. Do not claim experience you cannot defend in an interview."
+    },
+    {
+      q: "Will an ATS reject me because I am changing careers?",
+      a: "An ATS does not know your intent. It parses the document and matches terms. The risk is that your resume still speaks the old field's language. Use the target role's vocabulary where it is true, keep the structure readable, and scan against the posting you actually want."
+    },
+    {
+      q: "How many resume versions do I need?",
+      a: "Keep one master resume with all of your evidence, then tailor 20 to 30 percent for each posting: the summary, the skills order, three to five bullets, and sometimes one project. You do not need a completely different document for every application."
+    }
+  ];
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Career change resume checker", "item": canonical }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Organization", "name": "ResumeRadar" },
+        "publisher": { "@type": "Organization", "name": "ResumeRadar" },
+        "dateModified": today,
+        "mainEntityOfPage": canonical
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faq.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": { "@type": "Answer", "text": item.a }
+        }))
+      }
+    ]
+  });
+  const body = `<main>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span>Career change resume checker
+      </nav>
+    </div>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Career change guide</p>
+        <h1>Career change resume checker: translate your experience without inventing it.</h1>
+        <p class="lede">A career-change resume is not a list of everything you have done. It is an argument that your old evidence answers the new role's requirements. Here is a repeatable way to build that argument, then test it against the posting.</p>
+        <div class="role-actions">
+          <a class="btn btn-primary btn-lg" href="index.html#checker">Check my transferable gaps</a>
+          <a class="btn btn-ghost btn-lg" href="how-to-tailor-a-resume.html">Read the tailoring guide</a>
+        </div>
+        <p class="role-note">Free scan · no signup · nothing uploaded</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap page-grid">
+        <div class="prose">
+          <h2>Why career-change resumes get filtered</h2>
+          <p>An ATS and a recruiter are both looking for evidence that you can do the target job. If your resume is still written in the old field's vocabulary, that evidence is hard to find. The work may transfer; the language does not.</p>
+          <p>The fix is translation, not fabrication. You are not inventing a new career history. You are describing the same true work in the words the target role uses, and leading with the parts that transfer.</p>
+
+          <h2>Step 1: Build an evidence inventory</h2>
+          <p>List eight to twelve things you actually did, with scope and a result. Include paid work, projects, volunteering, certifications, and training. Then map each one to a transferable skill and a target-role phrase.</p>
+          <table class="score-table">
+            <thead><tr><th>What you did</th><th>Transferable skill</th><th>Target-role language</th></tr></thead>
+            <tbody>
+              <tr><td>Managed 14 retail staff and opened two stores</td><td>Team leadership, planning, budgeting</td><td>Led a 14-person cross-functional team through two launches, on schedule and 8% under budget</td></tr>
+              <tr><td>Trained new hires on POS and closing process</td><td>Onboarding, documentation, process</td><td>Built onboarding documentation and trained 20+ new hires, cutting ramp time from six weeks to four</td></tr>
+              <tr><td>Handled escalated customer issues</td><td>Stakeholder communication, conflict resolution</td><td>Resolved escalated customer issues and reduced repeat contacts by 22%</td></tr>
+            </tbody>
+          </table>
+          <p>Only use rows you can defend in an interview. The worksheet is a translation tool, not a permission slip to exaggerate.</p>
+
+          <h2>Step 2: Pick one target role and read its language</h2>
+          <p>Choose one target role, not three. Extract the top eight to twelve terms from a real posting. The <a href="keyword-extractor.html">keyword extractor</a> and the <a href="roles.html">role guides</a> can help. Then sort your inventory into three buckets: strong evidence, adjacent evidence, and gaps.</p>
+          <p>Adjacent evidence counts. If you have not managed a product, but you have run a project with deadlines, a budget, and stakeholders, that is project evidence. Describe what it was, not what it was not.</p>
+
+          <h2>Step 3: Rewrite the top third</h2>
+          <p>The summary should name the target role, the transferable scope, two relevant skills, and one result. Compare:</p>
+          <div class="compare-grid">
+            <div class="compare-card compare-before">
+              <h3>Before</h3>
+              <p>Experienced retail manager seeking a career change into project management.</p>
+            </div>
+            <div class="compare-card compare-after">
+              <h3>After</h3>
+              <p>Project manager with six years leading cross-functional retail teams of up to 14 people. Delivered two store launches on schedule and 8% under budget; completing a project management certificate.</p>
+            </div>
+          </div>
+          <p>The second version names the target role, the transferable scope, and a concrete result. It does not pretend the retail work was product work.</p>
+
+          <h2>Step 4: Keep the structure boring</h2>
+          <p>Many parsers expect a reverse-chronological experience section with dated roles. A functional resume that groups skills and hides dates often parses poorly and makes a recruiter hunt for your history. Keep the chronology, use a skills section for the target vocabulary, and reframe bullets in place.</p>
+          <p>Standard headings, month-and-year dates, one column, and real text still matter. A career-change resume does not get an exemption from the parser.</p>
+
+          <h2>Step 5: Scan against the target posting, then stop</h2>
+          <p>Paste the resume and a real posting in the field you want. Fix structure warnings first, add three to five missing terms that are true, and rewrite two bullets with scope and a result. Re-scan. The remaining gaps should be things you honestly cannot claim.</p>
+          <p>Do not scan against your old role. The score is only meaningful against the job you want.</p>
+
+          <h2>What to do about a gap or a certificate in progress</h2>
+          <p>Keep the dates honest. If you are enrolled in a course, write “expected [month year]” rather than implying you already have the credential. If you have an employment gap, a short factual line is enough. You do not need to invent consulting work to fill it.</p>
+
+          <h2>Common career-change mistakes</h2>
+          <ul>
+            <li><strong>Using a functional resume to hide the transition.</strong> It usually makes parsing worse and the chronology harder to follow.</li>
+            <li><strong>Leading with what you want.</strong> “Seeking a career change” describes your situation, not the employer's problem.</li>
+            <li><strong>Keeping old-field jargon in every bullet.</strong> Translate the work into the target field's vocabulary where it is accurate.</li>
+            <li><strong>Dumping unrelated experience to fill space.</strong> Condense it and use the room for transferable evidence.</li>
+            <li><strong>Applying to a senior target role without showing scope.</strong> Lead with the level you can defend and the evidence that supports it.</li>
+            <li><strong>Chasing a perfect score.</strong> Past the high 80s, you are usually optimizing for the checker, not the hiring manager.</li>
+          </ul>
+
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            ${faq.map((item) => `<details><summary>${esc(item.q)}</summary><p>${esc(item.a)}</p></details>`).join("")}
+          </div>
+        </div>
+
+        <aside class="aside-card">
+          <h3>Check the target, not the old role</h3>
+          <p class="small muted">Scan your current resume against a real posting in the field you want. See which target terms are missing and which fixes are honest.</p>
+          <a class="btn btn-primary btn-block" href="index.html#checker">Scan my resume free</a>
+          <a class="btn btn-ghost btn-block" href="how-to-tailor-a-resume.html" style="margin-top:8px">Tailoring worksheet</a>
+          <a class="btn btn-ghost btn-block" href="roles.html" style="margin-top:8px">Browse target roles</a>
+          <p class="small muted" style="margin-top:10px">No account · nothing uploaded.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Translate the evidence. Then test it.</h2>
+            <p>A 20-second scan shows whether the target role's language is actually on the page.</p>
+          </div>
+          <a class="btn btn-lg" href="index.html#checker">Scan my resume</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+  return shell({ title, description, canonical, prefix: "", body, jsonLd });
+}
+
 function notGettingInterviewsPage() {
   const title = "Why Am I Not Getting Interviews? 12 Resume Fixes (2026) | ResumeRadar";
   const description = "Applying but not hearing back? Work through 12 resume checks in order: parser failures, keyword gaps, generic summaries, duty-based bullets, format problems, and targeting mistakes.";
@@ -1680,6 +1854,7 @@ function guidesPage() {
     ["jobscan-alternative.html", "ResumeRadar vs Jobscan", "An honest comparison of a private, $9 one-time checker and Jobscan's account-based job-search platform.", "Comparison"],
     ["what-is-a-good-ats-score.html", "What is a good ATS score?", "The score bands, the four weighted checks, and why a perfect score is not the goal.", "Score guide"],
     ["how-to-tailor-a-resume.html", "How to tailor a resume", "A five-step process for matching a resume to a real posting without keyword stuffing.", "Tailoring guide"],
+    ["career-change-resume-checker.html", "Career change resume checker", "Map transferable evidence to the target role and avoid functional-resume parsing traps.", "Career change"],
     ["why-am-i-not-getting-interviews.html", "Why am I not getting interviews?", "Twelve resume checks for applications that are not turning into screens, plus a 15-minute triage.", "Diagnostic guide"],
     ["sample-report.html", "Sample ATS report", "See a complete example report before you scan your own resume.", "Example"],
     ["ats-resume-format.html", "ATS resume format", "The nine formatting rules that decide whether a parser can read your resume — and what to remove.", "Format guide"],
@@ -1739,6 +1914,7 @@ function sitemap() {
     { loc: `${siteUrl}/what-is-a-good-ats-score.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/how-to-tailor-a-resume.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/why-am-i-not-getting-interviews.html`, priority: "0.8", changefreq: "monthly" },
+    { loc: `${siteUrl}/career-change-resume-checker.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/sample-report.html`, priority: "0.6", changefreq: "monthly" },
     { loc: `${siteUrl}/guides.html`, priority: "0.8", changefreq: "monthly" },
     { loc: `${siteUrl}/keyword-extractor.html`, priority: "0.8", changefreq: "monthly" },
@@ -1785,6 +1961,7 @@ fs.writeFileSync(path.join(siteDir, "jobscan-alternative.html"), jobscanAlternat
 fs.writeFileSync(path.join(siteDir, "what-is-a-good-ats-score.html"), atsScoreGuidePage());
 fs.writeFileSync(path.join(siteDir, "how-to-tailor-a-resume.html"), tailorGuidePage());
 fs.writeFileSync(path.join(siteDir, "why-am-i-not-getting-interviews.html"), notGettingInterviewsPage());
+fs.writeFileSync(path.join(siteDir, "career-change-resume-checker.html"), careerChangePage());
 fs.writeFileSync(path.join(siteDir, "sample-report.html"), sampleReportPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-examples.html"), summaryExamplesPage());
 fs.writeFileSync(path.join(siteDir, "resume-summary-generator.html"), summaryGeneratorPage());

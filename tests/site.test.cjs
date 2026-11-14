@@ -389,6 +389,26 @@ test("the private no-upload checker page is complete and linked", () => {
   assert.ok(sitemap.includes(`${siteUrl}/private-ats-resume-checker.html`), "sitemap missing the private checker");
 });
 
+test("the career-change guide maps transferable evidence and is linked", () => {
+  const file = path.join(site, "career-change-resume-checker.html");
+  assert.ok(fs.existsSync(file), "missing career-change-resume-checker.html");
+  const html = fs.readFileSync(file, "utf8");
+  assert.ok(html.includes(`${siteUrl}/career-change-resume-checker.html`), "career-change guide missing canonical");
+  assert.ok(html.includes("Article"), "career-change guide missing Article schema");
+  assert.ok(html.includes("FAQPage"), "career-change guide missing FAQ schema");
+  assert.ok(html.includes("BreadcrumbList"), "career-change guide missing breadcrumb schema");
+  assert.ok(html.includes("evidence inventory"), "career-change guide missing the evidence inventory");
+  assert.ok(html.includes("Transferable skill"), "career-change guide missing the mapping table");
+  assert.ok(html.includes("reverse-chronological"), "career-change guide missing the structure advice");
+  assert.ok(html.includes("compare-before"), "career-change guide missing the before/after example");
+  assert.ok(html.includes("index.html#checker"), "career-change guide missing scanner CTA");
+
+  const guides = fs.readFileSync(path.join(site, "guides.html"), "utf8");
+  assert.ok(guides.includes("career-change-resume-checker.html"), "guide hub does not link the career-change guide");
+  const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes(`${siteUrl}/career-change-resume-checker.html`), "sitemap missing the career-change guide");
+});
+
 test("the free checker landing page and sample report are complete and linked", () => {
   const checker = fs.readFileSync(path.join(site, "free-ats-resume-checker.html"), "utf8");
   assert.ok(checker.includes(`${siteUrl}/free-ats-resume-checker.html`), "free checker missing canonical");

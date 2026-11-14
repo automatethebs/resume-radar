@@ -41,6 +41,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://automatethebs.github.io/resume-radar/career-change-resume-checker.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://automatethebs.github.io/resume-radar/sample-report.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
